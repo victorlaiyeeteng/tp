@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+FriendBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FriendBook can get your plans management done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -63,95 +63,210 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
+### Adding a person: `add friend`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add friend n/NAME p/PHONE_NUMBER e/EMAIL`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add friend n/John Doe p/98321234 e/johnd@example.com`
+* `add friend n/Jack Ma p/92839102 e/jack.ma@yahoo.com`
 
-### Listing all persons : `list`
+Arguments:
+- A `NAME` must be provided
 
-Shows a list of all persons in the address book.
+- PHONE_NUMBER and EMAIL are optional
 
-Format: `list`
+Successful Output:
 
-### Editing a person : `edit`
+`[NAME, PHONE_NUMBER, EMAIL] added to friends list.`
 
-Edits an existing person in the address book.
+Unsuccessful Output:
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+- Invalid command: `Invalid command.` + help message with list of all commands
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+- Empty name: `Invalid Adding of Friend: A name must be entered. Syntax: add friend n/NAME p/NUMBER e/EMAIL`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+- Non-numeric phone number: `Invalid Adding of Friend: Phone number must be numeric. Syntax: add friend n/NAME p/PHONE_NUMBER e/EMAIL`
 
-### Locating persons by name: `find`
+- Invalid email format: `Invalid Adding of Friend: Invalid email. Syntax: add friend n/NAME p/PHONE_NUMBER e/EMAIL`
 
-Finds persons whose names contain any of the given keywords.
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: add friend n/NAME p/PHONE_NUMBER e/EMAIL`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+### Removing a Friend : `remove`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Removes an existing friend from the address book.
+
+Format: `remove NAME`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `remove John Doe`
+* `remove Jack Ma`
 
-### Deleting a person : `delete`
+Arguments:
+- `NAME` must be a string
 
-Deletes the specified person from the address book.
+Successful Output:
 
-Format: `delete INDEX`
+`[NAME, PHONE_NUMBER, EMAIL] removed from friends list.`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Unsuccessful Output:
+
+- Invalid command: `Invalid command.` + help message with list of all commands
+
+- Empty name: `Invalid Removing of Friend: A name must be entered. Syntax: remove NAME`
+
+- Argument provided is not a STRING: `Invalid Removing of Friend: Name should be a STRING. Syntax: remove NAME`
+
+- Not a valid friend: `Invalid Removing of Friend: No such friend in friends list.`
+
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: remove NAME`
+
+### Editing a Friend's Information: `edit`
+
+Edits an existing friend’s information in the address book at the specified index.
+
+Format: `edit INDEX n/NAME p/PHONE e/EMAIL`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `edit 3 n/Jack Ma`
+* `edit 1 p/99990000`
 
-### Clearing all entries : `clear`
+Arguments:
 
-Clears all entries from the address book.
+- `NAME` must be a STRING, `PHONE` must be an INT, and `EMAIL` must be a STRING
 
-Format: `clear`
+- An `INDEX` must be provided
 
-### Exiting the program : `exit`
+- `NAME`, `PHONE_NUMBER` and `EMAIL` are optional but at least 1 must be given
 
-Exits the program.
+Successful Output:
 
-Format: `exit`
+`[NAME, PHONE_NUMBER, EMAIL] updated in friends list.`
+
+Unsuccessful Output:
+
+- Invalid command: `Invalid command.` + help message with list of all commands
+
+- Invalid index is given: `Invalid Updating of Friend: Index given is invalid. Syntax: edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL`
+
+- No optional arguments provided: `Invalid Updating of Friend: Missing information to be updated. Syntax: edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL`
+
+- Not a valid friend: `Invalid Updating of Friend: No such friend in friends list.`
+
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL`
+
+### Listing all persons : `plans`
+
+Shows a list of all plans.
+
+Format: `plans`
+
+Successful Output:
+
+- If no plans are added, returns `No plans added`
+
+- If plans are added, return a list of all plans:
+1. Project Meeting with John Doe on 2023-10-23-10:00
+2. Dota with Jack Ma on 2023-10-23-10:00
+
+Unsuccessful Output:
+
+- Invalid command: `Invalid command.` + help message with list of all commands
+
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: plans`
+
+### Adding a plan : `add plan`
+
+Adds a plan and associates with involved friends.
+
+Format: `add plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
+
+Examples:
+* `add plan n/Project Meeting d/2023-10-23-10:00 f/Royden`
+
+Arguments:
+
+- `PLAN_NAME` must be a STRING, `DATE_TIME` must be in the YYYY-MM-DD-HH:MM format
+
+- `FRIEND_NAME` is optional. If specified, `FRIEND_NAME` must be the name of an existing friend
+
+Successful Output:
+
+`[PLAN_NAME with FRIEND_NAME at DATE_TIME] added to your plans.`
+
+Unsuccessful Output:
+
+- Invalid command: `Invalid command.` + help message with list of all commands
+
+- Missing arguments: `Invalid syntax: Missing arguments. Syntax: add plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
+
+- Date-Time in wrong format: `Invalid Adding of Plan: Date-Time given is invalid. Syntax: Date-Time must be in YYYY-MM-DD-HH:MM format`
+
+- Date-Time in the past: `Invalid Adding of Plan: Date-Time given is invalid. Ensure that the Date-Time provided is not in the past.`
+
+- Not a valid friend: `Invalid Adding of Plan: No such friend in friends list.`
+
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: add plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
+
+### Marking a Plan as Completed : `complete plan`
+
+Marks the specified plan as completed.
+
+Format: `complete plan INDEX`
+
+Examples:
+* `complete plan 4`
+
+Arguments:
+
+- `INDEX` must be an INTEGER
+
+Successful Output:
+
+`[PLAN_NAME] is marked as completed.`
+
+Unsuccessful Output:
+
+- Invalid command: `Invalid command.` + help message with list of all commands
+
+- Missing arguments: `Invalid syntax: Missing arguments. Syntax: complete plan INDEX`
+
+- Non-numeric index: `Invalid Marking of Plan: Index given is non-numeric. Syntax: complete plan INDEX`
+
+- Not a valid index: `Invalid Marking of Plan: No plans at given index. Syntax: complete plan INDEX`
+
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: complete plan INDEX`
+
+### Deleting a Plan
+
+Deletes the specified plan.
+
+Format: `delete plan INDEX`
+
+Examples:
+* `delete plan 4`
+
+Arguments:
+
+- `INDEX` must be an INTEGER
+
+Successful Output:
+
+`[PLAN_NAME] is deleted.`
+
+Unsuccessful Output:
+
+- Invalid command: `Invalid command.` + help message with list of all commands
+
+- Missing arguments: `Invalid syntax: Missing arguments. Syntax: delete plan INDEX`
+
+- Non-numeric index: `Invalid Deletion of Plan: Index given is non-numeric. Syntax: delete plan INDEX`
+
+- Not a valid index: `Invalid Deletion of Plan: No plans at given index. Syntax: delete plan INDEX`
+
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: delete plan INDEX`
 
 ### Saving the data
 
