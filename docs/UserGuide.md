@@ -14,11 +14,11 @@ FriendBook is a **desktop app for managing contacts, optimized for use via a Com
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `friendbook.jar` from here (link coming soon).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your FriendBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar friendbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -27,7 +27,7 @@ FriendBook is a **desktop app for managing contacts, optimized for use via a Com
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the FriendBook.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -46,7 +46,7 @@ FriendBook is a **desktop app for managing contacts, optimized for use via a Com
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add friend n/NAME`, `NAME` is a parameter which can be used as `add friend n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -63,7 +63,7 @@ FriendBook is a **desktop app for managing contacts, optimized for use via a Com
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Adding a person: `add friend`
+### Adding a person: `add friend` [Coming Soon]
 
 Adds a person to the address book.
 
@@ -94,7 +94,7 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: add friend n/NAME p/PHONE_NUMBER e/EMAIL`
 
-### Removing a Friend : `remove`
+### Removing a Friend : `remove` [Coming Soon]
 
 Removes an existing friend from the address book.
 
@@ -123,7 +123,7 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: remove NAME`
 
-### Editing a Friend's Information: `edit`
+### Editing a Friend's Information: `edit` [Coming Soon]
 
 Edits an existing friend’s information in the address book at the specified index.
 
@@ -157,7 +157,7 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL`
 
-### Listing all persons : `plans`
+### Listing all persons : `plans` [Coming Soon]
 
 Shows a list of all plans.
 
@@ -177,7 +177,7 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: plans`
 
-### Adding a plan : `add plan`
+### Adding a plan : `add plan` [Coming Soon]
 
 Adds a plan and associates with involved friends.
 
@@ -210,7 +210,7 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: add plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
 
-### Marking a Plan as Completed : `complete plan`
+### Marking a Plan as Completed : `complete plan` [Coming Soon]
 
 Marks the specified plan as completed.
 
@@ -239,7 +239,7 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: complete plan INDEX`
 
-### Deleting a Plan
+### Deleting a Plan [Coming Soon]
 
 Deletes the specified plan.
 
@@ -270,14 +270,14 @@ Unsuccessful Output:
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FriendBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+FriendBook data are saved automatically as a JSON file `[JAR file location]/data/friendbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+If your changes to the data file makes its format invalid, FriendBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
