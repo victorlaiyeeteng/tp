@@ -65,7 +65,7 @@ FriendBook is a **desktop app for managing contacts, optimized for use via a Com
 
 ### Adding a person: `add friend` [Coming Soon]
 
-Adds a person to the address book.
+Adds a person to the friends list.
 
 Format: `add friend n/NAME p/PHONE_NUMBER e/EMAIL`
 
@@ -94,15 +94,15 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: add friend n/NAME p/PHONE_NUMBER e/EMAIL`
 
-### Removing a Friend : `remove` [Coming Soon]
+### Removing a Friend : `remove friend` [Coming Soon]
 
-Removes an existing friend from the address book.
+Removes an existing friend from the friends list.
 
-Format: `remove NAME`
+Format: `remove friend NAME`
 
 Examples:
-* `remove John Doe`
-* `remove Jack Ma`
+* `remove friend John Doe`
+* `remove friend Jack Ma`
 
 Arguments:
 - `NAME` must be a string
@@ -115,23 +115,23 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Empty name: `Invalid Removing of Friend: A name must be entered. Syntax: remove NAME`
+- Empty name: `Invalid Removing of Friend: A name must be entered. Syntax: remove friend NAME`
 
-- Argument provided is not a STRING: `Invalid Removing of Friend: Name should be a STRING. Syntax: remove NAME`
+- Argument provided is not a STRING: `Invalid Removing of Friend: Name should be a STRING. Syntax: remove friend NAME`
 
 - Not a valid friend: `Invalid Removing of Friend: No such friend in friends list.`
 
-- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: remove NAME`
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: remove friend NAME`
 
-### Editing a Friend's Information: `edit` [Coming Soon]
+### Editing a Friend's Information: `edit friend` [Coming Soon]
 
-Edits an existing friend’s information in the address book at the specified index.
+Edits an existing friend’s information in the friends list at the specified index.
 
-Format: `edit INDEX n/NAME p/PHONE e/EMAIL`
+Format: `edit friend INDEX n/NAME p/PHONE e/EMAIL`
 
 Examples:
-* `edit 3 n/Jack Ma`
-* `edit 1 p/99990000`
+* `edit friend 3 n/Jack Ma`
+* `edit friend 1 p/99990000`
 
 Arguments:
 
@@ -149,33 +149,13 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Invalid index is given: `Invalid Updating of Friend: Index given is invalid. Syntax: edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL`
+- Invalid index is given: `Invalid Updating of Friend: Index given is invalid. Syntax: edit friend INDEX n/NAME p/PHONE_NUMBER e/EMAIL`
 
-- No optional arguments provided: `Invalid Updating of Friend: Missing information to be updated. Syntax: edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL`
+- No optional arguments provided: `Invalid Updating of Friend: Missing information to be updated. Syntax: edit friend INDEX n/NAME p/PHONE_NUMBER e/EMAIL`
 
 - Not a valid friend: `Invalid Updating of Friend: No such friend in friends list.`
 
-- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL`
-
-### Listing all persons : `plans` [Coming Soon]
-
-Shows a list of all plans.
-
-Format: `plans`
-
-Successful Output:
-
-- If no plans are added, returns `No plans added`
-
-- If plans are added, return a list of all plans:
-1. Project Meeting with John Doe on 2023-10-23-10:00
-2. Dota with Jack Ma on 2023-10-23-10:00
-
-Unsuccessful Output:
-
-- Invalid command: `Invalid command.` + help message with list of all commands
-
-- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: plans`
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: edit friend INDEX n/NAME p/PHONE_NUMBER e/EMAIL`
 
 ### Adding a plan : `add plan` [Coming Soon]
 
@@ -239,7 +219,7 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: complete plan INDEX`
 
-### Deleting a Plan [Coming Soon]
+### Deleting a Plan : `delete plan` [Coming Soon]
 
 Deletes the specified plan.
 
@@ -289,7 +269,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FriendBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -303,10 +283,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**add friend** | `add friend n/NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `add friend n/John Doe p/98321234 e/johnd@example.com`
+**remove friend** | `remove friend NAME` <br> e.g., `remove friend John Doe`
+**edit friend** | `edit friend INDEX n/NAME p/PHONE e/EMAIL`<br> e.g., `edit friend 3 n/Jack Ma`
+**add plan** | `add plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`<br> e.g.,`add plan n/Project Meeting d/2023-10-23-10:00 f/Royden`
+**complete plan** | `complete plan INDEX`<br> e.g., `complete plan 4`
+**delete plan** | `delete plan INDEX` <br> e.g., `delete plan 4`
