@@ -11,7 +11,7 @@ You can reach us at the email `chia.elijah[at]comp.nus.edu.sg`
 
 ### Elijah Chia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/elijah5399.png" width="200px">
 
 [[github](https://github.com/Elijah5399)]
 [[portfolio](team/elijah5399.md)]
