@@ -257,56 +257,85 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* a busy university student needing a plan manager
+* has a need to manage a significant number of friends
+* requires an easy way to manage his plans with his many friends
 * prefer desktop apps over other types
 * can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* prefers a simple GUI controlled by CLI commands
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition** <br>
+Provides a simple, free and fuss-free way for friends to keep updated information about each other and their 
+plans with one another. A Command Line Interface(CLI) and the FriendBook GUI serve as a quick and flexible way 
+for users to add and manage plans with their friends.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                | I want to …​                                 | So that I can…​                                                        |
+|--------|------------------------|----------------------------------------------|------------------------------------------------------------------------|
+| `* * *` | user                   | add a new friend                             | more easily associate them into my plans                               |
+| `* * *` | user                   | remove a friend                              | clean up my friends list                                               |
+| `* * *` | user                   | edit a friend's details                      | keep their information updated                                         |
+| `* * *` | user                   | add plans and associate them with my friends | easily keep track of my plans with friends                             |
+| `* *`  | user with many plans   | mark my plans as completed                   | keep my plans list organised                                           |
+| `* *`  | user with many plans   | sort my plans by time                        | keep my plans list organised                                           |
+| `* *`  | user with many friends | find a friend by name                        | locate the details of my friends without going through the entire list |
+| `* *`  | user with many plans   | find a plan by name                          | locate the details of my plans without going through the entire list   |
+| `*`    | user with many friends | sort friends by name                         | locate the friend easily                                               |
+| `*`    | user with many plans   | sort plans by friends                        | locate the plans easily                                                |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FriendBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
-
+#### Use case: Edit a friend's details
 **MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+1.  User requests to list friends
+2.  FriendBook shows a list of user's friends
+3.  User requests to edit a specific friend's details in the list by entering the friend's index in list and the new details
+4.  FriendBook edits the friend's details accordingly and displays the new details <br> Use case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
+* 2a. The friend list is empty. <br> Use case ends.
 * 3a. The given index is invalid.
+    * 3a1. FriendBook shows an error message. <br> Use case resumes at step 2.
+* 3b. No arguments of friend details were provided.
+    * 3b1. FriendBook shows an error message. <br> Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+#### Use case: Remove a friend
+**MSS**
+1. User requests to list friends
+2. FriendBook shows a list of user's friends
+3. User requests to remove a specific friend in the list
+4. FriendBook removes the person <br> Use case ends.
 
-      Use case resumes at step 2.
+**Extensions**
+* 2a. The friend list is empty. <br> Use case ends.
+* 3a. The given index is invalid.
+  * 3a1. FriendBook shows an error message.  <br> Use case ends.
+
+#### Use case: Add a new plan
+**MSS**
+1. User has a plan with his friend
+2. User finds the friends saved in his friends list
+3. FriendBook shows the list of user's friends for user to find his friend's name
+2. User enters name of the plan, the timestamp of the plan, and his friend's name
+3. FriendBook adds that plan and associates the inputted friend to it and displays the plan details <br> Use case ends.
+
+**Extensions**
+* 2a. The friend's name does not exist in the friends list.
+  * 2a1. FriendBook shows an error message. <br> Use case ends.
+* 2b. Timestamp of the plan added is past the current time.
+  * 2b1. FriendBook shows an error message, displaying the formatted current time. <br> Use case ends.
+* 2c. Timestamp of the plan added is in the wrong format.
+  * 2c1. FriendBook shows an error message, displaying an example of the correct timestamp format. <br> Use case ends.
+
 
 *{More to be added}*
 
@@ -314,14 +343,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  Should be able to hold up to 500 plans without a noticeable sluggishness in performance for typical usage.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  The scrolling of the plans and friends list should be smooth visually with typical usage.
+6.  The system should process CLI commands and respond within 2 seconds.
+7.  The project is expected to deliver a MVP by the end of November 2023.
+8.  The product is not responsible for transmitting information online to another user of this product.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Command Line Interface is a text-based user interface used to run programs, manage computer files and interact with the computer.
+* **MVP**: Minimum Viable Product is a product with all essential features to validate a product idea early.
 
 --------------------------------------------------------------------------------------------------------------------
 
