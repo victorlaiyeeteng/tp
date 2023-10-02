@@ -280,11 +280,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user                   | remove a friend                              | clean up my friends list                                               |
 | `* * *` | user                   | edit a friend's details                      | keep their information updated                                         |
 | `* * *` | user                   | add plans and associate them with my friends | easily keep track of my plans with friends                             |
-| `* *`  | user with many plans   | mark my plans as completed                   | keep my plans list organised                                           |
+| `* *`  | user with many plans   | mark my plans as done                        | keep my plans list organised                                           |
 | `* *`  | user with many plans   | sort my plans by time                        | keep my plans list organised                                           |
 | `* *`  | user with many friends | find a friend by name                        | locate the details of my friends without going through the entire list |
 | `* *`  | user with many plans   | find a plan by name                          | locate the details of my plans without going through the entire list   |
-| `*`    | user with many friends | sort friends by name                         | locate the friend easily                                               |
+| `*`    | user with many friends | sort friends by name in order                | locate the friend easily                                               |
 | `*`    | user with many plans   | sort plans by friends                        | locate the plans easily                                                |
 
 
@@ -310,7 +310,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case: Remove a friend
 **MSS**
-1. User requests to list friends
+1. User requests a list of friends
 2. FriendBook shows a list of user's friends
 3. User requests to remove a specific friend in the list
 4. FriendBook removes the person <br> Use case ends.
@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case: Add a new plan
 **MSS**
-1. User has a plan with his friend
+1. User makes a plan with his friend
 2. User finds the friends saved in his friends list
 3. FriendBook shows the list of user's friends for user to find his friend's name
 2. User enters name of the plan, the timestamp of the plan, and his friend's name
