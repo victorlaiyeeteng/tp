@@ -5,55 +5,56 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `chia.elijah[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Elijah Chia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/elijah5399.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Elijah5399)]
+[[portfolio](team/elijah5399.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Jannice Suciptono
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jannnice.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/jannnice)]
+[[portfolio](team/jannnice.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Goh Teng Fong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gohtengfong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/GohTengFong)]
+[[portfolio](team/gohtengfong.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Ho Hong Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/redtailedfox.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/redtailedfox)]
+[[portfolio](team/redtailedfox.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Victor Lai
+
+<img src="images/victorlaiyeeteng.png" width="200px">
+
+[[github](https://github.com/victorlaiyeeteng)]
+[[portfolio](team/victorlaiyeeteng.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
