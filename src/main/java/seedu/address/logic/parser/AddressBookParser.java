@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_UNCLEAR_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.logging.Logger;
@@ -76,6 +77,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case "unclear":
+            throw new ParseException(MESSAGE_UNCLEAR_COMMAND);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

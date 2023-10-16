@@ -54,20 +54,20 @@ public class LogicManagerTest {
 
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
-        String invalidCommand = "uicfhmowqewca";
+        String invalidCommand = "uicfhmowqewca-friend";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "delete-friend 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listFriendCommand = "list-friend";
+        assertCommandSuccess(listFriendCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -165,7 +165,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + "-friend" + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
