@@ -1,8 +1,6 @@
-package seedu.address.model;
+package seedu.address.model.plan;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.time.LocalDateTime;
 
 import seedu.address.model.person.Person;
 
@@ -12,11 +10,12 @@ import seedu.address.model.person.Person;
  */
 public class Plan {
     /** A brief description of this plan. */
-    private final String planName;
+    private final PlanName planName;
     /** The date and time of this plan. */
-    private final LocalDateTime dateTime;
+    private final PlanDateTime dateTime;
     /** The friend this plan involves. */
     private final Person friend;
+    private boolean isComplete = false;
 
     /**
      * Class constructor for Plan.
@@ -24,18 +23,18 @@ public class Plan {
      * @param dateTime A LocalDateTIme object of this plan.
      * @param friend The friend this plan involves.
      */
-    public Plan(String planName, LocalDateTime dateTime, Person friend) {
+    public Plan(PlanName planName, PlanDateTime dateTime, Person friend) {
         requireAllNonNull(planName, dateTime, friend);
         this.planName = planName;
         this.dateTime = dateTime;
         this.friend = friend;
     }
 
-    public String getPlanName() {
+    public PlanName getPlanName() {
         return planName;
     }
 
-    public LocalDateTime getPlanDateTime() {
+    public PlanDateTime getPlanDateTime() {
         return dateTime;
     }
 
@@ -68,8 +67,22 @@ public class Plan {
     @Override
     public String toString() {
         String friendName = friend.getName().toString();
-        String dateTimeString = dateTime.toString();
-        dateTimeString.replace('T', ' ');
-        return '[' + " with " + friendName + " at " + dateTimeString + ']';
+        String dateTimeString = this.dateTime.toString();
+        String planNameString = this.planName.toString();
+        return '[' + planNameString + " with " + friendName + " at " + dateTimeString + ']';
+    }
+
+    /**
+     * Marks this plan as completed.
+     */
+    public void setCompleted() {
+        this.isComplete = true;
+    }
+
+    /**
+     * Marks this plan as uncompleted.
+     */
+    public void setUncompleted() {
+        this.isComplete = false;
     }
 }
