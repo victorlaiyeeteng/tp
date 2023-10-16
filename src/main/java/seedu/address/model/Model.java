@@ -84,4 +84,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Marks the given plan as completed.
+     * The plan must exist in the address book.
+     */
+    void completePlan(Plan target);
 }

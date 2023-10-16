@@ -94,6 +94,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Marks {@code key} as completed in this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void completePlan(Plan key) {
+        plans.complete(key);
+    }
+
     //// util methods
 
     @Override
