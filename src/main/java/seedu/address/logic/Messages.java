@@ -18,6 +18,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d friends listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_UNCLEAR_COMMAND =
+                "Command is unclear. Please specify with \"-friend\" or \"-plan\"!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
