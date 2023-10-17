@@ -65,11 +65,11 @@ public class AddPlanCommand extends Command {
         }
         toAdd = new Plan(this.planName, this.planDateTime, person);
 
-//        if (model.hasPlan(toAdd)) {
-//            throw new CommandException(MESSAGE_DUPLICATE_PLAN);
-//        }
-//
-//        model.addPlan(toAdd);
+        if (model.hasPlan(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PLAN);
+        }
+
+        model.addPlan(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
@@ -84,13 +84,15 @@ public class AddPlanCommand extends Command {
             return false;
         }
         AddPlanCommand otherAddPlanCommand = (AddPlanCommand) other;
-        return toAdd.equals(otherAddPlanCommand.toAdd);
+        return planName.equals(otherAddPlanCommand.planName)
+                && planDateTime.equals(otherAddPlanCommand.planDateTime)
+                && friendName.equals(otherAddPlanCommand.friendName);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toAddPlan", toAdd)
+                .add("toAdd", "[" + planName + " with " + friendName + " at " + planDateTime + "]")
                 .toString();
     }
 }

@@ -100,6 +100,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addPerson(Person p) {
         persons.add(p);
     }
+
+    /**
+     * Adds a plan to the FriendBook.
+     * The plan must not already exist in the FriendBook.
+     */
     public void addPlan(Plan p) {
         plans.add(p);
     }
