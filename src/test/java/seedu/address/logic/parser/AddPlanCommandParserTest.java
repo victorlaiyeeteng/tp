@@ -29,8 +29,6 @@ import seedu.address.model.plan.PlanDateTime;
 import seedu.address.model.plan.PlanName;
 import seedu.address.testutil.PlanBuilder;
 
-
-
 public class AddPlanCommandParserTest {
 
     private AddPlanCommandParser parser = new AddPlanCommandParser();
