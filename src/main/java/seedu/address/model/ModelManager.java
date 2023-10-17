@@ -113,6 +113,9 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
+    /**
+     * Returns true if a plan with the same identity as {@code plan} exists in the address book.
+     */
 
     public boolean hasPlan(Plan plan) {
         requireNonNull(plan);
@@ -180,11 +183,14 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Plan} backed by the internal list of
      * {@code versionedPlanBook}
      */
-
     public ObservableList<Plan> getFilteredPlanList() {
         return filteredPlans;
     }
 
+    /**
+     * Updates the filter of the filtered plan list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
 
     public void updateFilteredPlanList(Predicate<Plan> predicate) {
         requireNonNull(predicate);

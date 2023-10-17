@@ -58,6 +58,10 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a plan with the same identity as {@code plan} exists in the address book.
+     */
     boolean hasPlan(Plan plan);
 
     /**
@@ -65,6 +69,11 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
+
+    /**
+     * Deletes the given plan.
+     * The plan must exist in the address book.
+     */
     void deletePlan(Plan plan);
 
     /**
@@ -72,6 +81,11 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Adds the given plan.
+     * {@code plan} must not already exist in the address book.
+     */
     void addPlan(Plan plan);
 
     /**
@@ -80,6 +94,12 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Replaces the given plan {@code target} with {@code editedPlan}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPlan} must not be the same as another existing plan in the address book.
+     */
     void setPlan(Plan target, Plan editedPlan);
 
     /** Returns an unmodifiable view of the filtered person list */
