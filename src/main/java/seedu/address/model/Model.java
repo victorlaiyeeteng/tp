@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.plan.Plan;
 
@@ -63,6 +64,14 @@ public interface Model {
      * Returns true if a plan with the same identity as {@code plan} exists in the address book.
      */
     boolean hasPlan(Plan plan);
+
+    /**
+     * Gets the Person that has the same {@code name} from the list.
+     * A Person with the same name must exist in the list, else Exception is thrown.
+     */
+    Person getPersonByName(Name name);
+
+
 
     /**
      * Deletes the given person.
