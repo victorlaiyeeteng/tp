@@ -40,7 +40,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(),new UserPrefs());
+        this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
