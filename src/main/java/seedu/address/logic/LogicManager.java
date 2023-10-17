@@ -54,13 +54,17 @@ public class LogicManager implements Logic {
 
         boolean isFriendCommand = commandText.contains("-friend");
         boolean isPlanCommand = commandText.contains("-plan");
+        boolean isHelpCommand = commandText.contains("help");
 
         if (isFriendCommand) {
             // removes "-friend" from the command text
             Matcher findFriend = FRIEND_COMMAND_CHECKER.matcher(commandText);
             commandText = findFriend.replaceAll(REPLACE);
+        } else if (isHelpCommand) {
+            // since there's no "help-friend" and "help-plan", should retain the command message
+            commandText = "help";
         } else if (!isPlanCommand) {
-            // command doesn't contain "-friend" nor "-plans" and hence will be marked as an unclear command
+            // command doesn't contain "-friend", "help", nor "-plans" and hence will be marked as an unclear command
             commandText = "unclear";
         }
 

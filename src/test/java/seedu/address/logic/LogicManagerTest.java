@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_UNCLEAR_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -68,6 +70,17 @@ public class LogicManagerTest {
     public void execute_validCommand_success() throws Exception {
         String listFriendCommand = "list-friend";
         assertCommandSuccess(listFriendCommand, ListCommand.MESSAGE_SUCCESS, model);
+    }
+
+    @Test
+    public void execute_helpCommand_success() throws Exception {
+        String helpCommand = "help";
+        assertCommandSuccess(helpCommand, HelpCommand.SHOWING_HELP_MESSAGE, model);
+    }
+    @Test
+    public void execute_unclearCommand_throwsParseException() {
+        String unclearCommand = "delete 1";
+        assertParseException(unclearCommand, MESSAGE_UNCLEAR_COMMAND);
     }
 
     @Test
