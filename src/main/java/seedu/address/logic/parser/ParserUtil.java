@@ -1,18 +1,26 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.plan.PlanDateTime;
+import seedu.address.model.plan.PlanName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +128,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String planName} into a {@code PlanName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static PlanName parsePlanName(String planName) throws ParseException {
+        requireNonNull(planName);
+        String trimmedPlanName = planName.trim();
+        if (!PlanName.isValidPlanName(trimmedPlanName)) {
+            throw new ParseException(PlanName.MESSAGE_CONSTRAINTS);
+        }
+        return new PlanName(trimmedPlanName);
+    }
+
+    /**
+     * Parses a {@code String dateTimeString} into a {@code PlanDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTimeString} is invalid.
+     */
+    public static PlanDateTime parseDateTime(String dateTimeString) throws ParseException {
+        requireNonNull(dateTimeString);
+        String trimmedDateTimeString = dateTimeString.trim();
+        if (!PlanDateTime.isValidDateTime(trimmedDateTimeString)) {
+            throw new ParseException(PlanDateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new PlanDateTime(trimmedDateTimeString);
     }
 }
