@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPlanCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -23,12 +24,16 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListPlanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.plan.Plan;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.PlanBuilder;
+import seedu.address.testutil.PlanUtil;
 
 public class AddressBookParserTest {
 
@@ -96,12 +101,26 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_unclearIput_throwsParseException() {
+    public void parseCommand_unclearInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNCLEAR_COMMAND, () -> parser.parseCommand("unclear"));
     }
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()
                 -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_addPlan() throws Exception {
+        Plan plan = new PlanBuilder().build();
+        AddPlanCommand command = (AddPlanCommand) parser.parseCommand(PlanUtil.getAddPlanCommand(plan));
+        assertEquals(new AddPlanCommand(plan.getPlanName(), plan.getPlanDateTime(), plan.getPlanFriend().getName()),
+                command);
+    }
+
+    @Test
+    public void parseCommand_listPlan() throws Exception {
+        assertTrue(parser.parseCommand(ListPlanCommand.COMMAND_WORD) instanceof ListPlanCommand);
+        assertTrue(parser.parseCommand(ListPlanCommand.COMMAND_WORD + " 3") instanceof ListPlanCommand);
     }
 }
