@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.plan.Plan;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Plan> filteredPlans;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,10 +36,11 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPlans = new FilteredList<>(this.addressBook.getPlanList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(),new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -111,6 +114,29 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    public boolean hasPlan(Plan plan) {
+        requireNonNull(plan);
+        return addressBook.hasPlan(plan);
+    }
+
+    @Override
+    public void deletePlan(Plan target) {
+        addressBook.removePlan(target);
+    }
+
+    @Override
+    public void addPlan(Plan plan) {
+        addressBook.addPlan(plan);
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
+
+    @Override
+    public void setPlan(Plan target, Plan editedPlan) {
+        requireAllNonNull(target, editedPlan);
+
+        addressBook.setPlan(target, editedPlan);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -142,7 +168,28 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredPlans.equals(otherModelManager.filteredPlans);
     }
+
+
+
+    //=========== Filtered Plan List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Plan} backed by the internal list of
+     * {@code versionedPlanBook}
+     */
+
+    public ObservableList<Plan> getFilteredPlanList() {
+        return filteredPlans;
+    }
+
+
+    public void updateFilteredPlanList(Predicate<Plan> predicate) {
+        requireNonNull(predicate);
+        filteredPlans.setPredicate(predicate);
+    }
+
 
 }
