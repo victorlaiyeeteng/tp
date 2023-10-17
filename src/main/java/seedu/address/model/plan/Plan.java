@@ -73,8 +73,7 @@ public class Plan {
         String dateTimeString = this.dateTime.toString();
         String planNameString = this.planName.toString();
         String planCompleteString = this.isComplete.toString();
-        return '[' + planNameString + " with " + friendName + " at " + dateTimeString + ']'
-                + "Completion Status : " + planCompleteString;
+        return '[' + planNameString + " with " + friendName + " at " + dateTimeString + ']';
     }
 
     /**
