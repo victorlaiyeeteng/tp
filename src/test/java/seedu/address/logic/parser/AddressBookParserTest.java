@@ -7,6 +7,7 @@ import static seedu.address.logic.Messages.MESSAGE_UNCLEAR_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PLAN;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +19,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddPlanCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeletePlanCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -122,5 +124,12 @@ public class AddressBookParserTest {
     public void parseCommand_listPlan() throws Exception {
         assertTrue(parser.parseCommand(ListPlanCommand.COMMAND_WORD) instanceof ListPlanCommand);
         assertTrue(parser.parseCommand(ListPlanCommand.COMMAND_WORD + " 3") instanceof ListPlanCommand);
+    }
+
+    @Test
+    public void parseCommand_deletePlan() throws Exception {
+        DeletePlanCommand command = (DeletePlanCommand) parser.parseCommand(
+                DeletePlanCommand.COMMAND_WORD + " " + INDEX_FIRST_PLAN.getOneBased());
+        assertEquals(new DeletePlanCommand(INDEX_FIRST_PLAN), command);
     }
 }
