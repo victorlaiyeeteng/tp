@@ -30,7 +30,7 @@ public class TypicalPlans {
     /**
      * Returns an {@code AddressBook} with all the typical plans.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAddressBookWithPlans() {
         AddressBook ab = TypicalPersons.getTypicalAddressBook();
         for (Plan plan: getTypicalPlans()) {
             ab.addPlan(plan);
