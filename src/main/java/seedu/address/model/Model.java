@@ -71,8 +71,6 @@ public interface Model {
      */
     Person getPersonByName(Name name);
 
-
-
     /**
      * Deletes the given person.
      * The person must exist in the address book.
