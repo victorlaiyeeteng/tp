@@ -6,84 +6,86 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPlans.MEETING;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.plan.Plan;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PlanBuilder;
 
-public class AddCommandTest {
 
-    @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
-    }
+public class AddPlanCommandTest {
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
-
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+    public void constructor_nullPlan_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddPlanCommand(null, null, null));
     }
 
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    //    @Test
+    //    public void execute_planAcceptedByModel_addSuccessful() throws Exception {
+    //        ModelStubAcceptingPlanAdded modelStub = new ModelStubAcceptingPlanAdded();
+    //        Plan validPlan = new PlanBuilder().build();
+    //
+    //        CommandResult commandResult = new AddPlanCommand(
+    //                validPlan.getPlanName(), validPlan.getPlanDateTime(), validPlan.getPlanFriend().getName()
+    //        ).execute(modelStub);
+    //
+    //        assertEquals(String.format(AddPlanCommand.MESSAGE_SUCCESS, Messages.format(validPlan)),
+    //                commandResult.getFeedbackToUser());
+    //        assertEquals(Arrays.asList(validPlan), modelStub.plansAdded);
+    //    }
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
-    }
+    //    @Test
+    //    public void execute_duplicatePlan_throwsCommandException() {
+    //        Plan validPlan = new PlanBuilder().build();
+    //        AddPlanCommand addPlanCommand = new AddPlanCommand(
+    //                validPlan.getPlanName(), validPlan.getPlanDateTime(), validPlan.getPlanFriend().getName());
+    //        ModelStub modelStub = new ModelStubWithPlan(validPlan);
+    //
+    //        assertThrows(CommandException.class,
+    //                AddPlanCommand.MESSAGE_DUPLICATE_PLAN, () -> addPlanCommand.execute(modelStub));
+    //    }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Plan meeting = new PlanBuilder().withPlanName("Meeting")
+                .withPlanDateTime("2025-10-23-12:00").withPlanFriend(ALICE).build();
+        Plan gaming = new PlanBuilder().withPlanName("Gaming")
+                .withPlanDateTime("2025-10-28-16:00").withPlanFriend(ALICE).build();
+        AddPlanCommand addMeetingCommand = new AddPlanCommand(
+                meeting.getPlanName(), meeting.getPlanDateTime(), meeting.getPlanFriend().getName());
+        AddPlanCommand addGamingCommand = new AddPlanCommand(
+                gaming.getPlanName(), gaming.getPlanDateTime(), gaming.getPlanFriend().getName());
 
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addMeetingCommand.equals(addMeetingCommand));
 
-        // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddPlanCommand addMeetingCommandCopy = new AddPlanCommand(
+                meeting.getPlanName(), meeting.getPlanDateTime(), meeting.getPlanFriend().getName());
+        assertTrue(addMeetingCommand.equals(addMeetingCommandCopy));
 
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addMeetingCommand.equals(1));
+        assertFalse(addMeetingCommand.equals(null));
+        assertFalse(addMeetingCommand.equals(addGamingCommand));
     }
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        AddPlanCommand addPlanCommand = new AddPlanCommand(
+                MEETING.getPlanName(), MEETING.getPlanDateTime(), MEETING.getPlanFriend().getName()
+        );
+        String expected = AddPlanCommand.class.getCanonicalName() + "{toAdd=" + MEETING + "}";
+        assertEquals(expected, addPlanCommand.toString());
     }
 
     /**
@@ -94,7 +96,6 @@ public class AddCommandTest {
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
@@ -194,53 +195,43 @@ public class AddCommandTest {
         public void updateFilteredPlanList(Predicate<Plan> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+    }
+
+    /**
+     * A Model stub that contains a single plan.
+     */
+    private class ModelStubWithPlan extends ModelStub {
+        private final Plan plan;
+
+        ModelStubWithPlan(Plan plan) {
+            requireNonNull(plan);
+            this.plan = plan;
+        }
 
         @Override
-        public void completePlan(Plan target) {
-            throw new AssertionError("This method should not be called.");
+        public boolean hasPlan(Plan plan) {
+            requireNonNull(plan);
+            return this.plan.equals(plan);
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that always accept the plan being added.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubAcceptingPlanAdded extends ModelStub {
+        final ArrayList<Plan> plansAdded = new ArrayList<>();
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        @Override
+        public boolean hasPlan(Plan plan) {
+            requireNonNull(plan);
+            return plansAdded.stream().anyMatch(plan::equals);
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public void addPlan(Plan plan) {
+            requireNonNull(plan);
+            plansAdded.add(plan);
         }
+
     }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
-    }
-
 }

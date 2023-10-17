@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.plan.Plan;
@@ -51,8 +52,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
-    public void setPlans(List<Plan> planss) {
-        this.plans.setPlans(planss);
+    public void setPlans(List<Plan> plans) {
+        this.plans.setPlans(plans);
     }
 
     /**
@@ -84,12 +85,26 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Gets the Person that has the same {@code name} from the list.
+     * A Person with the same name must exist in the list, else Exception is thrown.
+     */
+    public Person getPersonByName(Name name) {
+        requireNonNull(name);
+        return persons.getPersonByName(name);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
     }
+
+    /**
+     * Adds a plan to the FriendBook.
+     * The plan must not already exist in the FriendBook.
+     */
     public void addPlan(Plan p) {
         plans.add(p);
     }

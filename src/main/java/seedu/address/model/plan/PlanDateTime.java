@@ -27,7 +27,7 @@ public class PlanDateTime {
     public PlanDateTime(String dateTimeString) {
         requireNonNull(dateTimeString);
         checkArgument(isValidDateTime(dateTimeString), MESSAGE_CONSTRAINTS);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd-HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, formatter);
         planDateTime = dateTime;
     }
