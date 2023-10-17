@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.plan.Plan;
 
 /**
  * The API of the Model component.
@@ -14,6 +15,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Plan> PREDICATE_SHOW_ALL_PLANS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -59,10 +61,17 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a plan with the same identity as {@code plan} exists in the address book.
+     */
+    boolean hasPlan(Plan plan);
+
+    /**
      * Gets the Person that has the same {@code name} from the list.
      * A Person with the same name must exist in the list, else Exception is thrown.
      */
     Person getPersonByName(Name name);
+
+
 
     /**
      * Deletes the given person.
@@ -71,10 +80,22 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Deletes the given plan.
+     * The plan must exist in the address book.
+     */
+    void deletePlan(Plan plan);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Adds the given plan.
+     * {@code plan} must not already exist in the address book.
+     */
+    void addPlan(Plan plan);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -83,12 +104,26 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces the given plan {@code target} with {@code editedPlan}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPlan} must not be the same as another existing plan in the address book.
+     */
+    void setPlan(Plan target, Plan editedPlan);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+    ObservableList<Plan> getFilteredPlanList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered plan list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPlanList(Predicate<Plan> predicate);
 }

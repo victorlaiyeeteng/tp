@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.plan.Plan;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -125,6 +126,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addPlan(Plan plan) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -145,7 +151,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPlan(Plan plan) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePlan(Plan target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -155,12 +171,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setPlan(Plan target, Plan editedPlan) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public ObservableList<Plan> getFilteredPlanList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPlanList(Predicate<Plan> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

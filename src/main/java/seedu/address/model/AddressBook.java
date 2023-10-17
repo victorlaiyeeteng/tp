@@ -9,6 +9,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.UniquePlanList;
 
 /**
  * Wraps all data at the address-book level
@@ -17,6 +19,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniquePlanList plans;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        plans = new UniquePlanList();
     }
 
     public AddressBook() {}
@@ -48,6 +52,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
+    public void setPlans(List<Plan> plans) {
+        this.plans.setPlans(plans);
+    }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -56,6 +63,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setPlans(newData.getPlanList());
     }
 
     //// person-level operations
@@ -66,6 +74,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if a plan with the same identity as {@code plan} exists in the address book.
+     */
+    public boolean hasPlan(Plan plan) {
+        requireNonNull(plan);
+        return plans.contains(plan);
     }
 
     /**
@@ -84,6 +100,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addPerson(Person p) {
         persons.add(p);
     }
+    public void addPlan(Plan p) {
+        plans.add(p);
+    }
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
@@ -96,12 +115,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+    public void setPlan(Plan target, Plan editedPlan) {
+        requireNonNull(editedPlan);
+
+        plans.setPlan(target, editedPlan);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    public void removePlan(Plan key) {
+        plans.remove(key);
     }
 
     //// util methods
@@ -111,6 +140,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return new ToStringBuilder(this)
                 .add("persons", persons)
                 .toString();
+    }
+
+    @Override
+    public ObservableList<Plan> getPlanList() {
+        return plans.asUnmodifiableObservableList();
     }
 
     @Override
@@ -130,7 +164,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons)
+                && plans.equals(otherAddressBook.plans);
     }
 
     @Override
