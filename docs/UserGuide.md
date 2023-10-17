@@ -96,11 +96,11 @@ Unsuccessful Output:
 
 Removes an existing friend from the friends list.
 
-Format: `delete-friend NAME`
+Format: `delete-friend INDEX`
 
 Examples:
-* `delete-friend John Doe`
-* `delete-friend Jack Ma`
+* `delete-friend 1`
+* `delete-friend 2`
 
 Arguments:
 - `NAME` must be a string
@@ -113,13 +113,13 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Empty name: `Invalid Removing of Friend: A name must be entered. Syntax: delete-friend NAME`
+- Empty name: `Invalid Removing of Friend: A name must be entered. Syntax: delete-friend INDEX`
 
-- Argument provided is not a STRING: `Invalid Removing of Friend: Name should be a STRING. Syntax: delete-friend NAME`
+- Argument provided is not a STRING: `Invalid Removing of Friend: Name should be a STRING. Syntax: delete-friend INDEX`
 
 - Not a valid friend: `Invalid Removing of Friend: No such friend in friends list.`
 
-- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: delete-friend NAME`
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: delete-friend INDEX`
 
 ### Editing a Friend's Information: `edit-friend` [Coming Soon]
 
@@ -217,7 +217,7 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: complete-plan INDEX`
 
-### Deleting a Plan : `delete plan`
+### Deleting a Plan : `delete-plan`
 
 Deletes the specified plan.
 
