@@ -41,7 +41,6 @@ public class UniquePlanList implements Iterable<Plan> {
         internalList.add(toAdd);
     }
 
-
     /**
      * Removes the equivalent plan from the list.
      * The plan must exist in the list.
@@ -53,6 +52,28 @@ public class UniquePlanList implements Iterable<Plan> {
         }
     }
 
+    /**
+     * Marks the equivalent plan as completed in the list.
+     * The plan must exist in the list.
+     */
+    public void complete(Plan toComplete) {
+        requireNonNull(toComplete);
+        if (!contains(toComplete)) {
+            throw new PlanNotFoundException();
+        } else {
+            for (Plan plan : internalList) {
+                if (plan.equals(toComplete)) {
+                    plan.setCompleted();
+                }
+            }
+        }
+    }
+
+    /**
+     * Replaces the plan {@code target} in the list with {@code editedPlan}.
+     * {@code target} must exist in the list.
+     * The plan identity of {@code editedPlan} must not be the same as another existing plan in the list.
+     */
     public void setPlan(Plan target, Plan editedPlan) {
         requireAllNonNull(target, editedPlan);
 
@@ -76,7 +97,6 @@ public class UniquePlanList implements Iterable<Plan> {
 
         internalList.setAll(plans);
     }
-
 
     @Override
     public boolean equals(Object other) {

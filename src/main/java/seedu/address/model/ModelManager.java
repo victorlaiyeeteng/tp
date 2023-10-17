@@ -199,6 +199,4 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPlans.setPredicate(predicate);
     }
-
-
 }

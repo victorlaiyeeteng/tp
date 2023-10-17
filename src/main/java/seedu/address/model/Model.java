@@ -77,6 +77,12 @@ public interface Model {
     void deletePlan(Plan plan);
 
     /**
+     * Marks the given plan as completed.
+     * The plan must exist in the address book.
+     */
+    void completePlan(Plan target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
@@ -117,10 +123,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPlanList(Predicate<Plan> predicate);
-
-    /**
-     * Marks the given plan as completed.
-     * The plan must exist in the address book.
-     */
-    void completePlan(Plan target);
 }

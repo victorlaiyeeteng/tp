@@ -9,7 +9,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.Plan;
+import seedu.address.model.plan.Plan;
 
 /**
  * Completes a plan identified using it's displayed index from the FriendBook.
