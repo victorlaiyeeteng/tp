@@ -107,7 +107,7 @@ public class AddressBookParserTest {
     public void parseCommand_unclearInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNCLEAR_COMMAND, () -> parser.parseCommand("unclear"));
     }
-  
+
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()

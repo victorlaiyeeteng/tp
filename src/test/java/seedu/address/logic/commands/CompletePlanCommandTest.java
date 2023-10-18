@@ -4,10 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-// import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPlanAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PLAN;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PLAN;
+import static seedu.address.testutil.TypicalPlans.getTypicalAddressBookWithPlans;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-// import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Plan;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,14 +25,12 @@ import seedu.address.model.UserPrefs;
  */
 public class CompletePlanCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBookWithPlans(), new UserPrefs());
 
-    /* execute_validIndexUnfilteredList_success is failing probably because no plans are pre-loaded when startup
-     * comment for tf's future problem
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Plan planToComplete = model.getFilteredPlanList().get(INDEX_FIRST_PERSON.getZeroBased());
-        CompletePlanCommand completePlanCommand = new CompletePlanCommand(INDEX_FIRST_PERSON);
+        Plan planToComplete = model.getFilteredPlanList().get(INDEX_FIRST_PLAN.getZeroBased());
+        CompletePlanCommand completePlanCommand = new CompletePlanCommand(INDEX_FIRST_PLAN);
 
         String expectedMessage = String.format(CompletePlanCommand.MESSAGE_COMPLETE_PLAN_SUCCESS,
                 Messages.format(planToComplete));
@@ -39,11 +38,8 @@ public class CompletePlanCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.completePlan(planToComplete);
 
-        System.out.println(expectedMessage);
-
         assertCommandSuccess(completePlanCommand, model, expectedMessage, expectedModel);
     }
-    */
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
@@ -72,31 +68,29 @@ public class CompletePlanCommandTest {
     }
     */
 
-    /*
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPlanAtIndex(model, INDEX_FIRST_PERSON);
+        showPlanAtIndex(model, INDEX_FIRST_PLAN);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_PLAN;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPlanList().size());
 
         CompletePlanCommand completePlanCommand = new CompletePlanCommand(outOfBoundIndex);
 
-        assertCommandFailure(completePlanCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(completePlanCommand, model, Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
     }
-    */
 
     @Test
     public void equals() {
-        CompletePlanCommand completePlanFirstCommand = new CompletePlanCommand(INDEX_FIRST_PERSON);
-        CompletePlanCommand completePlanSecondCommand = new CompletePlanCommand(INDEX_SECOND_PERSON);
+        CompletePlanCommand completePlanFirstCommand = new CompletePlanCommand(INDEX_FIRST_PLAN);
+        CompletePlanCommand completePlanSecondCommand = new CompletePlanCommand(INDEX_SECOND_PLAN);
 
         // same object -> returns true
         assertTrue(completePlanFirstCommand.equals(completePlanFirstCommand));
 
         // same values -> returns true
-        CompletePlanCommand completePlanFirstCommandCopy = new CompletePlanCommand(INDEX_FIRST_PERSON);
+        CompletePlanCommand completePlanFirstCommandCopy = new CompletePlanCommand(INDEX_FIRST_PLAN);
         assertTrue(completePlanFirstCommand.equals(completePlanFirstCommandCopy));
 
         // different types -> returns false

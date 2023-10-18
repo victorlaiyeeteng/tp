@@ -23,8 +23,6 @@ public class Messages {
                 "Command is unclear. Please specify with \"-friend\" or \"-plan\"!";
     public static final String MESSAGE_INVALID_PLAN_DISPLAYED_INDEX = "The plan index provided is invalid";
 
-    public static final String MESSAGE_INVALID_PLAN_DISPLAYED_INDEX = "The plan index provided is invalid";
-
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
