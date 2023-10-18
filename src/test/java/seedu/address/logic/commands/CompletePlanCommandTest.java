@@ -93,7 +93,7 @@ public class CompletePlanCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show no plan.
      */
     private void showNoPlan(Model model) {
         model.updateFilteredPlanList(p -> false);
