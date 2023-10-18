@@ -21,6 +21,7 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_UNCLEAR_COMMAND =
                 "Command is unclear. Please specify with \"-friend\" or \"-plan\"!";
+    public static final String MESSAGE_INVALID_PLAN_DISPLAYED_INDEX = "The plan index provided is invalid";
 
     public static final String MESSAGE_INVALID_PLAN_DISPLAYED_INDEX = "The plan index provided is invalid";
 

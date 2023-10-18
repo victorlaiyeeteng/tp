@@ -10,12 +10,15 @@ import static seedu.address.testutil.TypicalPlans.MEETING;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -32,30 +35,30 @@ public class AddPlanCommandTest {
         assertThrows(NullPointerException.class, () -> new AddPlanCommand(null, null, null));
     }
 
-    //    @Test
-    //    public void execute_planAcceptedByModel_addSuccessful() throws Exception {
-    //        ModelStubAcceptingPlanAdded modelStub = new ModelStubAcceptingPlanAdded();
-    //        Plan validPlan = new PlanBuilder().build();
-    //
-    //        CommandResult commandResult = new AddPlanCommand(
-    //                validPlan.getPlanName(), validPlan.getPlanDateTime(), validPlan.getPlanFriend().getName()
-    //        ).execute(modelStub);
-    //
-    //        assertEquals(String.format(AddPlanCommand.MESSAGE_SUCCESS, Messages.format(validPlan)),
-    //                commandResult.getFeedbackToUser());
-    //        assertEquals(Arrays.asList(validPlan), modelStub.plansAdded);
-    //    }
+    @Test
+    public void execute_planAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPlanAdded modelStub = new ModelStubAcceptingPlanAdded();
+        Plan validPlan = new PlanBuilder().build();
 
-    //    @Test
-    //    public void execute_duplicatePlan_throwsCommandException() {
-    //        Plan validPlan = new PlanBuilder().build();
-    //        AddPlanCommand addPlanCommand = new AddPlanCommand(
-    //                validPlan.getPlanName(), validPlan.getPlanDateTime(), validPlan.getPlanFriend().getName());
-    //        ModelStub modelStub = new ModelStubWithPlan(validPlan);
-    //
-    //        assertThrows(CommandException.class,
-    //                AddPlanCommand.MESSAGE_DUPLICATE_PLAN, () -> addPlanCommand.execute(modelStub));
-    //    }
+        CommandResult commandResult = new AddPlanCommand(
+                validPlan.getPlanName(), validPlan.getPlanDateTime(), validPlan.getPlanFriend().getName()
+        ).execute(modelStub);
+
+        assertEquals(String.format(AddPlanCommand.MESSAGE_SUCCESS, Messages.format(validPlan)),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPlan), modelStub.plansAdded);
+    }
+
+    @Test
+    public void execute_duplicatePlan_throwsCommandException() {
+        Plan validPlan = new PlanBuilder().build();
+        AddPlanCommand addPlanCommand = new AddPlanCommand(
+                validPlan.getPlanName(), validPlan.getPlanDateTime(), validPlan.getPlanFriend().getName());
+        ModelStub modelStub = new ModelStubWithPlan(validPlan);
+
+        assertThrows(CommandException.class,
+                AddPlanCommand.MESSAGE_DUPLICATE_PLAN, () -> addPlanCommand.execute(modelStub));
+    }
 
     @Test
     public void equals() {
@@ -90,8 +93,10 @@ public class AddPlanCommandTest {
 
     /**
      * A default model stub that have all of the methods failing.
+     * Only getPersonByName returns the DEFAULT_FRIEND in FriendBook testing.
      */
     private class ModelStub implements Model {
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -148,7 +153,7 @@ public class AddPlanCommandTest {
 
         @Override
         public Person getPersonByName(Name name) {
-            throw new AssertionError("This method should not be called.");
+            return ALICE;
         }
 
         @Override
