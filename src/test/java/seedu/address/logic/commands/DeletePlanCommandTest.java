@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPlanAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PLAN;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PLAN;
 import static seedu.address.testutil.TypicalPlans.getTypicalAddressBookWithPlans;
@@ -89,7 +88,7 @@ public class DeletePlanCommandTest {
         assertTrue(deletePlanFirstCommand.equals(deletePlanFirstCommand));
 
         // same values -> returns true
-        DeletePlanCommand deletePlanFirstCommandCopy = new DeletePlanCommand(INDEX_FIRST_PERSON);
+        DeletePlanCommand deletePlanFirstCommandCopy = new DeletePlanCommand(INDEX_FIRST_PLAN);
         assertTrue(deletePlanFirstCommand.equals(deletePlanFirstCommandCopy));
 
         // different types -> returns false

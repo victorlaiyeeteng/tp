@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.plan.PlanDateTime;
 import seedu.address.model.plan.PlanName;
 import seedu.address.model.tag.Tag;
@@ -140,14 +137,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateTimeString} into a {@code PlanDateTime}.
+     * Parses a {@code String dateTime} into a {@code PlanDateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code dateTimeString} is invalid.
+     * @throws ParseException if the given {@code dateTime} is invalid.
      */
-    public static PlanDateTime parseDateTime(String dateTimeString) throws ParseException {
-        requireNonNull(dateTimeString);
-        String trimmedDateTimeString = dateTimeString.trim();
+    public static PlanDateTime parsePlanDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTimeString = dateTime.trim();
         if (!PlanDateTime.isValidDateTime(trimmedDateTimeString)) {
             throw new ParseException(PlanDateTime.MESSAGE_CONSTRAINTS);
         }
