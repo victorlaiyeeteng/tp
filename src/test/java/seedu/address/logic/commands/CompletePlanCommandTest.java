@@ -49,25 +49,6 @@ public class CompletePlanCommandTest {
         assertCommandFailure(completePlanCommand, model, Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
     }
 
-    /* execute_validIndexFilteredList_success is failing probably because no plans are pre-loaded when startup
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Plan planToComplete = model.getFilteredPlanList().get(INDEX_FIRST_PERSON.getZeroBased());
-        CompletePlanCommand completePlanCommand = new CompletePlanCommand(INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(CompletePlanCommand.MESSAGE_COMPLETE_PLAN_SUCCESS,
-                Messages.format(planToComplete));
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.completePlan(planToComplete);
-        showNoPlan(expectedModel);
-
-        assertCommandSuccess(completePlanCommand, model, expectedMessage, expectedModel);
-    }
-    */
-
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPlanAtIndex(model, INDEX_FIRST_PLAN);
