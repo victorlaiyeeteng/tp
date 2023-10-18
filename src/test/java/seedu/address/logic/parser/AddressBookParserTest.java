@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddPlanCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CompletePlanCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeletePlanCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -106,10 +107,18 @@ public class AddressBookParserTest {
     public void parseCommand_unclearInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNCLEAR_COMMAND, () -> parser.parseCommand("unclear"));
     }
+  
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()
                 -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_completePlan() throws Exception {
+        CompletePlanCommand command = (CompletePlanCommand) parser.parseCommand(
+                CompletePlanCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new CompletePlanCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

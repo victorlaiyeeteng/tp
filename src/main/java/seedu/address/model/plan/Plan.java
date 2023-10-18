@@ -15,7 +15,7 @@ public class Plan {
     private final PlanDateTime dateTime;
     /** The friend this plan involves. */
     private final Person friend;
-    private boolean isComplete = false;
+    private Boolean isComplete = false;
 
     /**
      * Class constructor for Plan.
@@ -40,6 +40,9 @@ public class Plan {
 
     public Person getPlanFriend() {
         return friend;
+    }
+    public Boolean getPlanComplete() {
+        return isComplete;
     }
 
     /**
@@ -69,6 +72,7 @@ public class Plan {
         String friendName = friend.getName().toString();
         String dateTimeString = this.dateTime.toString();
         String planNameString = this.planName.toString();
+        String planCompleteString = this.isComplete.toString();
         return '[' + planNameString + " with " + friendName + " at " + dateTimeString + ']';
     }
 

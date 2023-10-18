@@ -147,6 +147,11 @@ public class ModelManager implements Model {
         addressBook.setPlan(target, editedPlan);
     }
 
+    @Override
+    public void completePlan(Plan target) {
+        addressBook.completePlan(target);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -203,6 +208,4 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPlans.setPredicate(predicate);
     }
-
-
 }

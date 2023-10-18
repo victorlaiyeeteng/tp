@@ -71,8 +71,6 @@ public interface Model {
      */
     Person getPersonByName(Name name);
 
-
-
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -84,6 +82,12 @@ public interface Model {
      * The plan must exist in the address book.
      */
     void deletePlan(Plan plan);
+
+    /**
+     * Marks the given plan as completed.
+     * The plan must exist in the address book.
+     */
+    void completePlan(Plan target);
 
     /**
      * Adds the given person.

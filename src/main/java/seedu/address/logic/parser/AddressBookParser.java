@@ -13,6 +13,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddPlanCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CompletePlanCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeletePlanCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -92,6 +93,9 @@ public class AddressBookParser {
 
         case "unclear":
             throw new ParseException(MESSAGE_UNCLEAR_COMMAND);
+
+        case CompletePlanCommand.COMMAND_WORD:
+            return new CompletePlanCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
