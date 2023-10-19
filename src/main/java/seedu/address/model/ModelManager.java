@@ -152,6 +152,11 @@ public class ModelManager implements Model {
         addressBook.completePlan(target);
     }
 
+    @Override
+    public void uncompletePlan(Plan target) {
+        addressBook.uncompletePlan(target);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
