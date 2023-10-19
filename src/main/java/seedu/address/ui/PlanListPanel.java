@@ -13,7 +13,6 @@ import seedu.address.model.plan.Plan;
 /**
  * Panel containing the list of plans.
  */
-// TODO: Rename person to plan
 public class PlanListPanel extends UiPart<Region> {
     private static final String FXML = "PlanListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PlanListPanel.class);

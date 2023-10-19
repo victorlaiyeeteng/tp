@@ -11,9 +11,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.plan.Plan;
 
 /**
- * A UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Plan}.
  */
-// TODO: Rename person to plan
 public class PlanCard extends UiPart<Region> {
 
     private static final String FXML = "PlanListCard.fxml";
