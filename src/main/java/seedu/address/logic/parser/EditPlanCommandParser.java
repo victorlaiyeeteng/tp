@@ -42,11 +42,11 @@ public class EditPlanCommandParser implements Parser<EditPlanCommand> {
             editPlanDescriptor.setPlanName(ParserUtil.parsePlanName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
-            editPlanDescriptor.setPlanDateTime(ParserUtil.parsePlanDateTime(argMultimap.getValue(PREFIX_DATETIME).get()));
+            editPlanDescriptor.setPlanDateTime(
+                    ParserUtil.parsePlanDateTime(argMultimap.getValue(PREFIX_DATETIME).get()));
         }
-        // to be corrected
         if (argMultimap.getValue(PREFIX_FRIEND).isPresent()) {
-            editPlanDescriptor.setPlanFriend(ParserUtil.parsePlanFriend(argMultimap.getValue(PREFIX_FRIEND).get()));
+            editPlanDescriptor.setPlanFriendName(ParserUtil.parseName(argMultimap.getValue(PREFIX_FRIEND).get()));
         }
 
         if (!editPlanDescriptor.isAnyFieldEdited()) {

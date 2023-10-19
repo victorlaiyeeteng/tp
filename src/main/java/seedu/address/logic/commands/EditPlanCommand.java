@@ -16,10 +16,12 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.plan.Plan;
-import seedu.address.model.plan.PlanName;
 import seedu.address.model.plan.PlanDateTime;
+import seedu.address.model.plan.PlanName;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -42,6 +44,7 @@ public class EditPlanCommand extends Command {
     public static final String MESSAGE_EDIT_PLAN_SUCCESS = "Edited Plan: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PLAN = "This plan already exists in the FriendBook.";
+    public static final String MESSAGE_FRIEND_NOT_FOUND = "The friend does not exist in the FriendBook";
 
     private final Index index;
     private final EditPlanDescriptor editPlanDescriptor;
@@ -68,6 +71,19 @@ public class EditPlanCommand extends Command {
         }
 
         Plan planToEdit = lastShownList.get(index.getZeroBased());
+
+        Name editedPlanFriendName = editPlanDescriptor.getPlanFriendName().orElse(null);
+        Person editedPlanFriend;
+        if (editedPlanFriendName != null) {
+            try {
+                editedPlanFriend = model.getPersonByName(editedPlanFriendName);
+
+                editPlanDescriptor.setPlanFriend(editedPlanFriend);
+            } catch (PersonNotFoundException e) {
+                throw new CommandException(MESSAGE_FRIEND_NOT_FOUND);
+            }
+        }
+
         Plan editedPlan = createEditedPlan(planToEdit, editPlanDescriptor);
 
         if (!planToEdit.isSamePlan(editedPlan) && model.hasPlan(editedPlan)) {
@@ -124,6 +140,7 @@ public class EditPlanCommand extends Command {
     public static class EditPlanDescriptor {
         private PlanName planName;
         private PlanDateTime dateTime;
+        private Name friendName;
         private Person friend;
 
         public EditPlanDescriptor() {}
@@ -135,14 +152,14 @@ public class EditPlanCommand extends Command {
         public EditPlanDescriptor(EditPlanDescriptor toCopy) {
             setPlanName(toCopy.planName);
             setPlanDateTime(toCopy.dateTime);
-            setPlanFriend(toCopy.friend);
+            setPlanFriendName(toCopy.friendName);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(planName, dateTime, friend);
+            return CollectionUtil.isAnyNonNull(planName, dateTime, friendName);
         }
 
         public void setPlanName(PlanName planName) {
@@ -159,6 +176,14 @@ public class EditPlanCommand extends Command {
 
         public Optional<PlanDateTime> getPlanDateTime() {
             return Optional.ofNullable(dateTime);
+        }
+
+        public void setPlanFriendName(Name friendName) {
+            this.friendName = friendName;
+        }
+
+        public Optional<Name> getPlanFriendName() {
+            return Optional.ofNullable(friendName);
         }
 
         public void setPlanFriend(Person friend) {
@@ -183,7 +208,7 @@ public class EditPlanCommand extends Command {
             EditPlanDescriptor otherEditPlanDescriptor = (EditPlanDescriptor) other;
             return Objects.equals(planName, otherEditPlanDescriptor.planName)
                     && Objects.equals(dateTime, otherEditPlanDescriptor.dateTime)
-                    && Objects.equals(friend, otherEditPlanDescriptor.friend);
+                    && Objects.equals(friendName, otherEditPlanDescriptor.friendName);
         }
 
         @Override
@@ -191,7 +216,7 @@ public class EditPlanCommand extends Command {
             return new ToStringBuilder(this)
                     .add("plan name", planName)
                     .add("plan dateTime", dateTime)
-                    .add("friend", friend)
+                    .add("friend", friendName)
                     .toString();
         }
     }
