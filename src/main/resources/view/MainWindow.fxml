@@ -55,11 +55,11 @@
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
-          <VBox fx:id="www" styleClass="pane-with-border" prefWidth="170" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <VBox fx:id="planList" styleClass="pane-with-border" prefWidth="170" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
             <padding>
               <Insets top="0" right="0" bottom="0" left="0" />
             </padding>
-            <StackPane fx:id="wwwPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="planListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </HBox>
 
