@@ -32,18 +32,15 @@ public class PlanCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label name;
-    /*
+
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label dateTime;
     @FXML
-    private Label address;
+    private Label friend;
     @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
-    */
+    private Label completionStatus;
 
     /**
      * Creates a {@code PlanCard} with the given {@code Plan} and index to display.
@@ -51,14 +48,10 @@ public class PlanCard extends UiPart<Region> {
     public PlanCard(Plan plan, int displayedIndex) {
         super(FXML);
         this.plan = plan;
+        id.setText(displayedIndex + ". ");
         name.setText(plan.getPlanName().toString());
-        // phone.setText(person.getPhone().value);
-        // address.setText(person.getAddress().value);
-        // email.setText(person.getEmail().value);
-        /*
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-         */
+        friend.setText(plan.getPlanFriend().getName().toString());
+        dateTime.setText(plan.getPlanDateTime().toString());
+        completionStatus.setText("Completed: " + plan.getCompletionString());
     }
 }
