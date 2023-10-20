@@ -28,6 +28,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListPlanCommand;
+import seedu.address.logic.commands.UncompletePlanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -119,6 +120,13 @@ public class AddressBookParserTest {
         CompletePlanCommand command = (CompletePlanCommand) parser.parseCommand(
                 CompletePlanCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new CompletePlanCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseUncommand_completePlan() throws Exception {
+        UncompletePlanCommand command = (UncompletePlanCommand) parser.parseCommand(
+                UncompletePlanCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new UncompletePlanCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

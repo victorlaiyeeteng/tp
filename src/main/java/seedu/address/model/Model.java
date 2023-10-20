@@ -90,6 +90,12 @@ public interface Model {
     void completePlan(Plan target);
 
     /**
+     * Marks the given plan as uncomplete.
+     * The plan must exist in the address book.
+     */
+    void uncompletePlan(Plan target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */

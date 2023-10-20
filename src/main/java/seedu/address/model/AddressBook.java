@@ -146,6 +146,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         plans.complete(key);
     }
 
+    /**
+     * Unmarks {@code key} as uncompleted in this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void uncompletePlan(Plan key) {
+        plans.uncomplete(key);
+    }
+
     //// util methods
 
     @Override
