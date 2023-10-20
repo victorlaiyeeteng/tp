@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPlanAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PLAN;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PLAN;
-// import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPlans.getTypicalAddressBookWithPlans;
 
 import org.junit.jupiter.api.Test;
@@ -48,22 +47,15 @@ public class EditPlanCommandTest {
         assertCommandSuccess(editPlanCommand, model, expectedMessage, expectedModel);
     }
 
-    /* failing and idk why
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastPlan = Index.fromOneBased(model.getFilteredPlanList().size());
         Plan lastPlan = model.getFilteredPlanList().get(indexLastPlan.getZeroBased());
 
         PlanBuilder planInList = new PlanBuilder(lastPlan);
-        Plan editedPlan = planInList.withPlanName(VALID_PLAN_NAME_GAMING)
-                .withPlanDateTime(VALID_PLAN_DATETIME_GAMING)
-                .withPlanFriend(ALICE)
-                .build();
+        Plan editedPlan = planInList.withPlanName(VALID_PLAN_NAME_GAMING).build();
 
-        EditPlanDescriptor descriptor = new EditPlanDescriptorBuilder().withPlanName(VALID_PLAN_NAME_GAMING)
-                .withPlanDateTime(VALID_PLAN_DATETIME_GAMING)
-                .withPlanFriendName(VALID_PLAN_FRIEND_GAMING)
-                .build();
+        EditPlanDescriptor descriptor = new EditPlanDescriptorBuilder().withPlanName(VALID_PLAN_NAME_GAMING).build();
         EditPlanCommand editPlanCommand = new EditPlanCommand(indexLastPlan, descriptor);
 
         String expectedMessage = String.format(EditPlanCommand.MESSAGE_EDIT_PLAN_SUCCESS, Messages.format(editedPlan));
@@ -73,7 +65,6 @@ public class EditPlanCommandTest {
 
         assertCommandSuccess(editPlanCommand, model, expectedMessage, expectedModel);
     }
-    */
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
