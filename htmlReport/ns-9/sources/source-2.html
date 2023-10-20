@@ -1,0 +1,154 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AddPlanCommandParser</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.address.logic.parser</a>
+</div>
+
+<h1>Coverage Summary for Class: AddPlanCommandParser (seedu.address.logic.parser)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AddPlanCommandParser</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package seedu.address.logic.parser;
+&nbsp;
+&nbsp;import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+&nbsp;import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+&nbsp;import static seedu.address.logic.parser.CliSyntax.PREFIX_FRIEND;
+&nbsp;import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+&nbsp;
+&nbsp;import java.util.stream.Stream;
+&nbsp;
+&nbsp;import seedu.address.logic.commands.AddPlanCommand;
+&nbsp;import seedu.address.logic.parser.exceptions.ParseException;
+&nbsp;import seedu.address.model.person.Name;
+&nbsp;import seedu.address.model.plan.PlanDateTime;
+&nbsp;import seedu.address.model.plan.PlanName;
+&nbsp;
+&nbsp;
+&nbsp;/**
+&nbsp; * Parses input arguments and create a new AddPlanCommand Object
+&nbsp; */
+<b class="fc">&nbsp;public class AddPlanCommandParser implements Parser&lt;AddPlanCommand&gt; {</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses the given {@code String} of arguments in the context of the AddPlanCommand
+&nbsp;     * and returns an AddPlanCommand object for execution.
+&nbsp;     * @throws ParseException if the user input does not conform the expected format
+&nbsp;     */
+&nbsp;    public AddPlanCommand parse(String args) throws ParseException {
+<b class="fc">&nbsp;        ArgumentMultimap argMultimap =</b>
+<b class="fc">&nbsp;                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATETIME, PREFIX_FRIEND);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATETIME, PREFIX_FRIEND)</b>
+<b class="fc">&nbsp;                || !argMultimap.getPreamble().isEmpty()) {</b>
+<b class="fc">&nbsp;            throw new ParseException((String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPlanCommand.MESSAGE_USAGE)));</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_DATETIME, PREFIX_FRIEND);;</b>
+<b class="fc">&nbsp;        PlanName planName = ParserUtil.parsePlanName(argMultimap.getValue(PREFIX_NAME).get());</b>
+<b class="fc">&nbsp;        PlanDateTime planDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());</b>
+<b class="fc">&nbsp;        Name friendName = ParserUtil.parseName(argMultimap.getValue(PREFIX_FRIEND).get());</b>
+&nbsp;
+<b class="fc">&nbsp;        return new AddPlanCommand(planName, planDateTime, friendName);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+&nbsp;     * {@code ArgumentMultimap}.
+&nbsp;     */
+&nbsp;    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+<b class="fc">&nbsp;        return Stream.of(prefixes).allMatch(prefix -&gt; argumentMultimap.getValue(prefix).isPresent());</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-10-18 08:02</div>
+</div>
+</body>
+</html>

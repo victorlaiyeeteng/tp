@@ -78,7 +78,7 @@ public class LogicManagerTest {
         assertCommandSuccess(helpCommand, HelpCommand.SHOWING_HELP_MESSAGE, model);
     }
     @Test
-    public void execute_unclearCommand_throwsParseException() {
+    public void execute_unclearCommand_throwsCommandException() {
         String unclearCommand = "delete 1";
         assertParseException(unclearCommand, MESSAGE_UNCLEAR_COMMAND);
     }
@@ -178,7 +178,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command
-        String addCommand = AddCommand.COMMAND_WORD + "-friend" + NAME_DESC_AMY + PHONE_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

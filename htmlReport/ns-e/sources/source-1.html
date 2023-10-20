@@ -1,0 +1,191 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Plan</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.address.model.plan</a>
+</div>
+
+<h1>Coverage Summary for Class: Plan (seedu.address.model.plan)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Plan</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (6/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80.8%
+  </span>
+  <span class="absValue">
+    (21/26)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package seedu.address.model.plan;
+&nbsp;
+&nbsp;import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+&nbsp;
+&nbsp;import seedu.address.model.person.Person;
+&nbsp;
+&nbsp;/**
+&nbsp; * Represents a Plan in the address book.
+&nbsp; * Guarantees: details are present and not null, field values are validated, immutable.
+&nbsp; */
+&nbsp;public class Plan {
+&nbsp;    /** A brief description of this plan. */
+&nbsp;    private final PlanName planName;
+&nbsp;    /** The date and time of this plan. */
+&nbsp;    private final PlanDateTime dateTime;
+&nbsp;    /** The friend this plan involves. */
+&nbsp;    private final Person friend;
+<b class="fc">&nbsp;    private boolean isComplete = false;</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Class constructor for Plan.
+&nbsp;     * @param planName A brief description of the plan.
+&nbsp;     * @param dateTime A LocalDateTIme object of this plan.
+&nbsp;     * @param friend The friend this plan involves.
+&nbsp;     */
+<b class="fc">&nbsp;    public Plan(PlanName planName, PlanDateTime dateTime, Person friend) {</b>
+<b class="fc">&nbsp;        requireAllNonNull(planName, dateTime, friend);</b>
+<b class="fc">&nbsp;        this.planName = planName;</b>
+<b class="fc">&nbsp;        this.dateTime = dateTime;</b>
+<b class="fc">&nbsp;        this.friend = friend;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    public PlanName getPlanName() {
+<b class="fc">&nbsp;        return planName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PlanDateTime getPlanDateTime() {
+<b class="fc">&nbsp;        return dateTime;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Person getPlanFriend() {
+<b class="fc">&nbsp;        return friend;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns true if both plans have the same name, dateTime and friend fields.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object other) {
+<b class="fc">&nbsp;        if (other == this) {</b>
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // instanceof handles nulls
+<b class="fc">&nbsp;        if (!(other instanceof Plan)) {</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        Plan otherPlan = (Plan) other;</b>
+<b class="fc">&nbsp;        return planName.equals(otherPlan.planName)</b>
+<b class="fc">&nbsp;                &amp;&amp; dateTime.equals(otherPlan.dateTime)</b>
+<b class="fc">&nbsp;                &amp;&amp; friend.equals(otherPlan.friend);</b>
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * Returns string of format [PLAN_NAME with FRIEND_NAME at DATE_TIME]
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        String friendName = friend.getName().toString();</b>
+<b class="fc">&nbsp;        String dateTimeString = this.dateTime.toString();</b>
+<b class="fc">&nbsp;        String planNameString = this.planName.toString();</b>
+<b class="fc">&nbsp;        return &#39;[&#39; + planNameString + &quot; with &quot; + friendName + &quot; at &quot; + dateTimeString + &#39;]&#39;;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Marks this plan as completed.
+&nbsp;     */
+&nbsp;    public void setCompleted() {
+<b class="nc">&nbsp;        this.isComplete = true;</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Marks this plan as uncompleted.
+&nbsp;     */
+&nbsp;    public void setUncompleted() {
+<b class="nc">&nbsp;        this.isComplete = false;</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-10-18 08:02</div>
+</div>
+</body>
+</html>

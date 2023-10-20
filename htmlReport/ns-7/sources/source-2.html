@@ -1,0 +1,201 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AddPlanCommand</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.address.logic.commands</a>
+</div>
+
+<h1>Coverage Summary for Class: AddPlanCommand (seedu.address.logic.commands)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AddPlanCommand</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (26/28)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package seedu.address.logic.commands;
+&nbsp;
+&nbsp;import static java.util.Objects.requireNonNull;
+&nbsp;import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+&nbsp;import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+&nbsp;import static seedu.address.logic.parser.CliSyntax.PREFIX_FRIEND;
+&nbsp;import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+&nbsp;
+&nbsp;import seedu.address.commons.util.ToStringBuilder;
+&nbsp;import seedu.address.logic.Messages;
+&nbsp;import seedu.address.logic.commands.exceptions.CommandException;
+&nbsp;import seedu.address.model.Model;
+&nbsp;import seedu.address.model.person.Name;
+&nbsp;import seedu.address.model.person.Person;
+&nbsp;import seedu.address.model.person.exceptions.PersonNotFoundException;
+&nbsp;import seedu.address.model.plan.Plan;
+&nbsp;import seedu.address.model.plan.PlanDateTime;
+&nbsp;import seedu.address.model.plan.PlanName;
+&nbsp;
+&nbsp;/**
+&nbsp; * Adds a plan to the FriendBook.
+&nbsp; */
+&nbsp;public class AddPlanCommand extends Command {
+&nbsp;
+&nbsp;    public static final String COMMAND_WORD = &quot;add-plan&quot;;
+&nbsp;
+<b class="fc">&nbsp;    public static final String MESSAGE_USAGE = COMMAND_WORD + &quot;: Adds a plan to the FriendBook. &quot;</b>
+&nbsp;            + &quot;Parameters: &quot;
+&nbsp;            + PREFIX_NAME + &quot;PLAN_NAME &quot;
+&nbsp;            + PREFIX_DATETIME + &quot;DATE_TIME &quot;
+&nbsp;            + PREFIX_FRIEND + &quot;FRIEND_NAME &quot;
+&nbsp;            + &quot;Example: &quot; + COMMAND_WORD + &quot; &quot;
+&nbsp;            + PREFIX_NAME + &quot;Project Meeting &quot;
+&nbsp;            + PREFIX_DATETIME + &quot;2023-10-20-09:00&quot;
+&nbsp;            + PREFIX_FRIEND + &quot;John Doe&quot;;
+&nbsp;
+&nbsp;    public static final String MESSAGE_SUCCESS = &quot;New plan added: %1$s&quot;;
+&nbsp;    public static final String MESSAGE_DUPLICATE_PLAN = &quot;This plan already exists in the FriendBook&quot;;
+&nbsp;    public static final String MESSAGE_FRIEND_NOT_FOUND = &quot;The friend does not exist in the FriendBook&quot;;
+&nbsp;
+&nbsp;    private Plan toAdd;
+&nbsp;    private final PlanName planName;
+&nbsp;    private final PlanDateTime planDateTime;
+&nbsp;    private final Name friendName;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates an AddPlanCommand to add the specified {@code Plan}
+&nbsp;     */
+<b class="fc">&nbsp;    public AddPlanCommand(PlanName planName, PlanDateTime planDateTime, Name friendName) {</b>
+<b class="fc">&nbsp;        requireAllNonNull(planName, planDateTime, friendName);</b>
+<b class="fc">&nbsp;        this.planName = planName;</b>
+<b class="fc">&nbsp;        this.planDateTime = planDateTime;</b>
+<b class="fc">&nbsp;        this.friendName = friendName;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public CommandResult execute(Model model) throws CommandException {
+<b class="fc">&nbsp;        requireNonNull(model);</b>
+&nbsp;
+&nbsp;        Person person;
+&nbsp;        try {
+<b class="fc">&nbsp;            person = model.getPersonByName(this.friendName);</b>
+<b class="nc">&nbsp;        } catch (PersonNotFoundException e) {</b>
+<b class="nc">&nbsp;            throw new CommandException(MESSAGE_FRIEND_NOT_FOUND);</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        toAdd = new Plan(this.planName, this.planDateTime, person);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (model.hasPlan(toAdd)) {</b>
+<b class="fc">&nbsp;            throw new CommandException(MESSAGE_DUPLICATE_PLAN);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        model.addPlan(toAdd);</b>
+<b class="fc">&nbsp;        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object other) {
+<b class="fc">&nbsp;        if (other == this) {</b>
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        //instanceof handles nulls
+<b class="fc">&nbsp;        if (!(other instanceof AddPlanCommand)) {</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        AddPlanCommand otherAddPlanCommand = (AddPlanCommand) other;</b>
+<b class="fc">&nbsp;        return planName.equals(otherAddPlanCommand.planName)</b>
+<b class="fc">&nbsp;                &amp;&amp; planDateTime.equals(otherAddPlanCommand.planDateTime)</b>
+<b class="fc">&nbsp;                &amp;&amp; friendName.equals(otherAddPlanCommand.friendName);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        return new ToStringBuilder(this)</b>
+<b class="fc">&nbsp;                .add(&quot;toAdd&quot;, &quot;[&quot; + planName + &quot; with &quot; + friendName + &quot; at &quot; + planDateTime + &quot;]&quot;)</b>
+<b class="fc">&nbsp;                .toString();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-10-18 08:02</div>
+</div>
+</body>
+</html>
