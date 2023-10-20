@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -29,9 +27,7 @@ public class LogicManager implements Logic {
 
     public static final String FILE_OPS_PERMISSION_ERROR_FORMAT =
             "Could not save data to file %s due to insufficient permissions to write to the file or the folder.";
-    private static final Pattern FRIEND_COMMAND_CHECKER =
-            Pattern.compile("-friend");
-    private static final String REPLACE = "";
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -52,23 +48,6 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-
-        boolean isFriendCommand = commandText.contains("-friend");
-        boolean isPlanCommand = commandText.contains("-plan");
-        boolean isHelpCommand = commandText.contains("help");
-
-        if (isFriendCommand) {
-            // removes "-friend" from the command text
-            Matcher findFriend = FRIEND_COMMAND_CHECKER.matcher(commandText);
-            commandText = findFriend.replaceAll(REPLACE);
-        } else if (isHelpCommand) {
-            // since there's no "help-friend" and "help-plan", should retain the command message
-            commandText = "help";
-        } else if (!isPlanCommand) {
-            // command doesn't contain "-friend", "help", nor "-plans" and hence will be marked as an unclear command
-            commandText = "unclear";
-        }
-
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
