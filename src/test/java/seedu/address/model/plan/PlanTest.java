@@ -47,6 +47,33 @@ class PlanTest {
     }
 
     @Test
+    public void isSamePlan() {
+        // same object -> returns true
+        assertTrue(BALI.isSamePlan(BALI));
+
+        // null -> returns false
+        assertFalse(BALI.isSamePlan(null));
+
+        // same planName, all other attributes different -> returns true
+        Plan editedBali = new PlanBuilder(BALI).withPlanFriend(BOB)
+                .withPlanDateTime("2026-06-01-09:00").build();
+        assertTrue(BALI.isSamePlan(editedBali));
+
+        // different name, all other attributes same -> returns false
+        editedBali = new PlanBuilder(BALI).withPlanName("Dota 2").build();
+        assertFalse(BALI.isSamePlan(editedBali));
+
+        // name differs in case, all other attributes same -> returns false
+        editedBali = new PlanBuilder(BALI).withPlanName("Bali Trip".toLowerCase()).build();
+        assertFalse(BALI.isSamePlan(editedBali));
+
+        // name has trailing spaces, all other attributes same -> returns false
+        String planNameWithTrailingSpaces = "Bali Trip" + " ";
+        editedBali = new PlanBuilder(BALI).withPlanName(planNameWithTrailingSpaces).build();
+        assertFalse(BALI.isSamePlan(editedBali));
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = '[' + BALI.getPlanName().toString() + " with "
                 + BALI.getPlanFriend().getName() + " at " + BALI.getPlanDateTime() + ']';
