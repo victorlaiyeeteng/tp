@@ -12,8 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class CompletePlanCommandParser implements Parser<CompletePlanCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CompletePlanCommand
+     * and returns a CompletePlanCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public CompletePlanCommand parse(String args) throws ParseException {

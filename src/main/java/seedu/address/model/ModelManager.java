@@ -120,10 +120,10 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
+
     /**
      * Returns true if a plan with the same identity as {@code plan} exists in the address book.
      */
-
     public boolean hasPlan(Plan plan) {
         requireNonNull(plan);
         return addressBook.hasPlan(plan);
@@ -150,6 +150,11 @@ public class ModelManager implements Model {
     @Override
     public void completePlan(Plan target) {
         addressBook.completePlan(target);
+    }
+
+    @Override
+    public void uncompletePlan(Plan target) {
+        addressBook.uncompletePlan(target);
     }
 
     //=========== Filtered Person List Accessors =============================================================

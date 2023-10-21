@@ -70,6 +70,23 @@ public class UniquePlanList implements Iterable<Plan> {
     }
 
     /**
+     * Unmarks the equivalent plan as uncomplete in the list.
+     * The plan must exist in the list.
+     */
+    public void uncomplete(Plan toUncomplete) {
+        requireNonNull(toUncomplete);
+        if (!contains(toUncomplete)) {
+            throw new PlanNotFoundException();
+        } else {
+            for (Plan plan : internalList) {
+                if (plan.equals(toUncomplete)) {
+                    plan.setUncompleted();
+                }
+            }
+        }
+    }
+
+    /**
      * Replaces the plan {@code target} in the list with {@code editedPlan}.
      * {@code target} must exist in the list.
      * The plan identity of {@code editedPlan} must not be the same as another existing plan in the list.

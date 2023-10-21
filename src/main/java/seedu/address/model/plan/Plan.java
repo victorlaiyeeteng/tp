@@ -59,6 +59,17 @@ public class Plan {
     }
 
     /**
+     * Returns Yes if this Plan is completed, and No otherwise.
+     */
+    public String getCompletionString() {
+        if (isComplete) {
+            return "Yes";
+        } else {
+            return "No";
+        }
+    }
+
+    /**
      * Returns true if both plans have the same name, dateTime and friend fields.
      */
     @Override

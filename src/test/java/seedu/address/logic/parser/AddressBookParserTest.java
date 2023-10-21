@@ -25,10 +25,13 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindPlanCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListPlanCommand;
+import seedu.address.logic.commands.UncompletePlanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.plan.Plan;
@@ -105,7 +108,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unclearInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNCLEAR_COMMAND, () -> parser.parseCommand("unclear"));
+        assertThrows(ParseException.class, MESSAGE_UNCLEAR_COMMAND, () -> parser.parseCommand("delete 1"));
     }
 
     @Test
@@ -119,6 +122,13 @@ public class AddressBookParserTest {
         CompletePlanCommand command = (CompletePlanCommand) parser.parseCommand(
                 CompletePlanCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new CompletePlanCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_unCompletePlan() throws Exception {
+        UncompletePlanCommand command = (UncompletePlanCommand) parser.parseCommand(
+                UncompletePlanCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new UncompletePlanCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
@@ -140,5 +150,13 @@ public class AddressBookParserTest {
         DeletePlanCommand command = (DeletePlanCommand) parser.parseCommand(
                 DeletePlanCommand.COMMAND_WORD + " " + INDEX_FIRST_PLAN.getOneBased());
         assertEquals(new DeletePlanCommand(INDEX_FIRST_PLAN), command);
+    }
+
+    @Test
+    public void parseCommand_findPlan() throws Exception {
+        String friendName = "Alice Pauline";
+        FindPlanCommand command = (FindPlanCommand) parser.parseCommand(
+                FindPlanCommand.COMMAND_WORD + " " + friendName);
+        assertEquals(new FindPlanCommand(new Name(friendName)), command);
     }
 }
