@@ -20,6 +20,7 @@ import seedu.address.logic.commands.DeletePlanCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindPlanCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListPlanCommand;
@@ -57,7 +58,7 @@ public class AddressBookParser {
                                 CompletePlanCommand.COMMAND_WORD, UncompletePlanCommand.COMMAND_WORD,
                                 DeleteCommand.COMMAND_WORD, DeletePlanCommand.COMMAND_WORD, EditCommand.COMMAND_WORD,
                                 ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD,
-                                ListCommand.COMMAND_WORD, ListPlanCommand.COMMAND_WORD};
+                                ListCommand.COMMAND_WORD, ListPlanCommand.COMMAND_WORD, FindPlanCommand.COMMAND_WORD};
         String[] unclearCommand = {"add", "delete", "edit", "find", "list"};
 
         boolean isValidCommand = Arrays.stream(allCommands).anyMatch(commandWord::matches);
@@ -109,14 +110,17 @@ public class AddressBookParser {
         case DeletePlanCommand.COMMAND_WORD:
             return new DeletePlanCommandParser().parse(arguments);
 
-        case "unclear":
-            throw new ParseException(MESSAGE_UNCLEAR_COMMAND);
-
         case CompletePlanCommand.COMMAND_WORD:
             return new CompletePlanCommandParser().parse(arguments);
 
         case UncompletePlanCommand.COMMAND_WORD:
             return new UncompletePlanCommandParser().parse(arguments);
+
+        case FindPlanCommand.COMMAND_WORD:
+            return new FindPlanCommandParser().parse(arguments);
+
+        case "unclear":
+            throw new ParseException(MESSAGE_UNCLEAR_COMMAND);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
