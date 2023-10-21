@@ -9,40 +9,40 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.plan.Plan;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Completes a plan identified using it's displayed index from the FriendBook.
  */
-public class DeleteCommand extends Command {
+public class UncompletePlanCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete-friend";
+    public static final String COMMAND_WORD = "uncomplete-plan";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the friend identified by the index number used in the displayed friend list.\n"
+            + ": Marks the plan as completed identified by the index number used in the displayed plan list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Friend: %1$s";
+    public static final String MESSAGE_UNCOMPLETE_PLAN_SUCCESS = "Uncompleted Plan: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public UncompletePlanCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Plan> lastShownList = model.getFilteredPlanList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        Plan planToUncomplete = lastShownList.get(targetIndex.getZeroBased());
+        model.uncompletePlan(planToUncomplete);
+        return new CommandResult(String.format(MESSAGE_UNCOMPLETE_PLAN_SUCCESS, Messages.format(planToUncomplete)));
     }
 
     @Override
@@ -52,12 +52,12 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof UncompletePlanCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        UncompletePlanCommand otherUncompletePlanCommand = (UncompletePlanCommand) other;
+        return targetIndex.equals(otherUncompletePlanCommand.targetIndex);
     }
 
     @Override

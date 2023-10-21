@@ -199,6 +199,11 @@ public class AddCommandTest {
         public void completePlan(Plan target) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void uncompletePlan(Plan target) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
