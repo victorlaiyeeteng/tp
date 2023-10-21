@@ -35,7 +35,7 @@ public class AddPlanCommandParser implements Parser<AddPlanCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_DATETIME, PREFIX_FRIEND);;
         PlanName planName = ParserUtil.parsePlanName(argMultimap.getValue(PREFIX_NAME).get());
-        PlanDateTime planDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
+        PlanDateTime planDateTime = ParserUtil.parsePlanDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
         Name friendName = ParserUtil.parseName(argMultimap.getValue(PREFIX_FRIEND).get());
 
         return new AddPlanCommand(planName, planDateTime, friendName);

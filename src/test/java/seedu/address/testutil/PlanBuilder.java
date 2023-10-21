@@ -66,6 +66,4 @@ public class PlanBuilder {
         return new Plan(planName, planDateTime, friend);
     }
 
-
-
 }

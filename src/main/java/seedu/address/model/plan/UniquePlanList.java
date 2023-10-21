@@ -99,7 +99,7 @@ public class UniquePlanList implements Iterable<Plan> {
             throw new PlanNotFoundException();
         }
 
-        if (contains(editedPlan)) {
+        if (!target.isSamePlan(editedPlan) && contains(editedPlan)) {
             throw new DuplicatePlanException();
         }
 

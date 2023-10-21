@@ -46,6 +46,19 @@ public class Plan {
     }
 
     /**
+     * Returns true if both plans have the same name.
+     * This defines a weaker notion of equality between two plans.
+     */
+    public boolean isSamePlan(Plan otherPlan) {
+        if (otherPlan == this) {
+            return true;
+        }
+
+        return otherPlan != null
+                && otherPlan.getPlanName().equals(getPlanName());
+    }
+
+    /**
      * Returns Yes if this Plan is completed, and No otherwise.
      */
     public String getCompletionString() {
@@ -55,6 +68,7 @@ public class Plan {
             return "No";
         }
     }
+
     /**
      * Returns true if both plans have the same name, dateTime and friend fields.
      */

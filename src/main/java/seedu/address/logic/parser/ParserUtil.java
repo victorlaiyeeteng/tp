@@ -140,14 +140,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateTimeString} into a {@code PlanDateTime}.
+     * Parses a {@code String dateTime} into a {@code PlanDateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code dateTimeString} is invalid.
+     * @throws ParseException if the given {@code dateTime} is invalid.
      */
-    public static PlanDateTime parseDateTime(String dateTimeString) throws ParseException {
-        requireNonNull(dateTimeString);
-        String trimmedDateTimeString = dateTimeString.trim();
+    public static PlanDateTime parsePlanDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTimeString = dateTime.trim();
         if (!PlanDateTime.isValidDateTime(trimmedDateTimeString)) {
             throw new ParseException(PlanDateTime.MESSAGE_CONSTRAINTS);
         }
