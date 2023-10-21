@@ -10,6 +10,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.plan.PlanContainsFriendPredicate;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -41,6 +42,14 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        // Handles deleting a friend that is involved in at least one plan
+        PlanContainsFriendPredicate predicate = new PlanContainsFriendPredicate(personToDelete);
+        model.updateFilteredPlanList(predicate);
+        if (model.getFilteredPlanList().size() > 0) {
+            throw new CommandException(Messages.MESSAGE_PERSON_PRESENT_IN_PLAN);
+        }
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
