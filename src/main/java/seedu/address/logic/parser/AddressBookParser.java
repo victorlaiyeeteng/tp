@@ -116,7 +116,7 @@ public class AddressBookParser {
 
         case EditPlanCommand.COMMAND_WORD:
             return new EditPlanCommandParser().parse(arguments);
-            
+
         case UncompletePlanCommand.COMMAND_WORD:
             return new UncompletePlanCommandParser().parse(arguments);
 
