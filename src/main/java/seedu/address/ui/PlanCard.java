@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.plan.Plan;
@@ -33,9 +34,9 @@ public class PlanCard extends UiPart<Region> {
     @FXML
     private Label dateTime;
     @FXML
-    private Label friend;
-    @FXML
     private Label completionStatus;
+    @FXML
+    private FlowPane friends;
 
     /**
      * Creates a {@code PlanCard} with the given {@code Plan} and index to display.
@@ -45,8 +46,8 @@ public class PlanCard extends UiPart<Region> {
         this.plan = plan;
         id.setText(displayedIndex + ". ");
         name.setText(plan.getPlanName().toString());
-        friend.setText(plan.getPlanFriend().getName().toString());
         dateTime.setText(plan.getPlanDateTime().toString());
         completionStatus.setText("Completed: " + plan.getCompletionString());
+        friends.getChildren().add(new Label(plan.getPlanFriend().getName().toString()));
     }
 }
