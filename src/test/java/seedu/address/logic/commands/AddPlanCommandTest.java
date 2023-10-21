@@ -4,8 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.AddPlanCommand.MESSAGE_FRIEND_NOT_FOUND;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPlans.MEETING;
 
 import java.nio.file.Path;
@@ -20,8 +24,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.plan.Plan;
@@ -29,6 +35,8 @@ import seedu.address.testutil.PlanBuilder;
 
 
 public class AddPlanCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_nullPlan_throwsNullPointerException() {
@@ -58,6 +66,15 @@ public class AddPlanCommandTest {
 
         assertThrows(CommandException.class,
                 AddPlanCommand.MESSAGE_DUPLICATE_PLAN, () -> addPlanCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_friendDoesNotExist_throwsCommandException() {
+        Plan plan = new PlanBuilder().withPlanFriend(AMY).build();
+
+        AddPlanCommand addPlanCommand = new AddPlanCommand(
+                plan.getPlanName(), plan.getPlanDateTime(), plan.getPlanFriend().getName());
+        assertCommandFailure(addPlanCommand, model, MESSAGE_FRIEND_NOT_FOUND);
     }
 
     @Test

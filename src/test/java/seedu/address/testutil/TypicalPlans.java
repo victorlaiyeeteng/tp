@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +26,9 @@ public class TypicalPlans {
     public static final Plan BALI = new PlanBuilder().withPlanName("Bali Trip")
             .withPlanDateTime("2025-06-01-09:00").withPlanFriend(ALICE).build();
 
+    public static final Plan DATE = new PlanBuilder().withPlanName("Dinner Date")
+            .withPlanDateTime("2025-11-09-19:00").withPlanFriend(BENSON).build();
+
     private TypicalPlans() {}
 
     /**
@@ -39,6 +43,6 @@ public class TypicalPlans {
     }
 
     public static List<Plan> getTypicalPlans() {
-        return new ArrayList<>(Arrays.asList(MEETING, GAMING, EXERCISING, HACKATHON, BALI));
+        return new ArrayList<>(Arrays.asList(MEETING, GAMING, EXERCISING, HACKATHON, BALI, DATE));
     }
 }

@@ -24,7 +24,6 @@ public class ListPlanCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
-        logger.info(model.getFilteredPlanList().toString());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
