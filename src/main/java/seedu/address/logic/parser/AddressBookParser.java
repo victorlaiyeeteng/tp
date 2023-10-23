@@ -58,8 +58,9 @@ public class AddressBookParser {
         String[] allCommands = {AddCommand.COMMAND_WORD, AddPlanCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
                                 CompletePlanCommand.COMMAND_WORD, UncompletePlanCommand.COMMAND_WORD,
                                 DeleteCommand.COMMAND_WORD, DeletePlanCommand.COMMAND_WORD, EditCommand.COMMAND_WORD,
-                                ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD,
-                                ListCommand.COMMAND_WORD, ListPlanCommand.COMMAND_WORD, FindPlanCommand.COMMAND_WORD};
+                                EditPlanCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
+                                HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD, ListPlanCommand.COMMAND_WORD,
+                                FindPlanCommand.COMMAND_WORD};
         String[] unclearCommand = {"add", "delete", "edit", "find", "list"};
 
         boolean isValidCommand = Arrays.stream(allCommands).anyMatch(commandWord::matches);
