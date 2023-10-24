@@ -92,6 +92,40 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
+### Editing a Friend's Information: `edit-friend`
+
+Edits an existing friend’s information in the friends list at the specified index.
+
+Format: `edit-friend INDEX n/NAME p/PHONE e/EMAIL a/ADDRESS`
+
+Examples:
+* `edit-friend 3 n/Jack Ma`
+* `edit-friend 1 p/99990000`
+
+Arguments:
+
+- `NAME` must be a STRING, `PHONE` must be an INT, and `EMAIL` must be a STRING
+
+- An `INDEX` must be provided
+
+- `NAME`, `PHONE_NUMBER`, `EMAIL` and `ADDRESS` are optional but at least 1 must be given
+
+Successful Output:
+
+`[NAME, PHONE_NUMBER, EMAIL, ADDRESS] updated in friends list.`
+
+Unsuccessful Output:
+
+- Invalid command: `Invalid command.` + help message with list of all commands
+
+- Invalid index is given: `Invalid Updating of Friend: Index given is invalid. Syntax: edit-friend INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+
+- No optional arguments provided: `Invalid Updating of Friend: Missing information to be updated. Syntax: edit-friend INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+
+- Not a valid friend: `Invalid Updating of Friend: No such friend in friends list.`
+
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: edit-friend INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+
 ### Removing a Friend : `delete-friend`
 
 Removes an existing friend from the friends list.
@@ -121,39 +155,26 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: delete-friend INDEX`
 
-### Editing a Friend's Information: `edit-friend` [Coming Soon]
+### Finding a friend : `find-friend`
 
-Edits an existing friend’s information in the friends list at the specified index.
+Finds persons whose names contain any of the given keywords.
 
-Format: `edit-friend INDEX n/NAME p/PHONE e/EMAIL a/ADDRESS`
+Format: `find-friend KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` 
 
 Examples:
-* `edit friend 3 n/Jack Ma`
-* `edit friend 1 p/99990000`
+* `find-friend John` returns `john` and `John Doe`
+* `find-friend alex david` returns `Alex Yeoh`, `David Li`
 
-Arguments:
+### Listing friends : `list-friend`
+Shows a list of all friends in the FriendBook.
 
-- `NAME` must be a STRING, `PHONE` must be an INT, and `EMAIL` must be a STRING
-
-- An `INDEX` must be provided
-
-- `NAME`, `PHONE_NUMBER`, `EMAIL` and `ADDRESS` are optional but at least 1 must be given
-
-Successful Output:
-
-`[NAME, PHONE_NUMBER, EMAIL, ADDRESS] updated in friends list.`
-
-Unsuccessful Output:
-
-- Invalid command: `Invalid command.` + help message with list of all commands
-
-- Invalid index is given: `Invalid Updating of Friend: Index given is invalid. Syntax: edit-friend INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
-
-- No optional arguments provided: `Invalid Updating of Friend: Missing information to be updated. Syntax: edit-friend INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
-
-- Not a valid friend: `Invalid Updating of Friend: No such friend in friends list.`
-
-- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: edit-friend INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `list-friend`
 
 ### Adding a plan : `add-plan`
 
@@ -188,6 +209,39 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
 
+### Editing a Plan's Information: `edit-plan`
+
+Edits an existing plan’s information in the plans list at the specified index.
+
+Format: `edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
+
+Examples:
+* `edit-plan 3 n/Dota 3`
+* `edit-plan 1 d/2025-01-01-10:00`
+
+Arguments:
+
+- `PLAN_NAME` and `FRIEND_NAME` must be a STRING, `DATE_TIME` must be in the YYYY-MM-DD-HH:MM format
+- An `INDEX` must be provided
+- `PLAN_NAME`, `DATE_TIME`, `FRIEND_NAME` are optional but at least 1 must be given
+- If specified, `FRIEND_NAME` must be the name of an existing friend
+
+Successful Output:
+
+`Edited Plan: [PLAN_NAME]; Date Time: [DATE_TIME]; Friend: [FRIEND_NAME]`
+
+Unsuccessful Output:
+
+- Invalid command: `Invalid command.` + help message with list of all commands
+
+- Invalid index is given: `Invalid Updating of Plan: Index given is invalid. Syntax: edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
+
+- No optional arguments provided: `Invalid Updating of Plan: Missing information to be updated. Syntax: edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
+
+- Not a valid friend: `Invalid Updating of Plan: No such friend in friends list.`
+
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
+
 ### Marking a Plan as Completed : `complete-plan`
 
 Marks the specified plan as completed.
@@ -217,6 +271,38 @@ Unsuccessful Output:
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: complete-plan INDEX`
 
+### Marking a Plan as Uncompleted : `uncomplete-plan`
+
+Marks the specified plan as uncompleted.
+
+Format: `uncomplete-plan INDEX`
+
+Examples:
+* `uncomplete-plan 4`
+
+Arguments:
+
+- `INDEX` must be an INTEGER
+
+Successful Output:
+
+`Completed Plan: [PLAN_NAME]; Date Time: [DATE_TIME]; Friend: [FRIEND_NAME]}`
+
+Unsuccessful Output:
+
+- Invalid command: `Unknown command.`
+
+- Missing arguments: `Invalid command format!
+  uncomplete-plan: Marks the plan as completed identified by the index number used in the displayed plan list.
+  Parameters: INDEX (must be a positive integer)
+  Example: uncomplete-plan 1`
+
+- Non-numeric index: `Invalid Marking of Plan: Index given is non-numeric. Syntax: uncomplete-plan INDEX`
+
+- Not a valid index: `Invalid Marking of Plan: No plans at given index. Syntax: uncomplete-plan INDEX`
+
+- Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: uncomplete-plan INDEX`
+
 ### Deleting a Plan : `delete-plan`
 
 Deletes the specified plan.
@@ -245,6 +331,36 @@ Unsuccessful Output:
 - Not a valid index: `Invalid Deletion of Plan: No plans at given index. Syntax: delete-plan INDEX`
 
 - Additional arguments provided: `Invalid syntax: Too many arguments. Syntax: delete-plan INDEX`
+
+### Finding a plan : `find-plan`
+
+Find plans which is associated to a given friend.
+
+Format: `find-plan FRIEND_NAME`
+
+* `FRIEND_NAME` has to be the full name of the Person instance. e.g `find-plan Elijah` will throw an error if no Person has the full name `Elijah`
+* The search is case-sensitive. e.g `hans` will not match `Hans`
+* Only one full name will be taken in and searched (only one person's plans will be searched)
+
+Examples:
+* `find-plan John` returns all plans associated to `John`
+
+Arguments:
+- `FRIEND_NAME` must be the full name belonging to a Person saved in the FriendBook
+
+Successful Output:
+`1 plans listed!`
+
+Unsuccessful Output:
+
+- Invalid command: `Unknown command.`
+- Missing arguments: `Invalid command format! find-plan: Finds all plans which contains the specified friend. Parameters: FRIEND_NAME Example: find-plan Elijah Chia`
+- Friend's name not found: `The friend does not exist in the FriendBook`
+
+### Listing plans : `list-plan`
+Shows a list of all plans in the FriendBook.
+
+Format: `list-plan`
 
 ### Saving the data
 
@@ -281,9 +397,15 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**add-friend** | `add friend n/NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `add friend n/John Doe p/98321234 e/johnd@example.com`
-**delete-friend** | `remove friend NAME` <br> e.g., `remove friend John Doe`
-**edit-friend** | `edit friend INDEX n/NAME p/PHONE e/EMAIL`<br> e.g., `edit friend 3 n/Jack Ma`
-**add-plan** | `add plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`<br> e.g.,`add plan n/Project Meeting d/2023-10-23-10:00 f/Royden`
-**complete-plan** | `complete plan INDEX`<br> e.g., `complete plan 4`
-**delete-plan** | `delete plan INDEX` <br> e.g., `delete plan 4`
+**add-friend** | `add-friend n/NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `add-friend n/John Doe p/98321234 e/johnd@example.com`
+**edit-friend** | `edit-friend INDEX n/NAME p/PHONE e/EMAIL`<br> e.g., `edit-friend 3 n/Jack Ma`
+**delete-friend** | `delete-friend NAME` <br> e.g., `delete-friend John Doe`
+**find-friend** | `find-friend KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-friend Jack`
+**list-friend** | `list-friend`
+**add-plan** | `add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`<br> e.g.,`add-plan n/Project Meeting d/2023-10-23-10:00 f/Royden`
+**edit-plan** | `edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`<br> e.g., `edit-plan 1 d/2025-01-01-10:00`
+**complete-plan** | `complete-plan INDEX`<br> e.g., `complete-plan 4`
+**uncomplete-plan** | `uncomplete-plan INDEX`<br> e.g., `uncomplete-plan 4`
+**delete-plan** | `delete-plan INDEX` <br> e.g., `delete-plan 4`
+**find-plan** | `find-plan FRIEND_NAME` <br> e.g., `find-plan John`
+**list-plan** | `list-plan`
