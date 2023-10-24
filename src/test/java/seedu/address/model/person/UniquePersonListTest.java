@@ -23,10 +23,10 @@ public class UniquePersonListTest {
 
     private final UniquePersonList uniquePersonList = new UniquePersonList();
 
-//    @Test
-//    public void contains_nullPerson_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> uniquePersonList.contains(null));
-//    }
+    @Test
+    public void contains_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.contains((Person) null));
+    }
 
     @Test
     public void contains_personNotInList_returnsFalse() {
