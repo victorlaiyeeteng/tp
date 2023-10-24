@@ -69,7 +69,7 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
-
+<!-- TODO: Add Plan-related UI stuff into the diagram -->
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
@@ -153,6 +153,35 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### _New features added to AddressBook_
+
+### 1. `add-plan`
+
+Add-plan is done similarly to the original add command in AddressBook.
+<!-- Insert sequence diagram here -->
+The `add-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `AddPlanCommandParser`. This is then used to parse the command. This results in a `AddPlanCommand` object. The `.execute()` method of the `AddPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
+<!-- Add more details rgd the communication here -->
+
+### 2. `delete-plan`
+
+Delete plan is done similarly to the original delete command in AddressBook.
+<!-- Insert sequence diagram here -->
+The `delete-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `DeletePlanCommandParser`. This is then used to parse the command. This results in a `DeletePlanCommand` object. The `.execute()` method of the `DeletePlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
+<!-- Add more details rgd the communication here -->
+
+### 3. `edit-plan`
+
+Edit plan is done similarly to the original edit command in AddressBook.
+<!-- Insert sequence diagram here -->
+The `edit-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `EditPlanCommandParser`. This is then used to parse the command. This results in a `EditPlanCommand` object. The `.execute()` method of the `EditPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
+<!-- Add more details rgd the communication here -->
+
+### 4. `complete-plan`
+
+<!-- Insert sequence diagram here -->
+The `complete-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `CompletePlanCommandParser`. This is then used to parse the command. This results in a `CompletePlanCommand` object. The `.execute()` method of the `CompletePlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
+<!-- Add more details rgd the communication here -->
 
 ### \[Proposed\] Undo/redo feature
 
