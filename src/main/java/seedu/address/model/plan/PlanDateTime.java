@@ -46,6 +46,12 @@ public class PlanDateTime {
         return formattedString;
     }
 
+    /**
+     * Returns a string representation of the plan's date and time in a raw format.
+     * The date and time are combined into a single string, and the 'T' separator is replaced with a hyphen ('-').
+     *
+     * @return A raw string representation of the plan's date and time.
+     */
     public String toStringRaw() {
         String dateTimeString = planDateTime.toString();
         String formattedString = dateTimeString.replace('T', '-');
