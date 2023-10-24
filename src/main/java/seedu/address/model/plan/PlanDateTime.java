@@ -46,6 +46,12 @@ public class PlanDateTime {
         return formattedString;
     }
 
+    public String toStringRaw() {
+        String dateTimeString = planDateTime.toString();
+        String formattedString = dateTimeString.replace('T', '-');
+        return formattedString;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

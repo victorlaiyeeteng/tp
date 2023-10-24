@@ -44,7 +44,7 @@ class JsonAdaptedPlan {
      */
     public JsonAdaptedPlan(Plan source) {
         planName = source.getPlanName().toString();
-        dateTime = source.getPlanDateTime().toString();
+        dateTime = source.getPlanDateTime().toStringRaw();
         friend = source.getPlanFriend().getName().fullName;
     }
 
