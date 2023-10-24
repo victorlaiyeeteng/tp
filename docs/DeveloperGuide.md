@@ -352,20 +352,20 @@ for users to add and manage plans with their friends.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                | I want to …​                                 | So that I can…​                                                        |
-|--------|------------------------|----------------------------------------------|------------------------------------------------------------------------|
-| `* * *` | user                   | add a new friend                             | more easily associate them into my plans                               |
-| `* * *` | user                   | remove a friend                              | clean up my friends list                                               |
-| `* * *` | user                   | edit a friend's details                      | keep their information updated                                         |
-| `* * *` | user                   | add plans and associate them with my friends | easily keep track of my plans with friends                             |
-| `* *`  | user with many plans   | mark my plans as done                        | keep my plans list organised                                           |
-| `* *`  | user with many plans   | sort my plans by time                        | keep my plans list organised                                           |
-| `* *`  | user with many friends | find a friend by name                        | locate the details of my friends without going through the entire list |
-| `* *`  | user with many plans   | find a plan by name                          | locate the details of my plans without going through the entire list   |
-| `*`    | user with many friends | sort friends by name in order                | locate the friend easily                                               |
-| `*`    | user with many plans   | sort plans by friends                        | locate the plans easily                                                |
+|----------|------------------------|----------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | user                   | add a new friend                             | more easily associate them into my plans                               |
+| `* * *`  | user                   | remove a friend                              | clean up my friends list                                               |
+| `* * *`  | user                   | edit a friend's details                      | keep their information updated                                         |
+| `* * *`  | user                   | add plans and associate them with my friends | easily keep track of my plans with friends                             |
+| `* * *`  | user with many plans   | edit my plan's details                       | keep my plan's information updated                                     |
+| `* *`    | user with many plans   | mark my plans as done                        | keep my plans list organised                                           |
+| `* *`    | user with many plans   | un-mark my plans as done                     | keep my plans list organised                                           |
+| `* *`    | user with many plans   | delete my plans when not needed              | keep my plans list neat and minimal                                    |
+| `* *`    | user with many friends | find a friend by name                        | locate the details of my friends without going through the entire list |
+| `* *`    | user with many plans   | find a plan by the friend's name             | locate the details of my plans without going through the entire list   |
+| `*`      | user with many plans   | sort my plans by time                        | keep my plans list organised                                           |
+| `*`      | user with many friends | sort friends by name in order                | locate the friend easily                                               |
 
-
-*{More to be added}*
 
 ### Use cases
 
