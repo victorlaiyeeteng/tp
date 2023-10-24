@@ -25,17 +25,17 @@ class JsonAdaptedPlan {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Plan's %s field is missing!";
 
     private final String planName;
-    private final String planDateTime;
+    private final String dateTime;
     private final String friend;
 
     /**
      * Constructs a {@code JsonAdaptedPlan} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPlan(@JsonProperty("planName") String planName, @JsonProperty("planDateTime") String planDateTime,
+    public JsonAdaptedPlan(@JsonProperty("planName") String planName, @JsonProperty("dateTime") String dateTime,
                              @JsonProperty("friend") String friend) {
         this.planName = planName;
-        this.planDateTime = planDateTime;
+        this.dateTime = dateTime;
         this.friend = friend;
     }
 
@@ -44,7 +44,7 @@ class JsonAdaptedPlan {
      */
     public JsonAdaptedPlan(Plan source) {
         planName = source.getPlanName().toString();
-        planDateTime = source.getPlanDateTime().toString();
+        dateTime = source.getPlanDateTime().toString();
         friend = source.getPlanFriend().getName().fullName;
     }
 
@@ -76,12 +76,12 @@ class JsonAdaptedPlan {
         }
         final PlanName modelPlanName = new PlanName(planName);
         PlanDateTime modelPlanDateTime;
-        if (planDateTime == null) {
+        if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PlanDateTime.class.getSimpleName()));
         }
         try {
-            modelPlanDateTime = new PlanDateTime(planDateTime);
+            modelPlanDateTime = new PlanDateTime(dateTime);
         } catch (IllegalArgumentException e) {
             throw new IllegalValueException(PlanDateTime.MESSAGE_CONSTRAINTS);
         }
