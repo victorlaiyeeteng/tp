@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Name;
@@ -61,12 +62,12 @@ class JsonAdaptedPlan {
         if (!Name.isValidName(friend)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        if (!addressBook.hasPerson(new Name(friend))) {
+        final Person modelPlanFriend;
+        try {
+            modelPlanFriend = addressBook.getPersonByName(new Name(friend));
+        } catch (PersonNotFoundException e) {
             throw new IllegalValueException(MESSAGE_PERSON_DOES_NOT_EXIST);
         }
-        final Person modelPlanFriend = addressBook
-                .getPersonList().stream().filter(person -> person.getName().toString().equals(friend))
-                .collect(Collectors.toList()).get(0);
 
         if (planName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
