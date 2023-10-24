@@ -156,28 +156,76 @@ This section describes some noteworthy details on how certain features are imple
 
 ### _New features added to AddressBook_
 
-### 1. `add-plan`
+### 1. `add-plan` [elijah doing]
 
 Add-plan is done similarly to the original add command in AddressBook.
 <!-- Insert sequence diagram here -->
 The `add-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `AddPlanCommandParser`. This is then used to parse the command. This results in a `AddPlanCommand` object. The `.execute()` method of the `AddPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
 <!-- Add more details rgd the communication here -->
 
-### 2. `delete-plan`
+### 2. `find-plan`
+
+The `find-plan` command allows the user to find all plans associated with a saved friend. The plans list on the
+Ui will be updated to display the relevant plans. This mechanism is facilitated by the `Model` interface through 
+has the following operations:
+* `Model#getPersonByName(Name)` - Gets the friend (Person object) by Name input.
+* `Model#updateFilteredPlanList(Predicate)` - Filters the list of plans to display by the Predicate input.
+
+Given below is an example usage scenario and how the find plan mechanism behaves at each step.
+
+Step 1. The user has friends and some plans associated to the friends. The `Model` will store the list of plans in the
+form of a `FilteredList` type.
+
+Step 2. The user executes `find-plan Alex` command to find all plans associated with `Alex` saved in the FriendBook. 
+As described in the Logic Component above, this will create a `FindPlanCommand` instance. 
+
+Step 3. The `LogicManager` will call `FindPlanCommand#execute()` to start the search for plans. Then, `Model#getPersonByName(Name)`
+will be called to find the friend with the given Name, returning a `Person` instance.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If no friends can be found in the address book with the given Name, an error will be thrown and the mechanism will terminate.
+</div>
+
+Step 4. `FindPlanCommand#execute()` then creates a `PlanContainsFriendPredicate` instance that checks if a `Plan` composes of the `Person` instance returned in step 3.
+
+Step 5. Finally, this `Predicate` instance will be inputted into the `Model#updateFilteredPlanList(Predicate)` method to filter for the `Plan` objects that satisfy the 
+`Predicate` from step 4. This will allow the Ui to display the filtered plans, representing the plans associated with the given name (unique to a Person object).
+
+The following sequence diagram shows how the `find-plan` command works.
+
+![FindPlanCommandSequenceDiagram](diagrams/FindPlanCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `find-plan` command:
+
+![FindPlanCommandActivityDiagram](diagrams/FindPlanCommandActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: What `find-plan` command takes in:**
+
+* **Alternative 1 (current choice):** Friend's Full Name
+    * Pros: Guaranteed to find a unique friend (if saved in FriendBook).
+    * Cons: User may find difficulty remembering the full name, or face typo issues.
+
+* **Alternative 2:** Friend's First Name
+  itself.
+    * Pros: Will be more convenient for the user to query.
+    * Cons: Implementation of finding by First Name is more challenging, and there may be duplicate friends with the same First Name, 
+  since each Person object's First Name does not have to be unique.
+
+### 3. `delete-plan` [possible]
 
 Delete plan is done similarly to the original delete command in AddressBook.
 <!-- Insert sequence diagram here -->
 The `delete-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `DeletePlanCommandParser`. This is then used to parse the command. This results in a `DeletePlanCommand` object. The `.execute()` method of the `DeletePlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
 <!-- Add more details rgd the communication here -->
 
-### 3. `edit-plan`
+### 4. `edit-plan` [possible]
 
 Edit plan is done similarly to the original edit command in AddressBook.
 <!-- Insert sequence diagram here -->
 The `edit-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `EditPlanCommandParser`. This is then used to parse the command. This results in a `EditPlanCommand` object. The `.execute()` method of the `EditPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
 <!-- Add more details rgd the communication here -->
 
-### 4. `complete-plan`
+### 5. `complete-plan` [possible]
 
 <!-- Insert sequence diagram here -->
 The `complete-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `CompletePlanCommandParser`. This is then used to parse the command. This results in a `CompletePlanCommand` object. The `.execute()` method of the `CompletePlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
@@ -304,20 +352,20 @@ for users to add and manage plans with their friends.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                | I want to …​                                 | So that I can…​                                                        |
-|--------|------------------------|----------------------------------------------|------------------------------------------------------------------------|
-| `* * *` | user                   | add a new friend                             | more easily associate them into my plans                               |
-| `* * *` | user                   | remove a friend                              | clean up my friends list                                               |
-| `* * *` | user                   | edit a friend's details                      | keep their information updated                                         |
-| `* * *` | user                   | add plans and associate them with my friends | easily keep track of my plans with friends                             |
-| `* *`  | user with many plans   | mark my plans as done                        | keep my plans list organised                                           |
-| `* *`  | user with many plans   | sort my plans by time                        | keep my plans list organised                                           |
-| `* *`  | user with many friends | find a friend by name                        | locate the details of my friends without going through the entire list |
-| `* *`  | user with many plans   | find a plan by name                          | locate the details of my plans without going through the entire list   |
-| `*`    | user with many friends | sort friends by name in order                | locate the friend easily                                               |
-| `*`    | user with many plans   | sort plans by friends                        | locate the plans easily                                                |
+|----------|------------------------|----------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | user                   | add a new friend                             | more easily associate them into my plans                               |
+| `* * *`  | user                   | remove a friend                              | clean up my friends list                                               |
+| `* * *`  | user                   | edit a friend's details                      | keep their information updated                                         |
+| `* * *`  | user                   | add plans and associate them with my friends | easily keep track of my plans with friends                             |
+| `* * *`  | user with many plans   | edit my plan's details                       | keep my plan's information updated                                     |
+| `* *`    | user with many plans   | mark my plans as done                        | keep my plans list organised                                           |
+| `* *`    | user with many plans   | un-mark my plans as done                     | keep my plans list organised                                           |
+| `* *`    | user with many plans   | delete my plans when not needed              | keep my plans list neat and minimal                                    |
+| `* *`    | user with many friends | find a friend by name                        | locate the details of my friends without going through the entire list |
+| `* *`    | user with many plans   | find a plan by the friend's name             | locate the details of my plans without going through the entire list   |
+| `*`      | user with many plans   | sort my plans by time                        | keep my plans list organised                                           |
+| `*`      | user with many friends | sort friends by name in order                | locate the friend easily                                               |
 
-
-*{More to be added}*
 
 ### Use cases
 
