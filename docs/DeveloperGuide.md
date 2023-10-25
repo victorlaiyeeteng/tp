@@ -156,7 +156,11 @@ This section describes some noteworthy details on how certain features are imple
 
 ### _New features added to AddressBook_
 
+<<<<<<< HEAD
 ### 1. `add-plan`
+=======
+### 1. `add-plan` 
+>>>>>>> 31b2e86794be09e116667d81938d899a8c96242a
 ![FindPlanCommandActivityDiagram](images/AddPlanCommandActivityDiagram.png)
 The add-plan command allows users to add a new Plan, provided that it involves a friend who is present in `UniquePersonList` and the Plan does not already exist.
 
@@ -195,6 +199,9 @@ Step 5. Finally, this `Predicate` instance will be inputted into the `Model#upda
 The following sequence diagram shows how the `find-plan` command works.
 
 ![FindPlanCommandSequenceDiagram](images/FindPlanCommandSequenceDiagram.png)
+
+
+
 
 
 The following activity diagram summarizes what happens when a user executes the `find-plan` command:
