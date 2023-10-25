@@ -151,8 +151,8 @@
 
 /* border background of top part */
 .pane-with-border {
-     -fx-background-color: derive(#edf3ff, 20%);
-     -fx-border-color: derive(#edf3ff, 10%);
+     -fx-background-color: derive(#d4e2fc, 20%);
+     -fx-border-color: derive(#d4e2fc, 10%);
      -fx-border-top-width: 1px;
 }
 
