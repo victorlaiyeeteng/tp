@@ -121,9 +121,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all `Plan` objects (which are contained in a `UniquePlanList` object)
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores the currently 'selected' `Plan` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Plan>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person` and `Plan` objects (which are contained in `UniquePersonList` and `UniquePlanList` objects).
+* stores the currently 'selected' `Person` and `Plan` objects (e.g., results of a search query) as separate _filtered_ lists which are exposed to outsiders as unmodifiable `ObservableList<Person>` and `ObservableList<Plan>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -157,12 +156,15 @@ This section describes some noteworthy details on how certain features are imple
 
 ### _New features added to AddressBook_
 
-### 1. `add-plan` [elijah doing]
+### 1. `add-plan`
+![FindPlanCommandActivityDiagram](images/AddPlanCommandActivityDiagram.png)
+The add-plan command allows users to add a new Plan, provided that it involves a friend who is present in `UniquePersonList` and the Plan does not already exist.
 
 Add-plan is done similarly to the original add command in AddressBook.
-<!-- Insert sequence diagram here -->
-The `add-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `AddPlanCommandParser`. This is then used to parse the command. This results in a `AddPlanCommand` object. The `.execute()` method of the `AddPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
-<!-- Add more details rgd the communication here -->
+![FindPlanCommandActivityDiagram](images/AddPlanCommandSequenceDiagram.png)
+The `add-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `AddPlanCommandParser`. This is then used to parse the command. This results in a `AddPlanCommand` object. The `.execute()` method of the `AddPlanCommand` object is then invoked by `Logic`. Following this, `AddPlanCommand` then communicates with `Model`. It first uses the `Model::getPersonByName` function to check if that friend exists. If the friend exists, a `Plan` object is created, and `Model` helps to add it. Finally, a `CommandResult` is returned.
+
+Note that there are several classes not included in the above diagram, but still used. These include (but are not limited to) the `AddressBook` class which stores `UniquePersonList` and `UniquePlanList`. A `Plan` object also requires `PlanName`, `PlanDateTime` and a `Person` object as the friend associated with the Plan.
 
 ### 2. `find-plan`
 
@@ -192,12 +194,12 @@ Step 5. Finally, this `Predicate` instance will be inputted into the `Model#upda
 
 The following sequence diagram shows how the `find-plan` command works.
 
-![FindPlanCommandSequenceDiagram](diagrams/FindPlanCommandSequenceDiagram.png)
+![FindPlanCommandSequenceDiagram](images/FindPlanCommandSequenceDiagram.png)
 
 
 The following activity diagram summarizes what happens when a user executes the `find-plan` command:
 
-![FindPlanCommandActivityDiagram](diagrams/FindPlanCommandActivityDiagram.png)
+![FindPlanCommandActivityDiagram](images/FindPlanCommandActivityDiagram.png)
 
 #### Design considerations:
 
