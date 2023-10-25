@@ -156,7 +156,11 @@ This section describes some noteworthy details on how certain features are imple
 
 ### _New features added to AddressBook_
 
+<<<<<<< HEAD
+### 1. `add-plan`
+=======
 ### 1. `add-plan` 
+>>>>>>> 31b2e86794be09e116667d81938d899a8c96242a
 ![FindPlanCommandActivityDiagram](images/AddPlanCommandActivityDiagram.png)
 The add-plan command allows users to add a new Plan, provided that it involves a friend who is present in `UniquePersonList` and the Plan does not already exist.
 
@@ -196,6 +200,10 @@ The following sequence diagram shows how the `find-plan` command works.
 
 ![FindPlanCommandSequenceDiagram](images/FindPlanCommandSequenceDiagram.png)
 
+
+
+
+
 The following activity diagram summarizes what happens when a user executes the `find-plan` command:
 
 ![FindPlanCommandActivityDiagram](images/FindPlanCommandActivityDiagram.png)
@@ -214,12 +222,33 @@ The following activity diagram summarizes what happens when a user executes the 
     * Cons: Implementation of finding by First Name is more challenging, and there may be duplicate friends with the same First Name, 
   since each Person object's First Name does not have to be unique.
 
-### 3. `delete-plan` [possible]
+### 3. `delete-plan`
 
-Delete plan is done similarly to the original delete command in AddressBook.
-<!-- Insert sequence diagram here -->
-The `delete-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `DeletePlanCommandParser`. This is then used to parse the command. This results in a `DeletePlanCommand` object. The `.execute()` method of the `DeletePlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
-<!-- Add more details rgd the communication here -->
+The `delete-plan` command allows the user to delete a plan. The plans list on the
+Ui will be updated to display the relevant plans. This mechanism is facilitated by the `Model` interface through
+has the following operations:
+* `Model#deletePlan(Plan)` - Gets the plan (Plan object) by Plan input.
+
+Given below is an example usage scenario and how the find plan mechanism behaves at each step.
+
+Step 1. The user has plans. The `Model` will store the list of plans in the
+form of a `FilteredList` type.
+
+Step 2. The user executes `delete-plan index` command to find plan at that index in the FriendBook.
+As described in the Logic Component above, this will create a `DeletePlanCommand` instance.
+
+Step 3. The `LogicManager` will call `DeletePlanCommand#execute()` to start the search for plans. Then, `Model#deletePlan(Plan)`
+will be called to delete that plan.
+
+Step 4. `Model#deletePlan(Plan)` will call `AddressBook#removePlan(Plan)` which will then remove the plan from the UniquePlanList in the FriendBook.
+
+Step 5. The Ui will display a success message if the command is successful and the error message otherwise.
+ 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If no plan can be found in the address book with the given index, an error will be thrown and the mechanism will terminate.
+</div>
+
+![DeleteSequenceDiagram](diagrams/DeleteSequenceDiagram.png)
+
 
 ### 4. `edit-plan` [possible]
 

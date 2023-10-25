@@ -53,6 +53,13 @@ Plan *--> PlanName
 Plan *--> PlanDateTime
 Plan *-left-> "1" Person
 
+AddressBook *--> "1" UniquePlanList
+UniquePlanList --> "~* all" Plan
+Plan *--> PlanName
+Plan *--> PlanDateTime
+Plan *--> Person
+
+
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
