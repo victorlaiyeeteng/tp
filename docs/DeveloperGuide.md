@@ -250,7 +250,7 @@ Step 5. The Ui will display a success message if the command is successful and t
 
 ### 4. `edit-plan`
 
-The `edit-plan` command is done similarly to the original `edit` command in AddressBook. It allows users to edit the details of their plans which will be updated accordingly in the Ui. This mechanism is facilitated by the `Model` interface through the following operations:
+The `edit-plan` command is done similarly to the original `edit` command in AddressBook. It allows users to edit the details of their plans which will be updated accordingly in the Ui. The `edit-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `EditPlanCommandParser`. This is then used to parse the command. This results in a `EditPlanCommand` object. The `.execute()` method of the `EditPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed. This mechanism is facilitated by the `Model` interface through the following operations:
 
 * `Model#getFilteredPlanList()` - Gets the list of Plans.
 * `Model#setPlan(Plan, Plan)` - 
@@ -266,14 +266,23 @@ Step 3. The `LogicManager` will call `EditPlanCommand#execute()` to start the op
 
 Step 4. With the index entered by the user, the plan at that index is retrieved from the user's List of Plans.
 
-Step 5. 
+Step 5. Next, the `Model#getPersonByName(Name)` will be called to find the friend with the given Name, returning a `Person` instance. This step only executes if the `Person` instance associated with the `Plan` is being edited.
+
+Step 6. `EditPlanCommand#createEditedPlan(Plan, EditPlanDescriptor)` is called in order to create a new `Plan` instance with updated fields.
+
+Step 7. `Model#setPlan(Plan)` then marks the replaces existing `Plan` instance with the new `Plan` instance created in Step 6.
+
+Step 8. Finally, the updates made in the Plan will be synced to the user's List of Plans by `Model#updateFilteredPlanList(Predicate)` method.
+
+Step 9. The Ui will display the change of status of the Plan in the Plan List. On top of that, the Ui will display a success message if the command is successful and the error message otherwise.
 
 The following sequence diagram shows how the `edit-plan` command works.
 
-![EditPlanCommandSequenceDiagram](diagrams/EditPlanCommandSequenceDiagram.png)
+![EditPlanCommandSequenceDiagram](images/EditPlanCommandSequenceDiagram.png)
 
-The `edit-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `EditPlanCommandParser`. This is then used to parse the command. This results in a `EditPlanCommand` object. The `.execute()` method of the `EditPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
-<!-- Add more details rgd the communication here -->
+The following activity diagram summarizes what happens when a user executes the `command-plan` command:
+
+![EditPlanCommandActivityDiagram](images/EditPlanCommandActivityDiagram.png)
 
 ### 5. `complete-plan`
 
