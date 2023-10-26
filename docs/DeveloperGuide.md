@@ -280,7 +280,7 @@ that contains the user's list of plans.
 Step 4. With the index entered by the user, the plan at that index is retrieved from the user's List of Plans.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the index entered by the user is
-invalid or greater than the length of list of plans, and error will be thrown and the mechanism will terminate.
+invalid or greater than the length of list of plans, an error will be thrown and the mechanism will terminate.
 </div>
 
 Step 5. `Model#completePlan(Plan)` then marks the chosen `Plan` instance from step 4 as completed.
