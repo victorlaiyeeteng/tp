@@ -13,11 +13,10 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete-plan 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
+LogicManager -> AddressBookParser : parseCommand("delete-plan 1")
 activate AddressBookParser
 
 create DeletePlanCommandParser
@@ -39,9 +38,6 @@ deactivate DeletePlanCommand
 
 DeletePlanCommandParser --> AddressBookParser : d
 deactivate DeletePlanCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeletePlanCommandParser -[hidden]-> AddressBookParser
-destroy DeletePlanCommandParser
 
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
@@ -49,11 +45,19 @@ deactivate AddressBookParser
 LogicManager -> DeletePlanCommand : execute()
 activate DeletePlanCommand
 
-DeletePlanCommand -> Model : deletePlan(1)
+DeletePlanCommand -> Model : getFilteredPlanList
 activate Model
 
-Model --> DeletePlanCommand
+Model --> DeletePlanCommand : lastShownList
 deactivate Model
+
+DeletePlanCommand -> Model : deletePlan(planToDelete)
+activate Model
+Model --> DeletePlanCommand
+
+deactivate Model
+
+DeletePlanCommand -[hidden]-> LogicManager : result
 
 create CommandResult
 DeletePlanCommand -> CommandResult

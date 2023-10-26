@@ -121,8 +121,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person` and `Plan` objects (which are contained in `UniquePersonList` and `UniquePlanList` objects).
+* stores the currently 'selected' `Person` and `Plan` objects (e.g., results of a search query) as separate _filtered_ lists which are exposed to outsiders as unmodifiable `ObservableList<Person>` and `ObservableList<Plan>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -156,12 +156,17 @@ This section describes some noteworthy details on how certain features are imple
 
 ### _New features added to AddressBook_
 
-### 1. `add-plan` [elijah doing]
+### 1. `add-plan`
+
+![FindPlanCommandActivityDiagram](images/AddPlanCommandActivityDiagram.png)
+
+The add-plan command allows users to add a new Plan, provided that it involves a friend who is present in `UniquePersonList` and the Plan does not already exist.
 
 Add-plan is done similarly to the original add command in AddressBook.
-<!-- Insert sequence diagram here -->
-The `add-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `AddPlanCommandParser`. This is then used to parse the command. This results in a `AddPlanCommand` object. The `.execute()` method of the `AddPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
-<!-- Add more details rgd the communication here -->
+![FindPlanCommandActivityDiagram](images/AddPlanCommandSequenceDiagram.png)
+The `add-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `AddPlanCommandParser`. This is then used to parse the command. This results in a `AddPlanCommand` object. The `.execute()` method of the `AddPlanCommand` object is then invoked by `Logic`. Following this, `AddPlanCommand` then communicates with `Model`. It first uses the `Model::getPersonByName` function to check if that friend exists. If the friend exists, a `Plan` object is created, and `Model` helps to add it. Finally, a `CommandResult` is returned.
+
+Note that there are several classes not included in the above diagram, but still used. These include (but are not limited to) the `AddressBook` class which stores `UniquePersonList` and `UniquePlanList`. A `Plan` object also requires `PlanName`, `PlanDateTime` and a `Person` object as the friend associated with the Plan.
 
 ### 2. `find-plan`
 
@@ -191,11 +196,15 @@ Step 5. Finally, this `Predicate` instance will be inputted into the `Model#upda
 
 The following sequence diagram shows how the `find-plan` command works.
 
-![FindPlanCommandSequenceDiagram](diagrams/FindPlanCommandSequenceDiagram.png)
+![FindPlanCommandSequenceDiagram](images/FindPlanCommandSequenceDiagram.png)
+
+
+
+
 
 The following activity diagram summarizes what happens when a user executes the `find-plan` command:
 
-![FindPlanCommandActivityDiagram](diagrams/FindPlanCommandActivityDiagram.png)
+![FindPlanCommandActivityDiagram](images/FindPlanCommandActivityDiagram.png)
 
 #### Design considerations:
 
@@ -211,25 +220,111 @@ The following activity diagram summarizes what happens when a user executes the 
     * Cons: Implementation of finding by First Name is more challenging, and there may be duplicate friends with the same First Name, 
   since each Person object's First Name does not have to be unique.
 
-### 3. `delete-plan` [possible]
+### 3. `delete-plan`
 
-Delete plan is done similarly to the original delete command in AddressBook.
-<!-- Insert sequence diagram here -->
-The `delete-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `DeletePlanCommandParser`. This is then used to parse the command. This results in a `DeletePlanCommand` object. The `.execute()` method of the `DeletePlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
-<!-- Add more details rgd the communication here -->
+The `delete-plan` command allows the user to delete a plan. The plans list on the
+Ui will be updated to display the relevant plans. This mechanism is facilitated by the `Model` interface through
+has the following operations:
+* `Model#deletePlan(Plan)` - Gets the plan (Plan object) by Plan input.
 
-### 4. `edit-plan` [possible]
+Given below is an example usage scenario and how the find plan mechanism behaves at each step.
 
-Edit plan is done similarly to the original edit command in AddressBook.
-<!-- Insert sequence diagram here -->
-The `edit-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `EditPlanCommandParser`. This is then used to parse the command. This results in a `EditPlanCommand` object. The `.execute()` method of the `EditPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
-<!-- Add more details rgd the communication here -->
+Step 1. The user has plans. The `Model` will store the list of plans in the
+form of a `FilteredList` type.
 
-### 5. `complete-plan` [possible]
+Step 2. The user executes `delete-plan index` command to find plan at that index in the FriendBook.
+As described in the Logic Component above, this will create a `DeletePlanCommand` instance.
 
-<!-- Insert sequence diagram here -->
-The `complete-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `CompletePlanCommandParser`. This is then used to parse the command. This results in a `CompletePlanCommand` object. The `.execute()` method of the `CompletePlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
-<!-- Add more details rgd the communication here -->
+Step 3. The `LogicManager` will call `DeletePlanCommand#execute()` to start the search for plans. Then, `Model#deletePlan(Plan)`
+will be called to delete that plan.
+
+Step 4. `Model#deletePlan(Plan)` will call `AddressBook#removePlan(Plan)` which will then remove the plan from the UniquePlanList in the FriendBook.
+
+Step 5. The Ui will display a success message if the command is successful and the error message otherwise.
+ 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If no plan can be found in the address book with the given index, an error will be thrown and the mechanism will terminate.
+</div>
+
+![DeleteSequenceDiagram](diagrams/DeleteSequenceDiagram.png)
+
+
+### 4. `edit-plan`
+
+The `edit-plan` command is done similarly to the original `edit` command in AddressBook. It allows users to edit the details of their plans which will be updated accordingly in the Ui. The `edit-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `EditPlanCommandParser`. This is then used to parse the command. This results in a `EditPlanCommand` object. The `.execute()` method of the `EditPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed. This mechanism is facilitated by the `Model` interface through the following operations:
+
+* `Model#getFilteredPlanList()` - Gets the list of Plans.
+* `Model#setPlan(Plan, Plan)` - Updates the list of Plans with a new Plan with new details.
+* `Model#updateFilteredPlanList(Predicate)` - Filters the list of plans to display by the Predicate input.
+
+Given below is an example usage scenario and how the edit plan mechanism behaves at each step.
+
+Step 1. The user has plans. The `Model` will store the list of plans in the form of a `FilteredList` type.
+
+Step 2. The user edits a plan and executes `edit-plan 1 n/Meeting` command to edit the plan indexed 1. As described in the Logic Component above, this will create a `EditPlanCommand` instance.
+
+Step 3. The `LogicManager` will call `EditPlanCommand#execute()` to start the operation of the command. It will first call, `Model#getFilteredPlanList()` to get the list of Plans, returning the `FilteredList` instance that contains the user's list of plans.
+
+Step 4. With the index entered by the user, the plan at that index is retrieved from the user's List of Plans.
+
+Step 5. Next, the `Model#getPersonByName(Name)` will be called to find the friend with the given Name, returning a `Person` instance. This step only executes if the `Person` instance associated with the `Plan` is being edited.
+
+Step 6. `EditPlanCommand#createEditedPlan(Plan, EditPlanDescriptor)` is called in order to create a new `Plan` instance with updated fields.
+
+Step 7. `Model#setPlan(Plan)` then marks the replaces existing `Plan` instance with the new `Plan` instance created in Step 6.
+
+Step 8. Finally, the updates made in the Plan will be synced to the user's List of Plans by `Model#updateFilteredPlanList(Predicate)` method.
+
+Step 9. The Ui will display the change of status of the Plan in the Plan List. On top of that, the Ui will display a success message if the command is successful and the error message otherwise.
+
+The following sequence diagram shows how the `edit-plan` command works.
+
+![EditPlanCommandSequenceDiagram](images/EditPlanCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `command-plan` command:
+
+![EditPlanCommandActivityDiagram](images/EditPlanCommandActivityDiagram.png)
+
+### 5. `complete-plan`
+
+The `complete-plan` command allows the users to mark their plans as completed. 
+The Plan status will then be updated accordingly in the Ui. This mechanism is facilitated by the `Model` interface through
+has the following operations:
+* `Model#getFilteredPlanList()` - Gets the list of Plans.
+* `Model#completePlan(Plan)` - Marks the Plan as completed.
+* `Model#updateFilteredPlanList(Predicate)` - Filters the list of plans to display by the Predicate input.
+
+Given below is an example usage scenario and how the complete plan mechanism behaves at each step.
+
+Step 1. The user has plans. The `Model` will store the list of plans in the form of a `FilteredList` type.
+
+Step 2. The user completed a plan and executes `complete-plan 1` command to mark the plan indexed 1 as completed.
+As described in the Logic Component above, this will create a `CompletePlanCommand` instance.
+
+Step 3. The `LogicManager` will call `CompletePlanCommand#execute()` to start the operation of the command.
+It will first call, `Model#getFilteredPlanList()` to get the list of Plans, returning the `FilteredList` instance
+that contains the user's list of plans.
+
+Step 4. With the index entered by the user, the plan at that index is retrieved from the user's List of Plans.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the index entered by the user is
+invalid or greater than the length of list of plans, an error will be thrown and the mechanism will terminate.
+</div>
+
+Step 5. `Model#completePlan(Plan)` then marks the chosen `Plan` instance from step 4 as completed.
+
+Step 6. Finally, the updates made in the Plan will be synced to the user's List of Plans by
+`Model#updateFilteredPlanList(Predicate)` method.
+
+Step 7. The Ui will display the change of status of the Plan in the Plan List. On top of that, the Ui will display
+a success message if the command is successful and the error message otherwise.
+
+The following sequence diagram shows how the `complete-plan` command works.
+
+![CompletePlanCommandSequenceDiagram](images/CompletePlanCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `command-plan` command:
+
+![CompletePlanCommandActivityDiagram](images/CompletePlanCommandActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 

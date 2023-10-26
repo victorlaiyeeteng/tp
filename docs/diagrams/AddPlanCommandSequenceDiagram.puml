@@ -49,8 +49,10 @@ AddPlanCommand -> Model : getPersonByName(alex)
 activate Model
 
 Model --> AddPlanCommand : person
+deactivate Model
 
 AddPlanCommand -> Model : addPlan(plan)
+activate Model
 Model --> AddPlanCommand
 
 deactivate Model
