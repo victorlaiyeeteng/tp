@@ -257,11 +257,47 @@ Edit plan is done similarly to the original edit command in AddressBook.
 The `edit-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `EditPlanCommandParser`. This is then used to parse the command. This results in a `EditPlanCommand` object. The `.execute()` method of the `EditPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
 <!-- Add more details rgd the communication here -->
 
-### 5. `complete-plan` [possible]
+### 5. `complete-plan`
 
-<!-- Insert sequence diagram here -->
-The `complete-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `CompletePlanCommandParser`. This is then used to parse the command. This results in a `CompletePlanCommand` object. The `.execute()` method of the `CompletePlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
-<!-- Add more details rgd the communication here -->
+The `complete-plan` command allows the users to mark their plans as completed. 
+The Plan status will then be updated accordingly in the Ui. This mechanism is facilitated by the `Model` interface through
+has the following operations:
+* `Model#getFilteredPlanList()` - Gets the list of Plans.
+* `Model#completePlan(Plan)` - Marks the Plan as completed.
+* `Model#updateFilteredPlanList(Predicate)` - Filters the list of plans to display by the Predicate input.
+
+Given below is an example usage scenario and how the complete plan mechanism behaves at each step.
+
+Step 1. The user has plans. The `Model` will store the list of plans in the form of a `FilteredList` type.
+
+Step 2. The user completed a plan and executes `complete-plan 1` command to mark the plan indexed 1 as completed.
+As described in the Logic Component above, this will create a `CompletePlanCommand` instance.
+
+Step 3. The `LogicManager` will call `CompletePlanCommand#execute()` to start the operation of the command.
+It will first call, `Model#getFilteredPlanList()` to get the list of Plans, returning the `FilteredList` instance
+that contains the user's list of plans.
+
+Step 4. With the index entered by the user, the plan at that index is retrieved from the user's List of Plans.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the index entered by the user is
+invalid or greater than the length of list of plans, an error will be thrown and the mechanism will terminate.
+</div>
+
+Step 5. `Model#completePlan(Plan)` then marks the chosen `Plan` instance from step 4 as completed.
+
+Step 6. Finally, the updates made in the Plan will be synced to the user's List of Plans by
+`Model#updateFilteredPlanList(Predicate)` method.
+
+Step 7. The Ui will display the change of status of the Plan in the Plan List. On top of that, the Ui will display
+a success message if the command is successful and the error message otherwise.
+
+The following sequence diagram shows how the `complete-plan` command works.
+
+![CompletePlanCommandSequenceDiagram](images/CompletePlanCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `command-plan` command:
+
+![CompletePlanCommandActivityDiagram](images/CompletePlanCommandActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
