@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PLANS;
 
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class CompletePlanCommand extends Command {
 
         Plan planToComplete = lastShownList.get(targetIndex.getZeroBased());
         model.completePlan(planToComplete);
+        model.updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
         return new CommandResult(String.format(MESSAGE_COMPLETE_PLAN_SUCCESS, Messages.format(planToComplete)));
     }
 

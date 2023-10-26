@@ -30,6 +30,14 @@ public class Plan {
         this.friend = friend;
     }
 
+    public Plan(PlanName planName, PlanDateTime dateTime, Person friend, Boolean isComplete) {
+        requireAllNonNull(planName, dateTime, friend, isComplete);
+        this.planName = planName;
+        this.dateTime = dateTime;
+        this.friend = friend;
+        this.isComplete = isComplete;
+    }
+
     public PlanName getPlanName() {
         return planName;
     }
