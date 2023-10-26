@@ -253,7 +253,7 @@ Step 5. The Ui will display a success message if the command is successful and t
 The `edit-plan` command is done similarly to the original `edit` command in AddressBook. It allows users to edit the details of their plans which will be updated accordingly in the Ui. The `edit-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `EditPlanCommandParser`. This is then used to parse the command. This results in a `EditPlanCommand` object. The `.execute()` method of the `EditPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed. This mechanism is facilitated by the `Model` interface through the following operations:
 
 * `Model#getFilteredPlanList()` - Gets the list of Plans.
-* `Model#setPlan(Plan, Plan)` - 
+* `Model#setPlan(Plan, Plan)` - Updates the list of Plans with a new Plan with new details.
 * `Model#updateFilteredPlanList(Predicate)` - Filters the list of plans to display by the Predicate input.
 
 Given below is an example usage scenario and how the edit plan mechanism behaves at each step.
