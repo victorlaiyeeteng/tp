@@ -156,12 +156,10 @@ This section describes some noteworthy details on how certain features are imple
 
 ### _New features added to AddressBook_
 
-<<<<<<< HEAD
 ### 1. `add-plan`
-=======
-### 1. `add-plan` 
->>>>>>> 31b2e86794be09e116667d81938d899a8c96242a
+
 ![FindPlanCommandActivityDiagram](images/AddPlanCommandActivityDiagram.png)
+
 The add-plan command allows users to add a new Plan, provided that it involves a friend who is present in `UniquePersonList` and the Plan does not already exist.
 
 Add-plan is done similarly to the original add command in AddressBook.
@@ -250,12 +248,41 @@ Step 5. The Ui will display a success message if the command is successful and t
 ![DeleteSequenceDiagram](diagrams/DeleteSequenceDiagram.png)
 
 
-### 4. `edit-plan` [possible]
+### 4. `edit-plan`
 
-Edit plan is done similarly to the original edit command in AddressBook.
-<!-- Insert sequence diagram here -->
-The `edit-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `EditPlanCommandParser`. This is then used to parse the command. This results in a `EditPlanCommand` object. The `.execute()` method of the `EditPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed.
-<!-- Add more details rgd the communication here -->
+The `edit-plan` command is done similarly to the original `edit` command in AddressBook. It allows users to edit the details of their plans which will be updated accordingly in the Ui. The `edit-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `EditPlanCommandParser`. This is then used to parse the command. This results in a `EditPlanCommand` object. The `.execute()` method of the `EditPlanCommand` object is then invoked by `Logic`. The command then communicates with `Model` when it is executed. This mechanism is facilitated by the `Model` interface through the following operations:
+
+* `Model#getFilteredPlanList()` - Gets the list of Plans.
+* `Model#setPlan(Plan, Plan)` - Updates the list of Plans with a new Plan with new details.
+* `Model#updateFilteredPlanList(Predicate)` - Filters the list of plans to display by the Predicate input.
+
+Given below is an example usage scenario and how the edit plan mechanism behaves at each step.
+
+Step 1. The user has plans. The `Model` will store the list of plans in the form of a `FilteredList` type.
+
+Step 2. The user edits a plan and executes `edit-plan 1 n/Meeting` command to edit the plan indexed 1. As described in the Logic Component above, this will create a `EditPlanCommand` instance.
+
+Step 3. The `LogicManager` will call `EditPlanCommand#execute()` to start the operation of the command. It will first call, `Model#getFilteredPlanList()` to get the list of Plans, returning the `FilteredList` instance that contains the user's list of plans.
+
+Step 4. With the index entered by the user, the plan at that index is retrieved from the user's List of Plans.
+
+Step 5. Next, the `Model#getPersonByName(Name)` will be called to find the friend with the given Name, returning a `Person` instance. This step only executes if the `Person` instance associated with the `Plan` is being edited.
+
+Step 6. `EditPlanCommand#createEditedPlan(Plan, EditPlanDescriptor)` is called in order to create a new `Plan` instance with updated fields.
+
+Step 7. `Model#setPlan(Plan)` then marks the replaces existing `Plan` instance with the new `Plan` instance created in Step 6.
+
+Step 8. Finally, the updates made in the Plan will be synced to the user's List of Plans by `Model#updateFilteredPlanList(Predicate)` method.
+
+Step 9. The Ui will display the change of status of the Plan in the Plan List. On top of that, the Ui will display a success message if the command is successful and the error message otherwise.
+
+The following sequence diagram shows how the `edit-plan` command works.
+
+![EditPlanCommandSequenceDiagram](images/EditPlanCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `command-plan` command:
+
+![EditPlanCommandActivityDiagram](images/EditPlanCommandActivityDiagram.png)
 
 ### 5. `complete-plan`
 
