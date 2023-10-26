@@ -30,6 +30,13 @@ public class Plan {
         this.friend = friend;
     }
 
+    /**
+     * Class constructor for Plan.
+     * @param planName A brief description of the plan.
+     * @param dateTime A LocalDateTIme object of this plan.
+     * @param friend The friend this plan involves.
+     * @param isComplete The completion status of the plan.
+     */
     public Plan(PlanName planName, PlanDateTime dateTime, Person friend, Boolean isComplete) {
         requireAllNonNull(planName, dateTime, friend, isComplete);
         this.planName = planName;
