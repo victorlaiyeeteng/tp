@@ -89,9 +89,8 @@ class JsonAdaptedPlan {
         } catch (IllegalArgumentException e) {
             throw new IllegalValueException(PlanDateTime.MESSAGE_CONSTRAINTS);
         }
-        /* here need to edit */
-        // return new Plan(modelPlanName, modelPlanDateTime, modelPlanFriend, this.completionStatus);
-        return new Plan(modelPlanName, modelPlanDateTime, modelPlanFriend);
+        // need to add try catch for the completionStatus?
+        return new Plan(modelPlanName, modelPlanDateTime, modelPlanFriend, this.completionStatus);
 
     }
 
