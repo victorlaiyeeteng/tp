@@ -27,16 +27,19 @@ class JsonAdaptedPlan {
     private final String planName;
     private final String dateTime;
     private final String friend;
+    private final Boolean completionStatus;
 
     /**
      * Constructs a {@code JsonAdaptedPlan} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPlan(@JsonProperty("planName") String planName, @JsonProperty("dateTime") String dateTime,
-                             @JsonProperty("friend") String friend) {
+                             @JsonProperty("friend") String friend,
+                             @JsonProperty("completionStatus") Boolean completionStatus) {
         this.planName = planName;
         this.dateTime = dateTime;
         this.friend = friend;
+        this.completionStatus = completionStatus;
     }
 
     /**
@@ -46,6 +49,7 @@ class JsonAdaptedPlan {
         planName = source.getPlanName().toString();
         dateTime = source.getPlanDateTime().toStringRaw();
         friend = source.getPlanFriend().getName().fullName;
+        completionStatus = source.getPlanComplete();
     }
 
     /**
@@ -85,7 +89,9 @@ class JsonAdaptedPlan {
         } catch (IllegalArgumentException e) {
             throw new IllegalValueException(PlanDateTime.MESSAGE_CONSTRAINTS);
         }
-        return new Plan(modelPlanName, modelPlanDateTime, modelPlanFriend);
+
+        return new Plan(modelPlanName, modelPlanDateTime, modelPlanFriend, this.completionStatus);
+
     }
 
 }

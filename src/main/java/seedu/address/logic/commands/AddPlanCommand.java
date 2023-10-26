@@ -68,7 +68,6 @@ public class AddPlanCommand extends Command {
         if (model.hasPlan(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PLAN);
         }
-
         model.addPlan(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }

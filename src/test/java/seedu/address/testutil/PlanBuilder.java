@@ -19,6 +19,7 @@ public class PlanBuilder {
     private PlanName planName;
     private PlanDateTime planDateTime;
     private Person friend;
+    private Boolean isComplete = false;
 
     /**
      * Creates a {@code PlanBuilder} with the default details.
@@ -36,6 +37,7 @@ public class PlanBuilder {
         planName = plan.getPlanName();
         planDateTime = plan.getPlanDateTime();
         friend = plan.getPlanFriend();
+        isComplete = plan.getPlanComplete();
     }
 
     /**
@@ -62,8 +64,16 @@ public class PlanBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isComplete} of the {@code Plan} that we are building.
+     */
+    public PlanBuilder withPlanCompletionStatus(Boolean isComplete) {
+        this.isComplete = isComplete;
+        return this;
+    }
+
     public Plan build() {
-        return new Plan(planName, planDateTime, friend);
+        return new Plan(planName, planDateTime, friend, isComplete);
     }
 
 }

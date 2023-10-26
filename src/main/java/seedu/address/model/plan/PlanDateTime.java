@@ -15,7 +15,7 @@ public class PlanDateTime {
             "Date Time should be of the form YYYY-MM-DD-HH:MM";
 
     public static final String VALIDATION_REGEX = "(202[3-9]|20[3-9][0-9]|21[0-9]{2})-(0[1-9]|1[0-2])-"
-            + "(0[1-9]|[1-2][0-9]|3[0-1])-(0[0-9]|1[0-9]|2[0-3]):[0-5][0:9]";
+            + "(0[1-9]|[1-2][0-9]|3[0-1])-(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
 
     public final LocalDateTime planDateTime;
 
