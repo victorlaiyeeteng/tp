@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents the date and time of a Plan.
@@ -14,7 +15,11 @@ public class PlanDateTime {
     public static final String MESSAGE_CONSTRAINTS =
             "Date Time should be of the form YYYY-MM-DD-HH:MM";
 
-    public static final String VALIDATION_REGEX = "(202[3-9]|20[3-9][0-9]|21[0-9]{2})-(0[1-9]|1[0-2])-"
+    public static final String FUTURE_MESSAGE_CONSTRAINT =
+            "Date Time should be in the future!";
+
+    // public static final String VALIDATION_REGEX = "(202[3-9]|20[3-9][0-9]|21[0-9]{2})-(0[1-9]|1[0-2])-"
+    public static final String VALIDATION_REGEX = "[0-9][0-9][0-9][0-9]-(0[1-9]|1[0-2])-"
             + "(0[1-9]|[1-2][0-9]|3[0-1])-(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
 
     public final LocalDateTime planDateTime;
@@ -27,6 +32,7 @@ public class PlanDateTime {
     public PlanDateTime(String dateTimeString) {
         requireNonNull(dateTimeString);
         checkArgument(isValidDateTime(dateTimeString), MESSAGE_CONSTRAINTS);
+        checkArgument(isFutureDateTime(dateTimeString), FUTURE_MESSAGE_CONSTRAINT);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, formatter);
         planDateTime = dateTime;
@@ -37,6 +43,22 @@ public class PlanDateTime {
      */
     public static boolean isValidDateTime(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given date time is in the future.
+     */
+    public static boolean isFutureDateTime(String test) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
+        LocalDateTime dateTime;
+        try {
+            dateTime = LocalDateTime.parse(test, formatter);
+        } catch (DateTimeParseException e) {
+            // this exception is thrown if year is 0000
+            return false;
+        }
+        LocalDateTime current = LocalDateTime.now();
+        return dateTime.isAfter(current);
     }
 
     @Override
