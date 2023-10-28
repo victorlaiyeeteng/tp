@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.PlanContainsFriendPredicate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -117,8 +118,17 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void updatePlansWithPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        PlanContainsFriendPredicate planContainsFriendPredicate = new PlanContainsFriendPredicate(target);
+        updateFilteredPlanList(planContainsFriendPredicate);
+        ObservableList<Plan> plansWithPerson = getFilteredPlanList();
+        addressBook.updatePlansWithPerson(plansWithPerson, editedPerson);
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 
     /**
@@ -143,7 +153,6 @@ public class ModelManager implements Model {
     @Override
     public void setPlan(Plan target, Plan editedPlan) {
         requireAllNonNull(target, editedPlan);
-
         addressBook.setPlan(target, editedPlan);
     }
 

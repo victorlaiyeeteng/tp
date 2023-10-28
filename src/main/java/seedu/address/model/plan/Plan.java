@@ -14,7 +14,7 @@ public class Plan {
     /** The date and time of this plan. */
     private final PlanDateTime dateTime;
     /** The friend this plan involves. */
-    private final Person friend;
+    private Person friend;
     private Boolean isComplete = false;
 
     /**
@@ -58,6 +58,10 @@ public class Plan {
     }
     public Boolean getPlanComplete() {
         return isComplete;
+    }
+
+    public void setFriend(Person friend) {
+        this.friend = friend;
     }
 
     /**
