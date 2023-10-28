@@ -53,6 +53,7 @@ class PlanDateTimeTest {
         assertThrows(NullPointerException.class, () -> PlanDateTime.isFutureDateTime(null));
 
         // past date time
+        assertFalse(PlanDateTime.isFutureDateTime("0000-12-22-09:00")); // Special year 0000
         assertFalse(PlanDateTime.isFutureDateTime("2020-12-22-09:00")); // past year
         assertFalse(PlanDateTime.isFutureDateTime("2023-01-22-02:00")); // past month
 
