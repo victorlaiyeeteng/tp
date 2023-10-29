@@ -151,6 +151,9 @@ public class ParserUtil {
         if (!PlanDateTime.isValidDateTime(trimmedDateTimeString)) {
             throw new ParseException(PlanDateTime.MESSAGE_CONSTRAINTS);
         }
+        if (!PlanDateTime.isFutureDateTime(trimmedDateTimeString)) {
+            throw new ParseException(PlanDateTime.FUTURE_MESSAGE_CONSTRAINT);
+        }
         return new PlanDateTime(trimmedDateTimeString);
     }
 }

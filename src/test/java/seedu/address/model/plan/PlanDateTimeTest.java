@@ -28,15 +28,37 @@ class PlanDateTimeTest {
         assertFalse(PlanDateTime.isValidDateTime("")); // empty string
         assertFalse(PlanDateTime.isValidDateTime(" ")); // spaces only
         assertFalse(PlanDateTime.isValidDateTime("cooldatetime")); // non-numeric
-        assertFalse(PlanDateTime.isValidDateTime("1809-07-22-09:00")); // year in the past
-        assertFalse(PlanDateTime.isValidDateTime("2222-07-22-09:00")); // year too far in the future
+        assertFalse(PlanDateTime.isValidDateTime("0000-13-22-09:00")); // invalid year
+        assertFalse(PlanDateTime.isValidDateTime("202-13-22-09:00")); // invalid year
         assertFalse(PlanDateTime.isValidDateTime("2023-13-22-09:00")); // invalid month
+        assertFalse(PlanDateTime.isValidDateTime("2023-1-22-09:00")); // invalid month
+        assertFalse(PlanDateTime.isValidDateTime("2023--22-09:00")); // invalid month
         assertFalse(PlanDateTime.isValidDateTime("2023-12-32-09:00")); // invalid day
+        assertFalse(PlanDateTime.isValidDateTime("2023-12-3-09:00")); // invalid day
+        assertFalse(PlanDateTime.isValidDateTime("2023-12--09:00")); // invalid day
         assertFalse(PlanDateTime.isValidDateTime("2023-12-32-24:00")); // invalid hour
+        assertFalse(PlanDateTime.isValidDateTime("2023-12-32-2:00")); // invalid hour
+        assertFalse(PlanDateTime.isValidDateTime("2023-12-32-:00")); // invalid hour
         assertFalse(PlanDateTime.isValidDateTime("2023-12-32-09:66")); // invalid minute
+        assertFalse(PlanDateTime.isValidDateTime("2023-12-32-09:6")); // invalid minute
+        assertFalse(PlanDateTime.isValidDateTime("2023-12-32-09:")); // invalid minute
 
-        // valid phone numbers
+        // valid date time
         assertTrue(PlanDateTime.isValidDateTime("2023-12-20-09:00"));
+    }
+
+    @Test
+    public void isFutureDateTime() {
+        // null date time
+        assertThrows(NullPointerException.class, () -> PlanDateTime.isFutureDateTime(null));
+
+        // past date time
+        assertFalse(PlanDateTime.isFutureDateTime("0000-12-22-09:00")); // Special year 0000
+        assertFalse(PlanDateTime.isFutureDateTime("2020-12-22-09:00")); // past year
+        assertFalse(PlanDateTime.isFutureDateTime("2023-01-22-02:00")); // past month
+
+        // future date time
+        assertTrue(PlanDateTime.isFutureDateTime("2024-12-20-09:00"));
     }
 
     @Test
