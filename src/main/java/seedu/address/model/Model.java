@@ -121,6 +121,13 @@ public interface Model {
      */
     void setPlan(Plan target, Plan editedPlan);
 
+    /**
+     * Replaces the given person (@code target} with {@code editedPerson} in plans which involved {@code target}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    void updatePlansWithPerson(Person target, Person editedPerson);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
     ObservableList<Plan> getFilteredPlanList();
