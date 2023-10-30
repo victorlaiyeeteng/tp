@@ -24,19 +24,22 @@ public class AddPlanCommand extends Command {
 
     public static final String COMMAND_WORD = "add-plan";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a plan to the FriendBook. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a plan to the FriendBook.\n"
             + "Parameters: "
             + PREFIX_NAME + "PLAN_NAME "
             + PREFIX_DATETIME + "DATE_TIME "
-            + PREFIX_FRIEND + "FRIEND_NAME "
+            + PREFIX_FRIEND + "FRIEND_NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Project Meeting "
             + PREFIX_DATETIME + "2023-10-20-09:00 "
             + PREFIX_FRIEND + "John Doe";
+    public static final String VALID_SYNTAX = COMMAND_WORD + " " + PREFIX_NAME + "PLAN_NAME "
+            + PREFIX_DATETIME + "DATE_TIME "
+            + PREFIX_FRIEND + "FRIEND_NAME";
 
     public static final String MESSAGE_SUCCESS = "New plan added: %1$s";
     public static final String MESSAGE_DUPLICATE_PLAN = "This plan already exists in the FriendBook";
-    public static final String MESSAGE_FRIEND_NOT_FOUND = "The friend does not exist in the FriendBook";
+    public static final String MESSAGE_FRIEND_NOT_FOUND = "The friend does not exist in the FriendBook.";
 
     private Plan toAdd;
     private final PlanName planName;

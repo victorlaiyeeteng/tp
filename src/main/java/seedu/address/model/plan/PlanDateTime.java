@@ -12,11 +12,13 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class PlanDateTime {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Date Time should be of the form YYYY-MM-DD-HH:MM";
+    public static final String MESSAGE_INVALID_DATETIME = "Date-Time given is invalid.\n";
 
-    public static final String FUTURE_MESSAGE_CONSTRAINT =
-            "Date Time should be in the future!";
+    public static final String MESSAGE_CONSTRAINTS = MESSAGE_INVALID_DATETIME + " "
+            + "Date Time must be in YYYY-MM-DD-HH:MM format";
+
+    public static final String FUTURE_MESSAGE_CONSTRAINT = MESSAGE_INVALID_DATETIME
+            + "Ensure that the Date-Time provided is not in the past.";
 
     // public static final String VALIDATION_REGEX = "(202[3-9]|20[3-9][0-9]|21[0-9]{2})-(0[1-9]|1[0-2])-"
     public static final String VALIDATION_REGEX = "[0-9][0-9][0-9][0-9]-(0[1-9]|1[0-2])-"

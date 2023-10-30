@@ -12,10 +12,14 @@ import seedu.address.model.plan.Plan;
  * Container for user visible messages.
  */
 public class Messages {
-    public static final String MESSAGE_PERSON_DOES_NOT_EXIST = "Friend not in addressbook";
+    public static final String MESSAGE_PERSON_DOES_NOT_EXIST = "Friend not in FriendBook";
 
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Invalid command. Here are all the valid commands:\n"
+            + "Friends: add-friend, edit-friend, delete-friend, find-friend, list-friend\n"
+            + "Plans: add-plan, edit-plan, complete-plan, uncomplete-plan, find-plan, list-plan\n"
+            + "Others: clear, help, exit\n";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_MISSING_ARGUMENTS = "Invalid syntax: Missing arguments.\n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The friend index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d friends listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
@@ -45,14 +49,12 @@ public class Messages {
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
-                .append("; Phone: ")
+                .append(", ")
                 .append(person.getPhone())
-                .append("; Email: ")
+                .append(", ")
                 .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append(", ")
+                .append(person.getAddress());
         return builder.toString();
     }
 
@@ -62,10 +64,10 @@ public class Messages {
     public static String format(Plan plan) {
         final StringBuilder builder = new StringBuilder();
         builder.append(plan.getPlanName())
-                .append("; Date Time: ")
-                .append(plan.getPlanDateTime())
-                .append("; Friend: ")
-                .append(plan.getPlanFriend().getName());
+                .append(" with ")
+                .append(plan.getPlanFriend().getName())
+                .append(" at ")
+                .append(plan.getPlanDateTime());
         return builder.toString();
     }
 
