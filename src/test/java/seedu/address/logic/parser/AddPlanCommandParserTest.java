@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PLAN_DATETIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PLAN_FRIEND_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PLAN_NAME_DESC;
@@ -63,7 +63,7 @@ public class AddPlanCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPlanCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_MISSING_ARGUMENTS, AddPlanCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_PLAN_NAME_MEETING + PLAN_DATETIME_DESC_MEETING + PLAN_FRIEND_DESC_MEETING,
@@ -97,6 +97,6 @@ public class AddPlanCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + PLAN_NAME_DESC_MEETING
                 + PLAN_DATETIME_DESC_MEETING + PLAN_FRIEND_DESC_MEETING,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPlanCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_MISSING_ARGUMENTS, AddPlanCommand.MESSAGE_USAGE));
     }
 }

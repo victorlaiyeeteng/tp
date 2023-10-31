@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FRIEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -30,7 +30,7 @@ public class AddPlanCommandParser implements Parser<AddPlanCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATETIME, PREFIX_FRIEND)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException((String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPlanCommand.MESSAGE_USAGE)));
+            throw new ParseException((String.format(MESSAGE_MISSING_ARGUMENTS, AddPlanCommand.MESSAGE_USAGE)));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_DATETIME, PREFIX_FRIEND);;
