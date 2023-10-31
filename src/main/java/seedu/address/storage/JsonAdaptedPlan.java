@@ -76,7 +76,7 @@ class JsonAdaptedPlan {
                     PlanName.class.getSimpleName()));
         }
         if (!PlanName.isValidPlanName(planName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(PlanName.MESSAGE_CONSTRAINTS);
         }
         final PlanName modelPlanName = new PlanName(planName);
         PlanDateTime modelPlanDateTime;
