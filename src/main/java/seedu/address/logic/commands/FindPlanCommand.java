@@ -24,6 +24,7 @@ public class FindPlanCommand extends Command {
             + "friend. \nParameters: FRIEND_NAME \n"
             + "Example: " + COMMAND_WORD + " Elijah Chia";
 
+    public static final String MESSAGE_SYNTAX = "Syntax: find-plan FRIEND_NAME";
     private final Name friendName;
 
     public FindPlanCommand(Name friendName) {
