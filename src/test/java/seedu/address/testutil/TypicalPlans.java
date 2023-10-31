@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.IDA;
 
 import java.util.ArrayList;
 import java.util.Arrays;

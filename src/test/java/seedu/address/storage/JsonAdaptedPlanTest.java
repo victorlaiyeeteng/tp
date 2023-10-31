@@ -11,9 +11,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Name;
-import seedu.address.model.plan.Plan;
-import seedu.address.model.plan.PlanName;
 import seedu.address.model.plan.PlanDateTime;
+import seedu.address.model.plan.PlanName;
 import seedu.address.testutil.AddressBookBuilder;
 
 
