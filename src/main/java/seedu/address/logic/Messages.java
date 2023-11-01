@@ -16,9 +16,9 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Invalid command. Here are all the valid commands:\n"
             + "Friends: add-friend, edit-friend, delete-friend, find-friend, list-friend\n"
-            + "Plans: add-plan, edit-plan, complete-plan, uncomplete-plan, find-plan, list-plan\n"
+            + "Plans: add-plan, edit-plan, delete-plan, complete-plan, uncomplete-plan, find-plan, list-plan\n"
             + "Others: clear, help, exit\n";
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command. \n%1$s";
     public static final String MESSAGE_MISSING_ARGUMENTS = "Invalid syntax: Missing arguments.\n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The friend index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d friends listed!";
