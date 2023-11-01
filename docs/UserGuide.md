@@ -241,11 +241,11 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Invalid index is given: `The friend index provided is invalid`
+- Invalid index is given: `Index given is invalid. Syntax: edit-plan INDEX N/PLAN_NAME d/DATE_TIME F/FRIEND_NAME`
 
-- No optional arguments provided: `At least one field to edit must be provided.`
+- No optional arguments provided: `Missing information to be updated. Syntax: edit-plan INDEX N/PLAN_NAME d/DATE_TIME F/FRIEND_NAME`
 
-- Friend already exists: `This friend already exists in the FriendBook.`
+- Not a valid friend: `The friend does not exist in the FriendBook.`
 
 ### Marking a Plan as Completed : `complete-plan`
 
