@@ -241,11 +241,7 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Invalid index is given: `Index given is invalid. Syntax: edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
-
-- No optional arguments provided: `Missing information to be updated. Syntax: edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
-
-- Not a valid friend: `The friend does not exist in the FriendBook.`
+- Invalid index is given: `The plan index provided is invalid`
 
 ### Marking a Plan as Completed : `complete-plan`
 
@@ -313,10 +309,11 @@ Examples:
 Arguments:
 
 - `INDEX` must be an INTEGER
+- `INDEX` must be defined within the size of current PlanList
 
 Successful Output:
 
-`[PLAN_NAME] is deleted.`
+`Deleted Plan: [PLAN_NAME] with [FRIEND_NAME] at [DATE_TIME]`
 
 Unsuccessful Output:
 
