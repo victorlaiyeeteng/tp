@@ -31,7 +31,7 @@ public class AddPlanCommand extends Command {
             + PREFIX_FRIEND + "FRIEND_NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Project Meeting "
-            + PREFIX_DATETIME + "2023-10-20-09:00 "
+            + PREFIX_DATETIME + "2024-10-20-09:00 "
             + PREFIX_FRIEND + "John Doe";
     public static final String VALID_SYNTAX = COMMAND_WORD + " " + PREFIX_NAME + "PLAN_NAME "
             + PREFIX_DATETIME + "DATE_TIME "

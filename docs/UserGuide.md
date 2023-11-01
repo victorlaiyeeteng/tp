@@ -313,20 +313,17 @@ Examples:
 Arguments:
 
 - `INDEX` must be an INTEGER
+- `INDEX` must be defined within the size of current PlanList
 
 Successful Output:
 
-`[PLAN_NAME] is deleted.`
+`Deleted Plan: [PLAN_NAME] with [FRIEND_NAME] at [DATE_TIME]`
 
 Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Missing arguments: `Invalid syntax: Missing arguments. Syntax: delete-plan INDEX`
-
-- Non-numeric index: `Index given is non-numeric. Syntax: delete-plan INDEX`
-
-- Not a valid index: `No plans at given index. Syntax: delete-plan INDEX`
+- Invalid index is given: `The plan index provided is invalid`
 
 ### Finding a plan : `find-plan`
 

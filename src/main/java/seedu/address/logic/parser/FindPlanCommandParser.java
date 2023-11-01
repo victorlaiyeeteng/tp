@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_ARGUMENTS;
 
 import seedu.address.logic.commands.FindPlanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -20,7 +20,7 @@ public class FindPlanCommandParser implements Parser<FindPlanCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPlanCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MISSING_ARGUMENTS, FindPlanCommand.MESSAGE_SYNTAX));
         }
 
         return new FindPlanCommand(new Name(trimmedArgs));
