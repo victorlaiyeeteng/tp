@@ -154,7 +154,7 @@ Unsuccessful Output:
 
 ### Finding a friend : `find-friend`
 
-Finds friend(s) whose names contain any of the given keywords.
+Find friends whose names contain any of the given keywords.
 
 Format: `find-friend KEYWORD [MORE_KEYWORDS]`
 
@@ -169,7 +169,7 @@ Examples:
 * `find-friend alex david` returns `Alex Yeoh`, `David Li`
 
 Successful Output:
-`COUNT_OF_FRIENDS friend(s) listed!`
+`COUNT_OF_FRIENDS friends listed!`
 
 Unsuccessful Output:
 - Invalid command: `Invalid command.` + help message with list of all commands
@@ -356,7 +356,7 @@ Arguments:
 - `FRIEND_NAME` must be the full name belonging to a Person saved in the FriendBook
 
 Successful Output:
-`COUNT_OF_PLANS plan(s) listed!`
+`COUNT_OF_PLANS plans listed!`
 
 Unsuccessful Output:
 
