@@ -33,7 +33,7 @@ FriendBook is a **desktop app for managing friend contacts and plan details, opt
 
    * `delete-friend 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all contacts and plans.
 
    * `exit` : Exits the app.
 
@@ -59,7 +59,7 @@ FriendBook is a **desktop app for managing friend contacts and plan details, opt
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -145,14 +145,16 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Empty index or index is not a integer: `Invalid command.
+- Empty or non-integer or invalid index: `Invalid command.
   delete-friend: Deletes the friend identified by the index number used in the displayed friend list.
-  Parameters: INDEX (must be a positive integer)
+  Parameters: INDEX (must be a positive non-zero integer)
   Example: delete-friend 1`
+
+- Index out of bounds: `The friend index provided is invalid`
 
 ### Finding a friend : `find-friend`
 
-Finds persons whose names contain any of the given keywords.
+Finds friend(s) whose names contain any of the given keywords.
 
 Format: `find-friend KEYWORD [MORE_KEYWORDS]`
 
@@ -167,7 +169,7 @@ Examples:
 * `find-friend alex david` returns `Alex Yeoh`, `David Li`
 
 Successful Output:
-`COUNT_OF_FRIENDS friends listed!`
+`COUNT_OF_FRIENDS friend(s) listed!`
 
 Unsuccessful Output:
 - Invalid command: `Invalid command.` + help message with list of all commands
@@ -186,7 +188,7 @@ Successful Output:
 
 ### Adding a plan : `add-plan`
 
-Adds a plan and associates with involved friends.
+Adds a plan and associates it with involved friends.
 
 Format: `add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
 
@@ -212,7 +214,8 @@ Unsuccessful Output:
   Parameters: n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
   Example: add-plan n/Project Meeting d/2023-10-20-09:00 f/John Doe`
 
-- Date-Time in wrong format: `Date-Time given is invalid. Date-Time must be in YYYY-MM-DD-HH:MM format`
+- Date-Time in wrong format: `Date-Time given is invalid.
+  Date-Time must be in YYYY-MM-DD-HH:MM format`
 
 - Date-Time in the past: `Date-Time given is invalid. Ensure that the Date-Time provided is not in the past.`
 
@@ -264,17 +267,18 @@ Arguments:
 
 Successful Output:
 
-`[PLAN_NAME] is marked as completed.`
+`Completed Plan: PLAN_NAME with FRIEND_NAME at DATE_TIME`
 
 Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Missing arguments: `Invalid syntax: Missing arguments. Syntax: complete-plan INDEX`
+- Missing and invalid index: `Invalid command.
+  complete-plan: Marks the plan as completed identified by the index number used in the displayed plan list.
+  Parameters: INDEX (must be a positive non-zero integer)
+  Example: complete-plan 1`
 
-- Non-numeric index: `Index given is non-numeric. Syntax: complete-plan INDEX`
-
-- Not a valid index: `No plans at given index. Syntax: complete-plan INDEX`
+- Index out of bounds: `The plan index provided is invalid`
 
 ### Marking a Plan as Uncompleted : `uncomplete-plan`
 
@@ -291,17 +295,18 @@ Arguments:
 
 Successful Output:
 
-`Completed Plan: [PLAN_NAME]; Date Time: [DATE_TIME]; Friend: [FRIEND_NAME]`
+`Uncompleted Plan: PLAN_NAME with FRIEND_NAME at DATE_TIME`
 
 Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Missing arguments: `Invalid syntax: Missing arguments. Syntax: uncomplete-plan INDEX`
+- Missing and invalid index: `Invalid command.
+  uncomplete-plan: Marks the plan as not completed identified by the index number used in the displayed plan list.
+  Parameters: INDEX (must be a positive non-zero integer)
+  Example: uncomplete-plan 1`
 
-- Non-numeric index: `Index given is non-numeric. Syntax: uncomplete-plan INDEX`
-
-- Not a valid index: `No plans at given index. Syntax: uncomplete-plan INDEX`
+- Index out of bounds: `No plans at given index. Syntax: uncomplete-plan INDEX`
 
 ### Deleting a Plan : `delete-plan`
 
@@ -325,7 +330,12 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Invalid index is given: `The plan index provided is invalid`
+- Missing and invalid index: `Invalid command.
+  delete-plan: Deletes the plan identified by the index number used in the displayed plan list.
+  Parameters: INDEX (must be a positive non-zero integer)
+  Example: delete-plan 1`
+
+- Index out of bounds: `The plan index provided is invalid`
 
 ### Finding a plan : `find-plan`
 
@@ -346,7 +356,7 @@ Arguments:
 - `FRIEND_NAME` must be the full name belonging to a Person saved in the FriendBook
 
 Successful Output:
-`COUNT_OF_PLANS plans listed!`
+`COUNT_OF_PLANS plan(s) listed!`
 
 Unsuccessful Output:
 

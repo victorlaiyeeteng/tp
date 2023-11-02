@@ -21,7 +21,7 @@ public class CompletePlanCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the plan as completed identified by the index number used in the displayed plan list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive non-zero integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_COMPLETE_PLAN_SUCCESS = "Completed Plan: %1$s";
