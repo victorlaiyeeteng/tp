@@ -147,7 +147,7 @@ Unsuccessful Output:
 
 - Empty or non-integer or invalid index: `Invalid command.
   delete-friend: Deletes the friend identified by the index number used in the displayed friend list.
-  Parameters: INDEX (must be a positive integer)
+  Parameters: INDEX (must be a positive non-zero integer)
   Example: delete-friend 1`
 
 - Index out of bounds: `The friend index provided is invalid`
