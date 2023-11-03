@@ -321,7 +321,7 @@ Successful Output:
 
 Unsuccessful Output:
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+- Invalid command or missing index: `Invalid command.` + help message with list of all commands
 
 - Invalid index is given: `The plan index provided is invalid`
 
