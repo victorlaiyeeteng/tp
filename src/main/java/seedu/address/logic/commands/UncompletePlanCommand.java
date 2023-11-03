@@ -20,8 +20,8 @@ public class UncompletePlanCommand extends Command {
     public static final String COMMAND_WORD = "uncomplete-plan";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the plan as completed identified by the index number used in the displayed plan list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Marks the plan as not completed identified by the index number used in the displayed plan list.\n"
+            + "Parameters: INDEX (must be a positive non-zero integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_UNCOMPLETE_PLAN_SUCCESS = "Uncompleted Plan: %1$s";

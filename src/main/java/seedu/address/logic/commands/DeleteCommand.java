@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PLANS;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the friend identified by the index number used in the displayed friend list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive non-zero integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Friend: %1$s";
@@ -49,6 +50,8 @@ public class DeleteCommand extends Command {
         if (model.getFilteredPlanList().size() > 0) {
             throw new CommandException(Messages.MESSAGE_PERSON_PRESENT_IN_PLAN);
         }
+
+        model.updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
 
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
