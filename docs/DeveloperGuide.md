@@ -247,6 +247,9 @@ Step 5. The Ui will display a success message if the command is successful and t
 
 ![DeleteSequenceDiagram](diagrams/DeleteSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes the `delete-plan` command:
+![DeleteActivityDiagram](diagrams/DeletePlanCommandActivityDiagram.png)
+
 
 ### 4. `edit-plan`
 

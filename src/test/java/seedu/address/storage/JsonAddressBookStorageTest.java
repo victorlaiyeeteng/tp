@@ -78,13 +78,13 @@ public class JsonAddressBookStorageTest {
         original.addPlan(DATE3);
         original.removePlan(DATE3);
         original.removePerson(IDA);
-        //original.removePerson(BENSON);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
-        original.removePerson(IDA);
+        original.addPerson(IDA);
+        original.addPlan(DATE2);
         original.removePlan(DATE2);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
