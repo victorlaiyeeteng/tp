@@ -14,15 +14,15 @@ import java.time.format.DateTimeParseException;
 public class PlanDateTime {
     public static final String MESSAGE_INVALID_DATETIME = "Date-Time given is invalid.\n";
 
-    public static final String MESSAGE_CONSTRAINTS = MESSAGE_INVALID_DATETIME + " "
-            + "Date-Time must be in YYYY-MM-DD-HH:MM format";
+    public static final String MESSAGE_CONSTRAINTS = MESSAGE_INVALID_DATETIME
+            + "Date-Time must be in YYYY-MM-DD-HH:MM format with valid values.";
 
     public static final String FUTURE_MESSAGE_CONSTRAINT = MESSAGE_INVALID_DATETIME
             + "Ensure that the Date-Time provided is not in the past.";
-
-    // public static final String VALIDATION_REGEX = "(202[3-9]|20[3-9][0-9]|21[0-9]{2})-(0[1-9]|1[0-2])-"
     public static final String VALIDATION_REGEX = "[0-9][0-9][0-9][0-9]-(0[1-9]|1[0-2])-"
             + "(0[1-9]|[1-2][0-9]|3[0-1])-(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
+
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
 
     public final LocalDateTime planDateTime;
 
@@ -35,7 +35,6 @@ public class PlanDateTime {
         requireNonNull(dateTimeString);
         checkArgument(isValidDateTime(dateTimeString), MESSAGE_CONSTRAINTS);
         checkArgument(isFutureDateTime(dateTimeString), FUTURE_MESSAGE_CONSTRAINT);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, formatter);
         planDateTime = dateTime;
     }
@@ -44,7 +43,13 @@ public class PlanDateTime {
      * Returns true if a given date time is valid.
      */
     public static boolean isValidDateTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        // this checks for edge cases e.g. 31 February 2024
+        LocalDateTime dateTime = LocalDateTime.parse(test, formatter);
+        String dateTimeString = dateTime.toString().replace('T', '-');
+        return test.equals(dateTimeString);
     }
 
     /**

@@ -54,10 +54,10 @@ class PlanTest {
         // null -> returns false
         assertFalse(BALI.isSamePlan(null));
 
-        // same planName, all other attributes different -> returns true
+        // same planName, all other attributes different -> returns false
         Plan editedBali = new PlanBuilder(BALI).withPlanFriend(BOB)
                 .withPlanDateTime("2026-06-01-09:00").build();
-        assertTrue(BALI.isSamePlan(editedBali));
+        assertFalse(BALI.isSamePlan(editedBali));
 
         // different name, all other attributes same -> returns false
         editedBali = new PlanBuilder(BALI).withPlanName("Dota 2").build();

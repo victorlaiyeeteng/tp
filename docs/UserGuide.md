@@ -215,7 +215,7 @@ Unsuccessful Output:
   Example: add-plan n/Project Meeting d/2023-10-20-09:00 f/John Doe`
 
 - Date-Time in wrong format: `Date-Time given is invalid.
-  Date-Time must be in YYYY-MM-DD-HH:MM format`
+  Date-Time must be in YYYY-MM-DD-HH:MM format with valid values.`
 
 - Date-Time in the past: `Date-Time given is invalid. Ensure that the Date-Time provided is not in the past.`
 
