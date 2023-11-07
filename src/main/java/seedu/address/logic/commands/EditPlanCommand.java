@@ -36,7 +36,7 @@ public class EditPlanCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DATETIME + "DATE_TIME] "
-            + "[" + PREFIX_FRIEND + "FRIEND_NAME]...\n"
+            + "[" + PREFIX_FRIEND + "FRIEND_NAME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATETIME + "2023-10-20-09:00 "
             + PREFIX_FRIEND + "John Doe";
