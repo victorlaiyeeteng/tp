@@ -86,6 +86,8 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
+- Friend already exists: `This friend already exists in the FriendBook.`
+
 - Empty name: `Names should only contain alphanumeric characters and spaces, and it should not be blank.`
 
 - Non-numeric phone number: `Phone numbers should only contain numbers, and it should be at least 3 digits long`
