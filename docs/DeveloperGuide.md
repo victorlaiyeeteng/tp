@@ -154,7 +154,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### _New features added to AddressBook_
+### _New features added to FriendBook_
 
 ### 1. `add-plan`
 
