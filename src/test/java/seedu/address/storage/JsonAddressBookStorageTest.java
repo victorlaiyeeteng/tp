@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPlans.DATE2;
 import static seedu.address.testutil.TypicalPlans.DATE3;
 import static seedu.address.testutil.TypicalPlans.getTypicalAddressBookWithPlans;
