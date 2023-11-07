@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.IDA;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +32,9 @@ public class TypicalPlans {
 
     public static final Plan DATE2 = new PlanBuilder().withPlanName("Dinner Date2")
             .withPlanDateTime("2025-11-10-19:00").withPlanFriend(BENSON).build();
+
+    public static final Plan DATE3 = new PlanBuilder().withPlanName("Dinner Date3")
+            .withPlanDateTime("2025-11-11-19:00").withPlanFriend(IDA).build();
 
 
     private TypicalPlans() {}

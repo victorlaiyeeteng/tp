@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.IDA;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPlans.DATE2;
+import static seedu.address.testutil.TypicalPlans.DATE3;
 import static seedu.address.testutil.TypicalPlans.getTypicalAddressBookWithPlans;
 
 import java.io.IOException;
@@ -69,10 +71,14 @@ public class JsonAddressBookStorageTest {
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
+        //assert(original.hasPerson(IDA));
 
         //Modify data, overwrite exiting file, and read back
         original.addPerson(IDA);
-        original.addPlan(DATE2);
+        original.addPlan(DATE3);
+        original.removePlan(DATE3);
+        original.removePerson(IDA);
+        //original.removePerson(BENSON);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));

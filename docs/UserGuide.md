@@ -328,7 +328,7 @@ Successful Output:
 
 Unsuccessful Output:
 
-- Invalid command or missing index: `Invalid command.` + help message with list of all commands
+- Invalid command: `Invalid command.` + help message with list of all commands
 
 - Missing and invalid index: `Invalid command.
   delete-plan: Deletes the plan identified by the index number used in the displayed plan list.
