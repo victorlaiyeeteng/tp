@@ -114,7 +114,7 @@ Friend's names are case insensitive ('John' and 'john' are the same name).`
 
 Edits an existing friend’s information in the friends list at the specified index.
 
-Format: `edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+Format: `edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 Examples:
 * `edit-friend 3 n/Jack Ma`
@@ -460,13 +460,13 @@ If your changes to the data file makes its format invalid, FriendBook will disca
 
 Action | Format, Examples
 --------|------------------
-**add-friend** | `add-friend n/NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `add-friend n/John Doe p/98321234 e/johnd@example.com`
-**edit-friend** | `edit-friend INDEX n/NAME p/PHONE e/EMAIL`<br> e.g., `edit-friend 3 n/Jack Ma`
+**add-friend** | `add-friend n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> e.g., `add-friend n/John Doe p/98321234 e/johnd@example.com`
+**edit-friend** | `edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`<br> e.g., `edit-friend 3 n/Jack Ma`
 **delete-friend** | `delete-friend NAME` <br> e.g., `delete-friend John Doe`
 **find-friend** | `find-friend KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-friend Jack`
 **list-friend** | `list-friend`
 **add-plan** | `add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`<br> e.g.,`add-plan n/Project Meeting d/2023-10-23-10:00 f/Royden`
-**edit-plan** | `edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`<br> e.g., `edit-plan 1 d/2025-01-01-10:00`
+**edit-plan** | `edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]`<br> e.g., `edit-plan 1 d/2025-01-01-10:00`
 **complete-plan** | `complete-plan INDEX`<br> e.g., `complete-plan 4`
 **uncomplete-plan** | `uncomplete-plan INDEX`<br> e.g., `uncomplete-plan 4`
 **delete-plan** | `delete-plan INDEX` <br> e.g., `delete-plan 4`
