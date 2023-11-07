@@ -105,7 +105,7 @@ public class EditPlanCommand extends Command {
         PlanDateTime updatedDateTime = editPlanDescriptor.getPlanDateTime().orElse(planToEdit.getPlanDateTime());
         Person updatedFriend = editPlanDescriptor.getPlanFriend().orElse(planToEdit.getPlanFriend());
 
-        return new Plan(updatedName, updatedDateTime, updatedFriend);
+        return new Plan(updatedName, updatedDateTime, updatedFriend, planToEdit.getPlanComplete());
     }
 
     @Override
