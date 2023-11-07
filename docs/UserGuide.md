@@ -67,7 +67,12 @@ FriendBook is a **desktop app for managing friend contacts and plan details, opt
 
 ### Adding a person: `add-friend`
 
-Adds a person to the friends list.
+Adds a person to the friends list. 
+
+Constraints: 
+* Each friend must have a unique name and email, while a unique phone number is not
+necessary (e.g. siblings sharing the same home number).
+* Friend's names are case insensitive (e.g. John and john are the same name).
 
 Format: `add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
@@ -83,6 +88,9 @@ Successful Output:
 `New friend added: NAME, PHONE_NUMBER, EMAIL, ADDRESS`
 
 Unsuccessful Output:
+
+- Non-unique person added (by their name or email): `This friend already exists in the FriendBook. Friend's name and email must be unique. 
+Friend's names are case insensitive ('John' and 'john' are the same name).`
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
@@ -122,7 +130,8 @@ Unsuccessful Output:
 
 - No optional arguments provided: `At least one field to edit must be provided.`
 
-- Friend already exists: `This friend already exists in the FriendBook.`
+- Friend (identified by name or email) already exists: `This friend already exists in the FriendBook. Friend's name and email must be unique.
+  Friend's names are case insensitive ('John' and 'john' are the same name).`
 
 ### Removing a Friend : `delete-friend`
 
