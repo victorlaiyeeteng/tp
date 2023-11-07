@@ -65,16 +65,22 @@ FriendBook is a **desktop app for managing friend contacts and plan details, opt
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+## Friends
+
+#### Constraints:
+* Each friend must have a unique name and email, while a unique phone number is not
+  necessary (e.g. siblings sharing the same home number).
+* Friend's names are case insensitive (e.g. John and john are the same name).
+* Friend's names can only contain alphanumeric characters and spaces. 
+  * No special characters like `/` or `-` are allowed.
+  * It cannot consist of only numbers.
+
+
 ### Adding a person: `add-friend`
 
-Adds a person to the friends list. 
+Adds a person to the friends list.
 
-Constraints: 
-* Each friend must have a unique name and email, while a unique phone number is not
-necessary (e.g. siblings sharing the same home number).
-* Friend's names are case insensitive (e.g. John and john are the same name).
-
-Format: `add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`
 
 Examples:
 * `add-friend n/John Doe p/98321234 e/johnd@example.com a/Thomson Avenue`
@@ -94,7 +100,8 @@ Friend's names are case insensitive ('John' and 'john' are the same name).`
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Empty name: `Names should only contain alphanumeric characters and spaces, and it should not be blank.`
+- Empty or invalid name: `Names should only contain alphanumeric characters and spaces, and it should not be blank.
+  It should also not contain only numeric characters.`
 
 - Non-numeric phone number: `Phone numbers should only contain numbers, and it should be at least 3 digits long`
 
@@ -104,7 +111,7 @@ Friend's names are case insensitive ('John' and 'john' are the same name).`
 
 Edits an existing friend’s information in the friends list at the specified index.
 
-Format: `edit-friend INDEX n/NAME p/PHONE e/EMAIL a/ADDRESS`
+Format: `edit-friend INDEX n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
 Examples:
 * `edit-friend 3 n/Jack Ma`
