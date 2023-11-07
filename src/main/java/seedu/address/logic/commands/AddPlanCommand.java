@@ -33,9 +33,6 @@ public class AddPlanCommand extends Command {
             + PREFIX_NAME + "Project Meeting "
             + PREFIX_DATETIME + "2024-10-20-09:00 "
             + PREFIX_FRIEND + "John Doe";
-    public static final String VALID_SYNTAX = COMMAND_WORD + " " + PREFIX_NAME + "PLAN_NAME "
-            + PREFIX_DATETIME + "DATE_TIME "
-            + PREFIX_FRIEND + "FRIEND_NAME";
 
     public static final String MESSAGE_SUCCESS = "New plan added: %1$s";
     public static final String MESSAGE_DUPLICATE_PLAN = "This plan already exists in the FriendBook";
