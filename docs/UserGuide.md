@@ -188,6 +188,15 @@ Format: `list-friend`
 Successful Output:
 `Listed all friends`
 
+## Plans
+
+#### Constraints:
+* Duplicate plans are not allowed. This refers to plans with the exact same plan name, date-time and friends.
+* Plan names are case-sensitive (eg meeting and Meeting are different names)
+* Plan names can only contain alphanumeric characters and spaces.
+  * No special characters like `/` or `-` are allowed.
+  * It cannot consist of only numbers.
+
 ### Adding a plan : `add-plan`
 
 Adds a plan and associates it with involved friends.
