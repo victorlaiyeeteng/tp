@@ -74,7 +74,9 @@ public class Plan {
         }
 
         return otherPlan != null
-                && otherPlan.getPlanName().equals(getPlanName());
+                && otherPlan.getPlanName().equals(getPlanName())
+                && otherPlan.getPlanFriend().equals(getPlanFriend())
+                && otherPlan.getPlanDateTime().equals(getPlanDateTime());
     }
 
     /**

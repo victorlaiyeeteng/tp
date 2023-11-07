@@ -86,6 +86,8 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
+- Friend already exists: `This friend already exists in the FriendBook.`
+
 - Empty name: `Names should only contain alphanumeric characters and spaces, and it should not be blank.`
 
 - Non-numeric phone number: `Phone numbers should only contain numbers, and it should be at least 3 digits long`
@@ -186,6 +188,15 @@ Format: `list-friend`
 Successful Output:
 `Listed all friends`
 
+## Plans
+
+#### Constraints:
+* Duplicate plans are not allowed. This refers to plans with the exact same plan name, date-time and friends.
+* Plan names are case-sensitive (eg meeting and Meeting are different names)
+* Plan names can only contain alphanumeric characters and spaces.
+  * No special characters like `/` or `-` are allowed.
+  * It cannot consist of only numbers.
+
 ### Adding a plan : `add-plan`
 
 Adds a plan and associates it with involved friends.
@@ -215,7 +226,7 @@ Unsuccessful Output:
   Example: add-plan n/Project Meeting d/2023-10-20-09:00 f/John Doe`
 
 - Date-Time in wrong format: `Date-Time given is invalid.
-  Date-Time must be in YYYY-MM-DD-HH:MM format`
+  Date-Time must be in YYYY-MM-DD-HH:MM format with valid values.`
 
 - Date-Time in the past: `Date-Time given is invalid. Ensure that the Date-Time provided is not in the past.`
 
