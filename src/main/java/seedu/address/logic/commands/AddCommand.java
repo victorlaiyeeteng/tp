@@ -36,6 +36,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New friend added: %1$s";
+
     public static final String MESSAGE_DUPLICATE_PERSON = "This friend already exists in the FriendBook. "
             + "Friend's name and email must be unique. \n"
             + "Friend's names are case insensitive ('John' and 'john' are the same name).";
