@@ -119,7 +119,7 @@ Friend's names can only contain alphanumeric characters and spaces. No special c
 
 ### `delete-friend`
 
-This command allows you to delete a friend to your FriendBook.
+This command allows you to delete a friend from your FriendBook.
 
 ```
 delete-friend INDEX
@@ -190,7 +190,7 @@ edit-friend command must be provided with a positive non-zero index else, an inv
 
 ### `find-friend`
 
-This command allows you to find a friend by name in your FriendBook. 
+This command allows you to find a friend by name in your FriendBook.
 
 ```
 find-friend NAME...
@@ -212,11 +212,11 @@ find-friend NAME...
 
 #### Additional Information:
 <div markdown="span" class="alert alert-info">
-The search is case-insensitive. (`hans` will match `Hans`)
+The search is case-insensitive. (`hans` will match `Hans`).
 </div>
 
 <div markdown="span" class="alert alert-info">
-The order of the keywords does not matter. (`Hans Bo` will match `Bo Hans`)
+The order of the keywords does not matter. (`Hans Bo` will match `Bo Hans`).
 </div>
 
 <div markdown="span" class="alert alert-info">
@@ -229,7 +229,7 @@ This search is done by name.
 </div>
 
 <div markdown="span" class="alert alert-danger">
-Only full words will be matched (`Han` will not match `Hans`)
+Only full words will be matched (`Han` will not match `Hans`).
 </div>
 
 ### Listing friends : `list-friend`
@@ -247,233 +247,247 @@ list-friend
 
 ## Plan-Related Features
 
-#### Constraints:
-* Duplicate plans are not allowed. This refers to plans with the exact same plan name, date-time and friends.
-* Plan names are case-sensitive (eg meeting and Meeting are different names)
-* Plan names can only contain alphanumeric characters and spaces.
-  * No special characters like `/` or `-` are allowed.
-  * It cannot consist of only numbers.
+### `add-plan`
 
-### Adding a plan : `add-plan`
+This command allows you to add a plan to your FriendBook and associate an existing Friend with this plan.
 
-Adds a plan and associates it with involved friends.
+```
+add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
+```
 
-Format: `add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
-
-Examples:
+#### Examples of Correct Usage:
 * `add-plan n/Project Meeting d/2023-10-23-10:00 f/Royden`
 
-Arguments:
+#### Successful Output:
+![add-planOutput](images/ug/add-planOutput.png)
 
-- `PLAN_NAME` must be a STRING, `DATE_TIME` must be in the YYYY-MM-DD-HH:MM format
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-- `FRIEND_NAME` is optional. If specified, `FRIEND_NAME` must be the name of an existing friend
+- Missing arguments :
+  `Invalid syntax: Missing arguments...`
 
-Successful Output:
+- Date-Time in wrong format :
+  `Date-Time given is invalid. Date-Time must be in YYYY-MM-DD-HH:MM format`
 
-`New plan added: PLAN_NAME with FRIEND_NAME at DATE_TIME`
+- Date-Time in the past :
+  `Date-Time given is invalid. Ensure that the Date-Time provided is not in the past.`
 
-Unsuccessful Output:
+- Not a valid friend :
+  `The friend does not exist in the FriendBook.`
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+#### Additional Information:
+<div markdown="span" class="alert alert-info">
+DATE_TIME must be in YYYY-MM-DD-HH:MM format
+</div>
 
-- Missing arguments: `Invalid syntax: Missing arguments.
-  add-plan: Adds a plan to the FriendBook.
-  Parameters: n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
-  Example: add-plan n/Project Meeting d/2023-10-20-09:00 f/John Doe`
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+Plans with exactly the same name, date-time and friend as an existing plan is not allowed.
+</div>
 
-- Date-Time in wrong format: `Date-Time given is invalid.
-  Date-Time must be in YYYY-MM-DD-HH:MM format with valid values.`
+<div markdown="span" class="alert alert-danger">
+Plan names are case-sensitive (meeting and Meeting are different plan names)
+</div>
 
-- Date-Time in the past: `Date-Time given is invalid. Ensure that the Date-Time provided is not in the past.`
+<div markdown="span" class="alert alert-danger">
+Plan names can only contain alphanumeric characters and spaces. No special characters like `/` or `-` are allowed. It cannot consist of only numbers.
+</div>
 
-- Not a valid friend: `The friend does not exist in the FriendBook.`
+### `delete-plan`
+
+This command allows you to delete a plan from your FriendBook.
+
+```
+delete-plan INDEX
+```
+
+#### Examples of Correct Usage:
+* `delete-plan 4`
+
+#### Successful Output:
+
+![delete-planOutput](images/ug/delete-friendOutput.png)
+
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
+
+- Missing or invalid arguments :
+  `Invalid command...`
+
+- INDEX is greater than the number of friends :
+  `The plan index provided is bigger than your number of plans.`
+
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+delete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
 
 ### Editing a Plan's Information: `edit-plan`
 
-Edits an existing plan’s information in the plans list at the specified index.
+This command allows you to edit a plan's details in your FriendBook.
 
-Format: `edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]`
+```
+edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]
+```
 
-Examples:
+#### Examples of Correct Usage:
 * `edit-plan 3 n/Dota 3`
 * `edit-plan 1 d/2025-01-01-10:00`
 
-Arguments:
+#### Successful Output:
+![edit-planOutput](images/ug/edit-planOutput.png)
 
-- `PLAN_NAME` and `FRIEND_NAME` must be a STRING, `DATE_TIME` must be in the YYYY-MM-DD-HH:MM format
-- An `INDEX` must be provided and be a positive integer 1, 2, 3, ... and within the count of plans.
-- `PLAN_NAME`, `DATE_TIME`, `FRIEND_NAME` are optional but at least 1 must be given
-- If specified, `FRIEND_NAME` must be the name of an existing friend
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-Successful Output:
+- Missing or invalid arguments :
+  `Invalid command...`
 
-`Edited Plan: PLAN_NAME with FRIEND_NAME at DATE_TIME`
+- INDEX is greater than the number of friends :
+  `The plan index provided is bigger than your number of plans.`
 
-Unsuccessful Output:
+- No optional arguments provided :
+  `At least one field to edit must be provided.`
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+- Plan (identified by name, date-time and friend) already exists :
+  `This plan already exists in the FriendBook.`
 
-- Missing or invalid arguments: `Invalid command.
-  edit-plan: Edits the details of the plan identified by the index number used in the displayed plan list. Existing values will be overwritten by the input values.
-  Parameters: INDEX (must be a positive integer) [n/NAME] [d/DATE_TIME] [f/FRIEND_NAME]
-  Example: edit-plan 1 d/2023-10-20-09:00 f/John Doe`
-    - FriendBook saves you the headache of counting your number of plans, hence if the index given
-      is greater than your number of plans, this error will be shown: `The plan index provided is bigger than your number of plans.`
+- Not a valid friend :
+  `The friend does not exist in the FriendBook.`
 
-- No optional arguments provided: `At least one field to edit must be provided.`
+#### Additional Information:
+<div markdown="span" class="alert alert-info">
+At least 1 optional field must be provided.
+</div>
 
-- Not a valid friend: `The friend does not exist in the FriendBook.`
+<div markdown="span" class="alert alert-info">
+DATE_TIME must be in YYYY-MM-DD-HH:MM format
+</div>
 
-### Marking a Plan as Completed : `complete-plan`
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+edit-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
 
-Marks the specified plan as completed.
+### `complete-plan`
 
-Format: `complete-plan INDEX`
+This command allows you to mark a plan as completed in your FriendBook.
 
-Examples:
+```
+complete-plan INDEX
+```
+
+#### Examples of Correct Usage:
 * `complete-plan 4`
 
-Arguments:
+#### Successful Output:
+![complete-planOutput](images/ug/complete-planOutput.png)
 
-- An `INDEX` must be provided and be a positive integer 1, 2, 3, ... and within the count of friends.
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-Successful Output:
+- Missing or invalid arguments :
+  `Invalid command...`
 
-`Completed Plan: PLAN_NAME with FRIEND_NAME at DATE_TIME`
+- INDEX is greater than the number of friends :
+  `The plan index provided is bigger than your number of plans.`
 
-Unsuccessful Output:
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+complete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+### uncomplete-plan
 
-- Missing or invalid arguments: `Invalid command.
-  complete-plan: Marks the plan as completed identified by the index number used in the displayed plan list.
-  Parameters: INDEX (must be a positive non-zero integer)
-  Example: complete-plan 1`
-    - FriendBook saves you the headache of counting your number of plans, hence if the index given
-      is greater than your number of plans, this error will be shown: `The plan index provided is bigger than your number of plans.`
+This command allows you to unmark a plan's completion status in your FriendBook.
 
-### Marking a Plan as Uncompleted : `uncomplete-plan`
+```
+uncomplete-plan INDEX
+```
 
-Marks the specified plan as uncompleted.
-
-Format: `uncomplete-plan INDEX`
-
-Examples:
+#### Examples of Correct Usage:
 * `uncomplete-plan 4`
 
-Arguments:
+#### Successful Output:
+![uncomplete-planOutput](images/ug/uncomplete-planOutput.png)
 
-- An `INDEX` must be provided and be a positive integer 1, 2, 3, ... and within the count of friends.
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-Successful Output:
+- Missing or invalid arguments :
+  `Invalid command...`
 
-`Uncompleted Plan: PLAN_NAME with FRIEND_NAME at DATE_TIME`
+- INDEX is greater than the number of friends :
+  `The plan index provided is bigger than your number of plans.`
 
-Unsuccessful Output:
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+uncomplete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+### `find-plan`
 
-- Missing or invalid arguments: `Invalid command.
-  uncomplete-plan: Marks the plan as not completed identified by the index number used in the displayed plan list.
-  Parameters: INDEX (must be a positive non-zero integer)
-  Example: uncomplete-plan 1`
-    - FriendBook saves you the headache of counting your number of plans, hence if the index given
-      is greater than your number of plans, this error will be shown: `The plan index provided is bigger than your number of plans.`
+This command allows you to find a plan by name in your FriendBook.
 
-### Deleting a Plan : `delete-plan`
+```
+find-plan FRIEND_NAME
+```
 
-Deletes the specified plan.
-
-Format: `delete-plan INDEX`
-
-Examples:
-* `delete-plan 4`
-
-Arguments:
-
-- An `INDEX` must be provided and be a positive integer 1, 2, 3, ... and within the count of friends.
-
-Successful Output:
-
-`Deleted Plan: PLAN_NAME with FRIEND_NAME at DATE_TIME`
-
-Unsuccessful Output:
-
-- Invalid command: `Invalid command.` + help message with list of all commands
-
-- Missing or invalid arguments: `Invalid command.
-  delete-plan: Deletes the plan identified by the index number used in the displayed plan list.
-  Parameters: INDEX (must be a positive non-zero integer)
-  Example: delete-plan 1`
-    - FriendBook saves you the headache of counting your number of plans, hence if the index given
-      is greater than your number of plans, this error will be shown: `The plan index provided is bigger than your number of plans.`
-
-### Finding a plan : `find-plan`
-
-Find plans which is associated to a given friend.
-
-Format: `find-plan FRIEND_NAME`
-
-* `FRIEND_NAME` has to be the full name of the Person instance. e.g `find-plan Elijah` will throw an error if no Person has the full name `Elijah`
-
-* The search is case-sensitive. e.g `hans` will not match `Hans`
-
-* Only one full name will be taken in and searched (only one person's plans will be searched)
-
-Examples:
+#### Examples of Correct Usage:
 * `find-plan John` returns all plans associated to `John`
 
-Arguments:
-- `FRIEND_NAME` must be the full name belonging to a Person saved in the FriendBook
+#### Successful Output:
+![find-planOutput](images/ug/find-planOutput.png)
 
-Successful Output:
-`COUNT_OF_PLANS plans listed!`
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-Unsuccessful Output:
+- Missing or invalid arguments :
+  `Invalid command...`
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+- Not a valid friend :
+  `The friend does not exist in the FriendBook.`
 
-- Missing arguments: `Invalid syntax: Missing arguments.
-  find-plan: Finds all plans which contains the specified friend.
-  Parameters: FRIEND_NAME
-  Example: find-plan Elijah Chia`
-
-- Not a valid friend: `The friend does not exist in the FriendBook.`
-
-### Listing plans : `list-plan`
-
-Shows a list of all plans in the FriendBook.
-
-Format: `list-plan`
-
-Successful Output:
-`Listed all plans`
-
-Unsuccessful Output:
-
-- Invalid command: `Invalid command.` + help message with list of all commands
-
-### Clearing the Storage : `clear`
-Clears the stored friends and plans on the `friendbook.json` file which is located in the `data` folder in FriendBook's home folder.
-
-### Get the User Guide : `help`
-Provides the FriendBook user guide's link.
-
-### Exit FriendBook : `exit`
-Closes the FriendBook Application.
-
-### Saving the data
-
-FriendBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-FriendBook data are saved automatically as a JSON file `[JAR file location]/data/friendbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, FriendBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+#### Additional Information
+<div markdown="span" class="alert alert-info">
+The search is case-insensitive. (`hans` will match `Hans`).
 </div>
+
+#### Disclaimers
+<div markdown="span" class="alert alert-danger">
+`FRIEND_NAME` must be the full name of a friend in the FriendBook.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+Only one full name should be provided.
+</div>
+
+### `list-plan`
+
+This command allows you to list all your plans in your FriendBook.
+
+```
+list-plan
+```
+
+#### Successful Output:
+![list-planOutput](images/ug/list-planOutput.png)
+
+### `clear`
+This command clears the stored friends and plans on the `friendbook.json` file which is located in the `data` folder in FriendBook's home folder.
+
+### `help`
+This command provides the FriendBook user guide's link.
+
+### `exit`
+This command closes the FriendBook application.
 
 --------------------------------------------------------------------------------------------------------------------
 
