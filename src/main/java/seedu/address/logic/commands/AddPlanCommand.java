@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FRIEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PLANS;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -56,6 +57,7 @@ public class AddPlanCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
 
         Person person;
         try {
@@ -63,6 +65,7 @@ public class AddPlanCommand extends Command {
         } catch (PersonNotFoundException e) {
             throw new CommandException(MESSAGE_FRIEND_NOT_FOUND);
         }
+
         toAdd = new Plan(this.planName, this.planDateTime, person);
 
         if (model.hasPlan(toAdd)) {

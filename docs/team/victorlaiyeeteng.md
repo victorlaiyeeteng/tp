@@ -5,7 +5,7 @@ title: Victor Lai's Project Portfolio Page
 
 ### Project: FriendBook
 
-FriendBook - is a desktop app for managing friend contacts and plan details, 
+FriendBook - is a desktop app for managing friend contacts and plan details,
 optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI) created with JavaFX.
 If you can type fast, FriendBook can get your plans management done faster than traditional GUI apps.
 It is written in Java, and has about 17kLoC.
@@ -13,20 +13,20 @@ It is written in Java, and has about 17kLoC.
 Given below are my contributions to the project.
 
 * **New Feature**: Added the functionality for users to add plan.
-  * What it does: allows user to add a plan to his FriendBook, and associate the plan to an existing friend. 
+  * What it does: allows user to add a plan to his FriendBook, and associate the plan to an existing friend.
   * Justification: This feature is a key functionality of FriendBook which requires plans to be added, so that user can view and manipulate with
   the added plan as required.
   * Highlights:
     * Decided on `FRIEND_NAME` as the most user-friendly identifier of the friend that is to be associated with the plan, 
     as it is not only unique to each friend, but also easily retrievable
     * Implemented a search method to `getPersonByName` and check if the friend exists
-  
+
 * **New Feature**: Added the functionality for users to find plans by existing friends' names.
-  * What it does: allows user to find existing plans that are associated with the given friend. 
-  * Justification: This feature provides a clean and neat way for users to filter and view their plans that are of his 
+  * What it does: allows user to find existing plans that are associated with the given friend.
+  * Justification: This feature provides a clean and neat way for users to filter and view their plans that are of his
   interest (related to queried friend).
-  * Highlights: 
-    * Obtaining the queried friend (if exists) by the `FRIEND_NAME` using the added function stated above was 
+  * Highlights:
+    * Obtaining the queried friend (if exists) by the `FRIEND_NAME` using the added function stated above was
     needed to get the filtered list of plans associated with the friend
     * Filtering plans based on `FRIEND_NAME` required implementation of `PlanContainsFriendPredicate` to fulfill the previous highlight
 
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
   * What it does: allows user to get all their plans without any filters.
   * Justification: This feature provides users the ability to view all their plans after the scenario where they execute the above `find-plan` command to filter
   the plans.
-  
+
 * **Enhance Existing Delete Command**: Modified `DeleteCommand` to ensure friends are deleted safely.
   * What it does: prevents and alerts user when he attempts to delete a friend that is involved in at least 1 plan.
   * Justification: This modification provides logical sense for user who wishes to view complete details of friend associated to his existing
@@ -46,7 +46,7 @@ Given below are my contributions to the project.
   * Justification: This ensures plans have its friend details updated accordingly when needed.
   * Highlights:
     * Initially thought it was an Ui rendering bug of updated friend's name not reflecting in related plans.
-    * After analysing existing AB3 `EditCommand` implementation and realising that it creates a new `Person` object and replaces the old one, 
+    * After analysing existing AB3 `EditCommand` implementation and realising that it creates a new `Person` object and replaces the old one,
     hence a similar replacement had to be done in each associated plan.
 
 * **Testing**: Added relevant test and helper files to aid testing of above implementations
