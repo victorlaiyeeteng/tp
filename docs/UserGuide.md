@@ -28,10 +28,16 @@ Here's a quick summary of what FriendBook can do for you:
   - [add-plan](#add-plan)
   - [delete-plan](#delete-plan)
   - [edit-plan](#edit-plan)
+  - [complete-plan](#complete-plan)
+  - [uncomplete-plan](#uncomplete-plan)
   - [find-plan](#find-plan)
   - [list-plan](#list-plan)
+- [General Commands](#general-commands)
+  - [clear](#clear)
+  - [help](#help)
+  - [exit](#exit)
 - [Command Summary](#command-summary)
-- [FAQs](#faqs)
+- [FAQs](#faq)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -506,6 +512,8 @@ list-plan
 #### Successful Output:
 ![list-planOutput](images/ug/list-planOutput.png)
 
+## General Commands
+
 ### `clear`
 This command clears the stored friends and plans on the `friendbook.json` file which is located in the `data` folder in FriendBook's home folder.
 
@@ -530,7 +538,7 @@ This command closes the FriendBook application.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action | Format, Examples
 --------|------------------
