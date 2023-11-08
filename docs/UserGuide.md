@@ -147,6 +147,10 @@ delete-friend INDEX
 delete-friend command must be provided with a positive non-zero index else, an invalid command message will be shown.
 </div>
 
+<div markdown="span" class="alert alert-danger">
+Friends that are associated with a Plan cannot be deleted.
+</div>
+
 ### `edit-friend`
 
 This command allows you to edit a friend's details in your FriendBook.
@@ -279,7 +283,11 @@ add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
 
 #### Additional Information:
 <div markdown="span" class="alert alert-info">
-DATE_TIME must be in YYYY-MM-DD-HH:MM format
+DATE_TIME must be in YYYY-MM-DD-HH:MM format.
+</div>
+
+<div markdown="span" class="alert alert-info">
+Only 1 Friend can be associated per Plan. 
 </div>
 
 #### Disclaimer:
@@ -288,7 +296,7 @@ Plans with exactly the same name, date-time and friend as an existing plan is no
 </div>
 
 <div markdown="span" class="alert alert-danger">
-Plan names are case-sensitive (meeting and Meeting are different plan names)
+Plan names are case-sensitive (meeting and Meeting are different plan names).
 </div>
 
 <div markdown="span" class="alert alert-danger">
@@ -457,7 +465,7 @@ find-plan FRIEND_NAME
 
 #### Additional Information
 <div markdown="span" class="alert alert-info">
-The search is case-insensitive. (`hans` will match `Hans`).
+The search is case-insensitive (`hans` will match `Hans`).
 </div>
 
 #### Disclaimers
