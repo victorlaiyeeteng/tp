@@ -566,6 +566,12 @@ This command closes the FriendBook application.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FriendBook home folder.
 
+**Q**: How do I suggest feedback for FriendBook?<br>
+**A**: You may email us at `friendbook@u.nus.edu.sg`.
+
+**Q**: What features can we look forward to in the future?<br>
+**A**: We are currently looking into the following features: Allowing Plans to have multiple Friends, cloud storage of Plan and Friend data, and allowing users to create their own FriendBook themes and plugins.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
