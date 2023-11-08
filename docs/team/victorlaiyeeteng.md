@@ -56,10 +56,8 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=victorlaiyeeteng&tabRepo=AY2324S1-CS2103T-W16-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-
 * **Project management**:
-  * Set up team's GitHub organization
-  * Set up FriendBook repository, enabling issue tracker, setting up CodeCov and CI
+  * Set up team's GitHub organization, set up repo, CodeCov and CI
   * Managed releases `v1.3(trial) - v1.3(final)`(2 releases) on GitHub
   * Documented V1.2 postmortem and V1.3 product demo on developer document
 
