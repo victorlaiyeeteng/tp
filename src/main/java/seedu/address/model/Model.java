@@ -72,6 +72,12 @@ public interface Model {
     Person getPersonByName(Name name);
 
     /**
+     * Gets the Person that has the same {@code name} (case-insensitive) from the list.
+     * A Person with the same name must exist in the list, else Exception is thrown.
+     */
+    Person getPersonByName(String name);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */

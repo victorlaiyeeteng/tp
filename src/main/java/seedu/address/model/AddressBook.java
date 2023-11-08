@@ -96,6 +96,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Gets the Person that has the same {@code name} (case-insensitive) from the list.
+     * A Person with the same name must exist in the list, else Exception is thrown.
+     */
+    public Person getPersonByName(String name) {
+        requireNonNull(name);
+        return persons.getPersonByName(name);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */

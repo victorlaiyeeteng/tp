@@ -37,7 +37,8 @@ public class FindPlanCommand extends Command {
         // Check if a friend with given name exists
         Person person;
         try {
-            person = model.getPersonByName(this.friendName);
+            String name = this.friendName.toString().toLowerCase();
+            person = model.getPersonByName(name);
         } catch (PersonNotFoundException e) {
             throw new CommandException(MESSAGE_FRIEND_NOT_FOUND);
         }
