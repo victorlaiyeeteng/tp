@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FRIEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PLANS;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -33,9 +34,6 @@ public class AddPlanCommand extends Command {
             + PREFIX_NAME + "Project Meeting "
             + PREFIX_DATETIME + "2024-10-20-09:00 "
             + PREFIX_FRIEND + "John Doe";
-    public static final String VALID_SYNTAX = COMMAND_WORD + " " + PREFIX_NAME + "PLAN_NAME "
-            + PREFIX_DATETIME + "DATE_TIME "
-            + PREFIX_FRIEND + "FRIEND_NAME";
 
     public static final String MESSAGE_SUCCESS = "New plan added: %1$s";
     public static final String MESSAGE_DUPLICATE_PLAN = "This plan already exists in the FriendBook";
@@ -59,6 +57,7 @@ public class AddPlanCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
 
         Person person;
         try {
@@ -66,6 +65,7 @@ public class AddPlanCommand extends Command {
         } catch (PersonNotFoundException e) {
             throw new CommandException(MESSAGE_FRIEND_NOT_FOUND);
         }
+
         toAdd = new Plan(this.planName, this.planDateTime, person);
 
         if (model.hasPlan(toAdd)) {

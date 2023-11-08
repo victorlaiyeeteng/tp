@@ -171,7 +171,7 @@ Note that there are several classes not included in the above diagram, but still
 ### 2. `find-plan`
 
 The `find-plan` command allows the user to find all plans associated with a saved friend. The plans list on the
-Ui will be updated to display the relevant plans. This mechanism is facilitated by the `Model` interface through 
+Ui will be updated to display the relevant plans. This mechanism is facilitated by the `Model` interface through
 has the following operations:
 * `Model#getPersonByName(Name)` - Gets the friend (Person object) by Name input.
 * `Model#updateFilteredPlanList(Predicate)` - Filters the list of plans to display by the Predicate input.
@@ -181,8 +181,8 @@ Given below is an example usage scenario and how the find plan mechanism behaves
 Step 1. The user has friends and some plans associated to the friends. The `Model` will store the list of plans in the
 form of a `FilteredList` type.
 
-Step 2. The user executes `find-plan Alex` command to find all plans associated with `Alex` saved in the FriendBook. 
-As described in the Logic Component above, this will create a `FindPlanCommand` instance. 
+Step 2. The user executes `find-plan Alex` command to find all plans associated with `Alex` saved in the FriendBook.
+As described in the Logic Component above, this will create a `FindPlanCommand` instance.
 
 Step 3. The `LogicManager` will call `FindPlanCommand#execute()` to start the search for plans. Then, `Model#getPersonByName(Name)`
 will be called to find the friend with the given Name, returning a `Person` instance.
@@ -191,7 +191,7 @@ will be called to find the friend with the given Name, returning a `Person` inst
 
 Step 4. `FindPlanCommand#execute()` then creates a `PlanContainsFriendPredicate` instance that checks if a `Plan` composes of the `Person` instance returned in step 3.
 
-Step 5. Finally, this `Predicate` instance will be inputted into the `Model#updateFilteredPlanList(Predicate)` method to filter for the `Plan` objects that satisfy the 
+Step 5. Finally, this `Predicate` instance will be inputted into the `Model#updateFilteredPlanList(Predicate)` method to filter for the `Plan` objects that satisfy the
 `Predicate` from step 4. This will allow the Ui to display the filtered plans, representing the plans associated with the given name (unique to a Person object).
 
 The following sequence diagram shows how the `find-plan` command works.
@@ -217,7 +217,7 @@ The following activity diagram summarizes what happens when a user executes the 
 * **Alternative 2:** Friend's First Name
   itself.
     * Pros: Will be more convenient for the user to query.
-    * Cons: Implementation of finding by First Name is more challenging, and there may be duplicate friends with the same First Name, 
+    * Cons: Implementation of finding by First Name is more challenging, and there may be duplicate friends with the same First Name,
   since each Person object's First Name does not have to be unique.
 
 ### 3. `delete-plan`
@@ -241,11 +241,14 @@ will be called to delete that plan.
 Step 4. `Model#deletePlan(Plan)` will call `AddressBook#removePlan(Plan)` which will then remove the plan from the UniquePlanList in the FriendBook.
 
 Step 5. The Ui will display a success message if the command is successful and the error message otherwise.
- 
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If no plan can be found in the address book with the given index, an error will be thrown and the mechanism will terminate.
 </div>
 
 ![DeleteSequenceDiagram](diagrams/DeleteSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `delete-plan` command:
+![DeleteActivityDiagram](diagrams/DeletePlanCommandActivityDiagram.png)
 
 
 ### 4. `edit-plan`
@@ -286,7 +289,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ### 5. `complete-plan`
 
-The `complete-plan` command allows the users to mark their plans as completed. 
+The `complete-plan` command allows the users to mark their plans as completed.
 The Plan status will then be updated accordingly in the Ui. This mechanism is facilitated by the `Model` interface through
 has the following operations:
 * `Model#getFilteredPlanList()` - Gets the list of Plans.
@@ -353,8 +356,8 @@ The following activity diagram summarizes what happens when a user executes the 
 * prefers a simple GUI controlled by CLI commands
 
 **Value proposition** <br>
-Provides a simple, free and fuss-free way for friends to keep updated information about each other and their 
-plans with one another. A Command Line Interface(CLI) and the FriendBook GUI serve as a quick and flexible way 
+Provides a simple, free and fuss-free way for friends to keep updated information about each other and their
+plans with one another. A Command Line Interface(CLI) and the FriendBook GUI serve as a quick and flexible way
 for users to add and manage plans with their friends.
 
 

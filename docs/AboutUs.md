@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `chia.elijah[at]comp.nus.edu.sg`
+You can reach us at the email `friendbook@u.nus.edu.sg`
 
 ## Project team
 
@@ -17,7 +17,7 @@ You can reach us at the email `chia.elijah[at]comp.nus.edu.sg`
 [[portfolio](team/elijah5399.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Frontend and Backend Development
 
 ### Jannice Suciptono
 
@@ -27,7 +27,7 @@ You can reach us at the email `chia.elijah[at]comp.nus.edu.sg`
 [[portfolio](team/jannnice.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Frontend and Backend Development
 
 ### Goh Teng Fong
 
@@ -37,7 +37,7 @@ You can reach us at the email `chia.elijah[at]comp.nus.edu.sg`
 [[portfolio](team/gohtengfong.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Backend Development + Dev Ops
 
 ### Ho Hong Wei
 
@@ -47,7 +47,7 @@ You can reach us at the email `chia.elijah[at]comp.nus.edu.sg`
 [[portfolio](team/redtailedfox.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Backend Development + Data
 
 ### Victor Lai
 
@@ -57,4 +57,4 @@ You can reach us at the email `chia.elijah[at]comp.nus.edu.sg`
 [[portfolio](team/victorlaiyeeteng.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Backend Development + Dev Ops
