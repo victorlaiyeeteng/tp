@@ -23,7 +23,7 @@ Here's a quick summary of what FriendBook can do for you:
   - [delete-friend](#delete-friend)
   - [edit-friend](#edit-friend)
   - [find-friend](#find-friend)
-  - [list-friend](#list-plan)
+  - [list-friend](#list-friend)
 - [Plan-Related Features](#plan-related-features)
   - [add-plan](#add-plan)
   - [delete-plan](#delete-plan)
@@ -257,7 +257,7 @@ This search is done by name.
 Only full words will be matched (`Han` will not match `Hans`).
 </div>
 
-### Listing friends : `list-friend`
+### `list-friend`
 
 This command allows you to list all your friends in your FriendBook.
 
@@ -434,7 +434,7 @@ complete-plan INDEX
 complete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
 </div>
 
-### uncomplete-plan
+### `uncomplete-plan`
 
 This command allows you to unmark a plan's completion status in your FriendBook.
 
