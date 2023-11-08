@@ -510,7 +510,7 @@ Action | Format, Examples
 --------|------------------
 **add-friend** | `add-friend n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> e.g., `add-friend n/John Doe p/98321234 e/johnd@example.com`
 **edit-friend** | `edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`<br> e.g., `edit-friend 3 n/Jack Ma`
-**delete-friend** | `delete-friend NAME` <br> e.g., `delete-friend John Doe`
+**delete-friend** | `delete-friend INDEX` <br> e.g., `delete-friend 1`
 **find-friend** | `find-friend KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-friend Jack`
 **list-friend** | `list-friend`
 **add-plan** | `add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`<br> e.g.,`add-plan n/Project Meeting d/2023-10-23-10:00 f/Royden`
