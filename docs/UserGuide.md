@@ -18,13 +18,13 @@ Here's a quick summary of what FriendBook can do for you:
 - [Installation Guide](#installation-guide)
 - [Disclaimers](#disclaimers)
 - [Important Information](#important-information)
-- [Friend-Related Features](#friends-related-features)
+- [Friend-Related Features](#friend-related-features)
   - [add-friend](#add-friend)
   - [delete-friend](#delete-friend)
   - [edit-friend](#edit-friend)
-  - [find-friend]()
-  - [list-friend]()
-- [Plan-Related Features](#features)
+  - [find-friend](#find-friend)
+  - [list-friend](#list-plan)
+- [Plan-Related Features](#plan-related-features)
   - [add-plan](#add-plan)
   - [delete-plan](#delete-plan)
   - [edit-plan](#edit-plan)
@@ -71,7 +71,7 @@ Texts in this box shows a command and it's corresponding syntax
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Friends-Related Features
+## Friend-Related Features
 
 ### `add-friend`
 
@@ -325,7 +325,7 @@ delete-plan INDEX
 delete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
 </div>
 
-### Editing a Plan's Information: `edit-plan`
+### `edit-plan`
 
 This command allows you to edit a plan's details in your FriendBook.
 
