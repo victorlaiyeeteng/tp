@@ -11,8 +11,8 @@ Here's a quick summary of what FriendBook can do for you:
 * Reminders on how each command can be used!
 * Add friends into FriendBook and keep track of their information!
 * Add plans into FriendBook and keep track of them!
-* Add useful information like deadlines to each of your plan!
-* Associate a friend with each of your plan!
+* Add useful information like deadlines to each of your plans!
+* Associate a friend with each of your plans!
 
 # Table of Contents
 - [Installation Guide](#installation-guide)
@@ -36,8 +36,8 @@ Here's a quick summary of what FriendBook can do for you:
   - [clear](#clear)
   - [help](#help)
   - [exit](#exit)
-- [Command Summary](#command-summary)
 - [FAQs](#faq)
+- [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -54,7 +54,10 @@ Here's a quick summary of what FriendBook can do for you:
 --------------------------------------------------------------------------------------------------------------------
 
 ## Disclaimers
-1. Due to FriendBook being a beta release, we only support up to 10000 friends and plans.
+
+1. As FriendBook is still in its beta release stage, we only support a limited number of friends and plans. Our application may not work as expected if too many friends and plans (more than 2147483647) are used!
+2. Currently, each plan can only be associated with **exactly one** person. We are working on making this requirement more flexible!
+3. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -565,12 +568,6 @@ This command closes the FriendBook application.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Command Summary
 
 Action | Format, Examples
@@ -587,3 +584,6 @@ Action | Format, Examples
 **delete-plan** | `delete-plan INDEX` <br> e.g., `delete-plan 4`
 **find-plan** | `find-plan FRIEND_NAME` <br> e.g., `find-plan John`
 **list-plan** | `list-plan`
+**clear** | `clear`
+**help** | `help`
+**exit** | `exit`
