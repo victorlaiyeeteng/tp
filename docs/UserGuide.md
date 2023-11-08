@@ -104,6 +104,7 @@ add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
 - Invalid email format :
   `Emails should be of the format local-part@domain...`
 
+#### Disclaimer:
 <div markdown="span" class="alert alert-danger">
 Each friend must have a unique name and email.
 </div>
@@ -141,6 +142,7 @@ delete-friend INDEX
 - INDEX is greater than the number of friends :
   `The friend index provided is bigger than your number of friends.`
 
+#### Disclaimer:
 <div markdown="span" class="alert alert-danger">
 delete-friend command must be provided with a positive non-zero index else, an invalid command message will be shown.
 </div>
@@ -176,19 +178,23 @@ edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
 - Friend (identified by name or email) already exists :
   `This friend already exists in the FriendBook...`
 
+#### Additional Information:
+<div markdown="span" class="alert alert-info">
+At least 1 optional field must be provided.
+</div>
+
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+edit-friend command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
+
 ### `find-friend`
 
 This command allows you to find a friend by name in your FriendBook. 
 
 ```
-find-friend KEYWORD [MORE_KEYWORDS]
+find-friend NAME...
 ```
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 #### Examples of Correct Usage:
 * `find-friend John` returns `john` and `John Doe`
@@ -201,7 +207,30 @@ find-friend KEYWORD [MORE_KEYWORDS]
 - Invalid command :
   `Invalid command...`
 
-- Empty arguments: `Invalid syntax: Missing arguments...`
+- Empty arguments :
+  `Invalid syntax: Missing arguments...`
+
+#### Additional Information:
+<div markdown="span" class="alert alert-info">
+The search is case-insensitive. (`hans` will match `Hans`)
+</div>
+
+<div markdown="span" class="alert alert-info">
+The order of the keywords does not matter. (`Hans Bo` will match `Bo Hans`)
+</div>
+
+<div markdown="span" class="alert alert-info">
+Friends matching at least one keyword will be returned.
+</div>
+
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+This search is done by name.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+Only full words will be matched (`Han` will not match `Hans`)
+</div>
 
 ### Listing friends : `list-friend`
 
