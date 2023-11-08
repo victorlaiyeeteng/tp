@@ -28,10 +28,16 @@ Here's a quick summary of what FriendBook can do for you:
   - [add-plan](#add-plan)
   - [delete-plan](#delete-plan)
   - [edit-plan](#edit-plan)
+  - [complete-plan](#complete-plan)
+  - [uncomplete-plan](#uncomplete-plan)
   - [find-plan](#find-plan)
   - [list-plan](#list-plan)
+- [General Commands](#general-commands)
+  - [clear](#clear)
+  - [help](#help)
+  - [exit](#exit)
 - [Command Summary](#command-summary)
-- [FAQs](#faqs)
+- [FAQs](#faq)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -66,8 +72,23 @@ Here's a quick summary of what FriendBook can do for you:
 Texts in this box shows a command and it's corresponding syntax
 ```
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
-- Texts in [square brackets] indicate that the argument is optional
-- `...` indicate that more than 1 argument of that type can be passed into the command
+- Texts in [square brackets] indicate that the argument is optional.
+- `...` indicate that more than 1 parameter of that type can be passed into the command. Otherwise, only 1 is allowed. 
+
+### Prefixes
+Prefixes allow you to specify important values when entering a command.
+
+Here is a table of all available prefixes:
+
+| Prefixes | Description                                                                             |
+|----------|-----------------------------------------------------------------------------------------|
+| `n/`     | Used to indicate the name of a Friend or Plan.                                          |
+| `p/`     | Used to indicate the Phone number of a Friend.                                          |
+| `e/`     | Used to indicate the Email of a Friend.                                                 |
+| `a/`     | Used to indicate the Address of a Friend.                                               |
+| `t/`     | Used to indicate the Tags of a Friend.                                                  |
+| `d/`     | Used to indicate the start or end date of a Plan.                                       |
+| `f/`     | Used to indicate the Friend associated with the Plan.|
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -145,6 +166,10 @@ delete-friend INDEX
 #### Disclaimer:
 <div markdown="span" class="alert alert-danger">
 delete-friend command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+Friends that are associated with a Plan cannot be deleted.
 </div>
 
 ### `edit-friend`
@@ -277,9 +302,16 @@ add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
 - Not a valid friend :
   `The friend does not exist in the FriendBook.`
 
+- Empty or invalid name for Friend :
+  `Names should only contain alphanumeric characters and spaces, and it should not be blank...`
+
 #### Additional Information:
 <div markdown="span" class="alert alert-info">
-DATE_TIME must be in YYYY-MM-DD-HH:MM format
+DATE_TIME must be in YYYY-MM-DD-HH:MM format.
+</div>
+
+<div markdown="span" class="alert alert-info">
+Only 1 Friend can be associated per Plan. 
 </div>
 
 #### Disclaimer:
@@ -288,7 +320,7 @@ Plans with exactly the same name, date-time and friend as an existing plan is no
 </div>
 
 <div markdown="span" class="alert alert-danger">
-Plan names are case-sensitive (meeting and Meeting are different plan names)
+Plan names are case-sensitive (meeting and Meeting are different plan names).
 </div>
 
 <div markdown="span" class="alert alert-danger">
@@ -457,7 +489,7 @@ find-plan FRIEND_NAME
 
 #### Additional Information
 <div markdown="span" class="alert alert-info">
-The search is case-insensitive. (`hans` will match `Hans`).
+The search is case-insensitive (`hans` will match `Hans`).
 </div>
 
 #### Disclaimers
@@ -479,6 +511,8 @@ list-plan
 
 #### Successful Output:
 ![list-planOutput](images/ug/list-planOutput.png)
+
+## General Commands
 
 ### `clear`
 This command clears the stored friends and plans on the `friendbook.json` file which is located in the `data` folder in FriendBook's home folder.
@@ -504,7 +538,7 @@ This command closes the FriendBook application.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action | Format, Examples
 --------|------------------
