@@ -17,8 +17,8 @@ Given below are my contributions to the project.
   * Justification: This feature is a key functionality of FriendBook which requires plans to be added, so that user can view and manipulate with
   the added plan as required.
   * Highlights:
-    * Deciding on the most user-friendly way of user's interaction with the CLI to identify the friend that is to be associated with the plan was challenging, 
-    eventually deciding on `FRIEND_NAME` as the identifier as it is not only unique to each friend, but also easily retrievable
+    * Decided on `FRIEND_NAME` as the most user-friendly identifier of the friend that is to be associated with the plan, 
+    as it is not only unique to each friend, but also easily retrievable
     * Implemented a search method to `getPersonByName` and check if the friend exists
   
 * **New Feature**: Added the functionality for users to find plans by existing friends' names.
@@ -43,7 +43,7 @@ Given below are my contributions to the project.
 
 * **Enhance Existing Edit Command**: Built on `EditCommand` to ensure edited friends' detailed are reflected in associated plans.
   * What it does: updates relevant plans which are associated to the edited friends' details
-  * Justification: This ensures correctness of FriendBook whereby plans should have its friend details updated accordingly when needed.
+  * Justification: This ensures plans have its friend details updated accordingly when needed.
   * Highlights:
     * Initially thought it was an Ui rendering bug of updated friend's name not reflecting in related plans.
     * After analysing existing AB3 `EditCommand` implementation and realising that it creates a new `Person` object and replaces the old one, 
@@ -53,14 +53,12 @@ Given below are my contributions to the project.
   * What it does: tests all new functionalities and bug fixes for optimal code coverage
   * Highlights: Added test files for above commands and function checks. Added test helper files like `TypicalPlans` and `PlanBuilder` that were also used in other test files.
 
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=victorlaiyeeteng&tabRepo=AY2324S1-CS2103T-W16-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
   * Set up team's GitHub organization, set up repo, CodeCov and CI
   * Managed releases `v1.3(trial) - v1.3(final)`(2 releases) on GitHub
   * Documented V1.2 postmortem and V1.3 product demo on developer document
-
 
 * **Documentation**:
   * User Guide:
@@ -72,11 +70,9 @@ Given below are my contributions to the project.
     * Wrote `Product scope`, `User Stories`, 2 `Use Cases`, `NFR` for the `Requirements` appendix
     * Wrote `Deleting a person`, `Editing a plan` and `Saving data` sections for the `Instructions for manual testing` appendix
 
-
 * **Review / Mentoring Contributions**:
   * Shared with teammates how we can use newly implemented search function and predicate classes to facilitate our `Plan` commands
   * Review bugs flagged out during PE-D and categorised them while removing repeated bugs
-
 
 * **Community**:
   * Suggested to another team in tutorial class on how to use existing predicates to improve their OOP design.
