@@ -3,7 +3,7 @@ layout: pagewithnavbar
 title: User Guide
 ---
 
-FriendBook is a GUI/CLI program made for **SoC Students** to help them keep track and manage their friends and plans.
+FriendBook is a GUI/CLI program made for **SoC Students** to help them track and manage their friends and plans.
 
 Here's a quick summary of what FriendBook can do for you:
 
@@ -14,7 +14,7 @@ Here's a quick summary of what FriendBook can do for you:
 * Add useful information like deadlines to each of your plan!
 * Associate a friend with each of your plan!
 
-# Table of Content
+# Table of Contents
 - [Installation Guide](#installation-guide)
 - [Disclaimers](#disclaimers)
 - [Important Information](#important-information)
@@ -69,7 +69,7 @@ Here's a quick summary of what FriendBook can do for you:
 </div>
 
 ```
-Texts in this box shows a command and it's corresponding syntax
+Texts in this box shows a command and its corresponding syntax
 ```
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
 - Texts in [square brackets] indicate that the argument is optional.
@@ -119,7 +119,7 @@ add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
 - Empty or invalid name :
   `Names should only contain alphanumeric characters and spaces, and it should not be blank...`
 
-- Non-numeric phone number :
+- Invalid phone number :
   `Phone numbers should only contain numbers, and it should be at least 3 digits long`
 
 - Invalid email format :
@@ -131,7 +131,7 @@ Each friend must have a unique name and email.
 </div>
 
 <div markdown="span" class="alert alert-danger">
-Friend's names are case insensitive (John and john are the same name).
+Friend's names are case-insensitive (John and john are the same name).
 </div>
 
 <div markdown="span" class="alert alert-danger">
@@ -165,11 +165,15 @@ delete-friend INDEX
 
 #### Disclaimer:
 <div markdown="span" class="alert alert-danger">
-delete-friend command must be provided with a positive non-zero index else, an invalid command message will be shown.
+delete-friend command must be provided with a positive non-zero index, else an invalid command message will be shown.
 </div>
 
 <div markdown="span" class="alert alert-danger">
 Friends that are associated with a Plan cannot be deleted.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
 </div>
 
 ### `edit-friend`
@@ -191,8 +195,14 @@ edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
 - Invalid command :
   `Invalid command...`
 
-- Missing or invalid arguments :
-  `Invalid command...`
+- Empty or invalid name :
+  `Names should only contain alphanumeric characters and spaces, and it should not be blank...`
+
+- Invalid phone number : 
+  `Phone numbers should only contain numbers, and it should be at least 3 digits long`
+
+- Invalid email format :
+  `Emails should be of the format local-part@domain...`
 
 - INDEX is greater than the number of friends :
   `The friend index provided is bigger than your number of friends.`
@@ -210,7 +220,11 @@ At least 1 optional field must be provided.
 
 #### Disclaimer:
 <div markdown="span" class="alert alert-danger">
-edit-friend command must be provided with a positive non-zero index else, an invalid command message will be shown.
+edit-friend command must be provided with a positive non-zero index, else an invalid command message will be shown.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
 </div>
 
 ### `find-friend`
@@ -293,7 +307,7 @@ add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
 - Missing arguments :
   `Invalid syntax: Missing arguments...`
 
-- Date-Time in wrong format :
+- Date-Time in wrong format or date does not exist:
   `Date-Time given is invalid. Date-Time must be in YYYY-MM-DD-HH:MM format`
 
 - Date-Time in the past :
@@ -354,7 +368,11 @@ delete-plan INDEX
 
 #### Disclaimer:
 <div markdown="span" class="alert alert-danger">
-delete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+delete-plan command must be provided with a positive non-zero index, else an invalid command message will be shown.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
 </div>
 
 ### `edit-plan`
@@ -376,8 +394,11 @@ edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]
 - Invalid command :
   `Invalid command...`
 
-- Missing or invalid arguments :
-  `Invalid command...`
+- Date-Time in wrong format or date does not exist :
+  `Date-Time given is invalid. Date-Time must be in YYYY-MM-DD-HH:MM format`
+
+- Date-Time in the past :
+  `Date-Time given is invalid. Ensure that the Date-Time provided is not in the past.`
 
 - INDEX is greater than the number of friends :
   `The plan index provided is bigger than your number of plans.`
@@ -403,6 +424,10 @@ DATE_TIME must be in YYYY-MM-DD-HH:MM format
 #### Disclaimer:
 <div markdown="span" class="alert alert-danger">
 edit-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
 </div>
 
 ### `complete-plan`
@@ -434,6 +459,10 @@ complete-plan INDEX
 complete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
 </div>
 
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
+</div>
+
 ### `uncomplete-plan`
 
 This command allows you to unmark a plan's completion status in your FriendBook.
@@ -461,6 +490,10 @@ uncomplete-plan INDEX
 #### Disclaimer:
 <div markdown="span" class="alert alert-danger">
 uncomplete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
 </div>
 
 ### `find-plan`
