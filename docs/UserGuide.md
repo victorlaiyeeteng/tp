@@ -137,7 +137,7 @@ Examples:
 * `delete-friend 2`
 
 Arguments:
-- `NAME` must be a string
+- `INDEX` must be a positive non-zero integer
 
 Successful Output:
 
