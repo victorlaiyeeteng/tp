@@ -262,6 +262,10 @@
   }
 }
 
+/**
+ * Custom css classes
+ */
+
 .navbar {
   display: flex;
     flex-direction: column;
@@ -274,6 +278,9 @@
     padding-left: 40px;
     @media screen and (max-width: 1200px) {
       display: none;
+    }
+    @media print {
+        display: none;
     }
 }
 
