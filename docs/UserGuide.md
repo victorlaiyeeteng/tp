@@ -281,6 +281,9 @@ add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
 - Not a valid friend :
   `The friend does not exist in the FriendBook.`
 
+- Empty or invalid name for Friend :
+  `Names should only contain alphanumeric characters and spaces, and it should not be blank...`
+
 #### Additional Information:
 <div markdown="span" class="alert alert-info">
 DATE_TIME must be in YYYY-MM-DD-HH:MM format.
