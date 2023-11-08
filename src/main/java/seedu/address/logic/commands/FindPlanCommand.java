@@ -24,7 +24,6 @@ public class FindPlanCommand extends Command {
             + "friend. \nParameters: FRIEND_NAME \n"
             + "Example: " + COMMAND_WORD + " Elijah Chia";
 
-    public static final String MESSAGE_SYNTAX = "Syntax: find-plan FRIEND_NAME";
     private final Name friendName;
 
     public FindPlanCommand(Name friendName) {
@@ -38,7 +37,8 @@ public class FindPlanCommand extends Command {
         // Check if a friend with given name exists
         Person person;
         try {
-            person = model.getPersonByName(this.friendName);
+            String name = this.friendName.toString().toLowerCase();
+            person = model.getPersonByName(name);
         } catch (PersonNotFoundException e) {
             throw new CommandException(MESSAGE_FRIEND_NOT_FOUND);
         }

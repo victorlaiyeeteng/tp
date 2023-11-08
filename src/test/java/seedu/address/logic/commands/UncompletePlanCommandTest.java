@@ -91,13 +91,4 @@ public class UncompletePlanCommandTest {
         String expected = UncompletePlanCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, uncompletePlanCommand.toString());
     }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoPlan(Model model) {
-        model.updateFilteredPlanList(p -> false);
-
-        assertTrue(model.getFilteredPlanList().isEmpty());
-    }
 }

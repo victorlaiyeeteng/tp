@@ -117,7 +117,6 @@ public class Plan {
         String friendName = friend.getName().toString();
         String dateTimeString = this.dateTime.toString();
         String planNameString = this.planName.toString();
-        String planCompleteString = this.isComplete.toString();
         return '[' + planNameString + " with " + friendName + " at " + dateTimeString + ']';
     }
 

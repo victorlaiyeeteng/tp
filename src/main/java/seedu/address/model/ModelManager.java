@@ -111,6 +111,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Person getPersonByName(String name) {
+        requireNonNull(name);
+        return addressBook.getPersonByName(name);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

@@ -17,10 +17,6 @@ public class EditPlanDescriptorBuilder {
         descriptor = new EditPlanDescriptor();
     }
 
-    public EditPlanDescriptorBuilder(EditPlanDescriptor descriptor) {
-        this.descriptor = new EditPlanDescriptor(descriptor);
-    }
-
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
