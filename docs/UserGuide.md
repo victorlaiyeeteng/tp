@@ -1,418 +1,493 @@
 ---
 layout: page
-title: User Guide
+title: FriendBook User Guide
 ---
 
-FriendBook is a **desktop app for managing friend contacts and plan details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FriendBook can get your plans management done faster than traditional GUI apps.
+FriendBook is a GUI/CLI program made for **SoC Students** to help them keep track and manage their friends and plans.
 
-* Table of Contents
-{:toc}
+Here's a quick summary of what FriendBook can do for you:
+
+* All features are easily achieved using simple, typed commands!
+* Reminders on how each command can be used!
+* Add friends into FriendBook and keep track of their information!
+* Add plans into FriendBook and keep track of them!
+* Add useful information like deadlines to each of your plan!
+* Associate a friend with each of your plan!
+
+# Table of Content
+- [Installation Guide](#installation-guide)
+- [Disclaimers](#disclaimers)
+- [Important Information](#important-information)
+- [Friend-Related Features](#friend-related-features)
+  - [add-friend](#add-friend)
+  - [delete-friend](#delete-friend)
+  - [edit-friend](#edit-friend)
+  - [find-friend](#find-friend)
+  - [list-friend](#list-plan)
+- [Plan-Related Features](#plan-related-features)
+  - [add-plan](#add-plan)
+  - [delete-plan](#delete-plan)
+  - [edit-plan](#edit-plan)
+  - [find-plan](#find-plan)
+  - [list-plan](#list-plan)
+- [Command Summary](#command-summary)
+- [FAQs](#faqs)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `friendbook.jar` from here (link coming soon).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your FriendBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar friendbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+## Installation Guide
+1. Ensure you have Java 11 or above installed in your Computer. Click [here](https://blog.hubspot.com/website/check-java-verison#:~:text=First%2C%20find%20and%20click%20on,get%20your%20current%20version%20details) to learn how to find out what Java version you have!
+2. You might also need to install JavaFX 11. You can find the installation guide [here](https://openjfx.io/openjfx-docs/#install-javafx). 
+3. Download the latest `friendbook.jar` from here (link coming soon).
+4. Open up the [terminal](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac) (Mac) or [command prompt](https://support.kaspersky.com/common/windows/14637#block0) (Windows).
+5. Type `cd` followed by the directory path to the folder where you have downloaded FriendBook in and press `Enter`.
+6. Use the command `java -jar friendbook.jar` to get the application running!
+7. If you have successfully done everything, a GUI similar to the following image should appear. Please note that the application should have no data when it is used for the first time.
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+--------------------------------------------------------------------------------------------------------------------
 
-   * `list-friend` : Lists all contacts.
-
-   * `add-friend n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the FriendBook.
-
-   * `add-plan n/Meeting d/2023-11-01-10:00 f/John Doe` : Adds a plan named `Meeting` with `John Doe` to the FriendBook
-
-   * `delete-friend 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts and plans.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+## Disclaimers
+1. Due to FriendBook being a beta release, we only support up to 10000 friends and plans.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Important Information
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add-friend n/NAME`, `NAME` is a parameter which can be used as `add-friend n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+<div markdown="span" class="alert alert-info">
+:information_source: The blue block highlights additional information that might be useful.
 </div>
 
-### Adding a person: `add-friend`
+<div markdown="span" class="alert alert-danger">
+:bangbang: The red block highlights disclaimers related to each command.
+</div>
 
-Adds a person to the friends list.
+```
+Texts in this box shows a command and it's corresponding syntax
+```
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.
+- Texts in [square brackets] indicate that the argument is optional
+- `...` indicate that more than 1 argument of that type can be passed into the command
 
-Format: `add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+--------------------------------------------------------------------------------------------------------------------
 
-Examples:
-* `add-friend n/John Doe p/98321234 e/johnd@example.com a/Thomson Avenue`
+## Friend-Related Features
+
+### `add-friend`
+
+This command allows you to add a friend to your FriendBook.
+
+```
+add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
+```
+
+#### Examples of Correct Usage:
+* `add-friend n/John Doe p/98321234 e/johnd@example.com a/Thomson Avenue t/Classmate`
 * `add-friend n/Jack Ma p/92839102 e/jack.ma@yahoo.com a/Sixth Avenue`
 
-Arguments:
-- `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` are all required fields.
+#### Successful Output:
+![add-friendOutput](images/ug/add-friendOutput.png)
 
-Successful Output:
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-`New friend added: NAME, PHONE_NUMBER, EMAIL, ADDRESS`
+- Non-unique person added (by their name or email) :
+  `This friend already exists in the FriendBook...`
 
-Unsuccessful Output:
+- Empty or invalid name :
+  `Names should only contain alphanumeric characters and spaces, and it should not be blank...`
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+- Non-numeric phone number :
+  `Phone numbers should only contain numbers, and it should be at least 3 digits long`
 
-- Friend already exists: `This friend already exists in the FriendBook.`
+- Invalid email format :
+  `Emails should be of the format local-part@domain...`
 
-- Empty name: `Names should only contain alphanumeric characters and spaces, and it should not be blank.`
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+Each friend must have a unique name and email.
+</div>
 
-- Non-numeric phone number: `Phone numbers should only contain numbers, and it should be at least 3 digits long`
+<div markdown="span" class="alert alert-danger">
+Friend's names are case insensitive (John and john are the same name).
+</div>
 
-- Invalid email format: `Emails should be of the format local-part@domain...`
+<div markdown="span" class="alert alert-danger">
+Friend's names can only contain alphanumeric characters and spaces. No special characters like `/` or `-` are allowed. It cannot consist of only numbers.
+</div>
 
-### Editing a Friend's Information: `edit-friend`
+### `delete-friend`
 
-Edits an existing friend’s information in the friends list at the specified index.
+This command allows you to delete a friend from your FriendBook.
 
-Format: `edit-friend INDEX n/NAME p/PHONE e/EMAIL a/ADDRESS`
+```
+delete-friend INDEX
+```
 
-Examples:
-* `edit-friend 3 n/Jack Ma`
-* `edit-friend 1 p/99990000`
-
-Arguments:
-
-- `NAME` must be a STRING, `PHONE` must be an INT, and `EMAIL` must be a STRING
-
-- An `INDEX` must be provided
-
-- `NAME`, `PHONE_NUMBER`, `EMAIL` and `ADDRESS` are optional but at least 1 must be given
-
-Successful Output:
-
-`Edited Friend: NAME, PHONE_NUMBER, EMAIL, ADDRESS`
-
-Unsuccessful Output:
-
-- Invalid command: `Invalid command.` + help message with list of all commands
-
-- Invalid index is given: `The friend index provided is invalid`
-
-- No optional arguments provided: `At least one field to edit must be provided.`
-
-- Friend already exists: `This friend already exists in the FriendBook.`
-
-### Removing a Friend : `delete-friend`
-
-Removes an existing friend from the friends list.
-
-Format: `delete-friend INDEX`
-
-Examples:
+#### Examples of Correct Usage:
 * `delete-friend 1`
 * `delete-friend 2`
 
-Arguments:
-- `INDEX` must be a positive non-zero integer
+#### Successful Output:
+![delete-friendOutput](images/ug/delete-friendOutput.png)
 
-Successful Output:
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-`Deleted Friend: NAME, PHONE_NUMBER, EMAIL, ADDRESS`
+- Missing or invalid arguments :
+  `Invalid command...`
 
-Unsuccessful Output:
+- INDEX is greater than the number of friends :
+  `The friend index provided is bigger than your number of friends.`
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+delete-friend command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
 
-- Empty or non-integer or invalid index: `Invalid command.
-  delete-friend: Deletes the friend identified by the index number used in the displayed friend list.
-  Parameters: INDEX (must be a positive non-zero integer)
-  Example: delete-friend 1`
+### `edit-friend`
 
-- Index out of bounds: `The friend index provided is invalid`
+This command allows you to edit a friend's details in your FriendBook.
 
-### Finding a friend : `find-friend`
+```
+edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
+```
 
-Find friends whose names contain any of the given keywords.
+#### Examples of Correct Usage:
+* `edit-friend 3 n/Jack Ma`
+* `edit-friend 1 p/99990000`
 
-Format: `find-friend KEYWORD [MORE_KEYWORDS]`
+#### Successful Output:
+![edit-friendOutput](images/ug/edit-friendOutput.png)
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-Examples:
+- Missing or invalid arguments :
+  `Invalid command...`
+
+- INDEX is greater than the number of friends :
+  `The friend index provided is bigger than your number of friends.`
+
+- No optional arguments provided :
+  `At least one field to edit must be provided.`
+
+- Friend (identified by name or email) already exists :
+  `This friend already exists in the FriendBook...`
+
+#### Additional Information:
+<div markdown="span" class="alert alert-info">
+At least 1 optional field must be provided.
+</div>
+
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+edit-friend command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
+
+### `find-friend`
+
+This command allows you to find a friend by name in your FriendBook.
+
+```
+find-friend NAME...
+```
+
+#### Examples of Correct Usage:
 * `find-friend John` returns `john` and `John Doe`
 * `find-friend alex david` returns `Alex Yeoh`, `David Li`
 
-Successful Output:
-`COUNT_OF_FRIENDS friends listed!`
+#### Successful Output:
+![find-friendOutput](images/ug/find-friendOutput.png)
 
-Unsuccessful Output:
-- Invalid command: `Invalid command.` + help message with list of all commands
-- Empty arguments: `Invalid syntax: Missing arguments.
-  find-friend: Finds all friends whose names contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
-  Parameters: KEYWORD [MORE_KEYWORDS]...
-  Example: find-friend alice bob charlie`
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
+
+- Empty arguments :
+  `Invalid syntax: Missing arguments...`
+
+#### Additional Information:
+<div markdown="span" class="alert alert-info">
+The search is case-insensitive. (`hans` will match `Hans`).
+</div>
+
+<div markdown="span" class="alert alert-info">
+The order of the keywords does not matter. (`Hans Bo` will match `Bo Hans`).
+</div>
+
+<div markdown="span" class="alert alert-info">
+Friends matching at least one keyword will be returned.
+</div>
+
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+This search is done by name.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+Only full words will be matched (`Han` will not match `Hans`).
+</div>
 
 ### Listing friends : `list-friend`
-Shows a list of all friends in the FriendBook.
 
-Format: `list-friend`
+This command allows you to list all your friends in your FriendBook.
 
-Successful Output:
-`Listed all friends`
+```
+list-friend
+```
 
-## Plans
+#### Successful Output:
+![list-friendOutput](images/ug/list-friendOutput.png)
 
-#### Constraints:
-* Duplicate plans are not allowed. This refers to plans with the exact same plan name, date-time and friends.
-* Plan names are case-sensitive (eg meeting and Meeting are different names)
-* Plan names can only contain alphanumeric characters and spaces.
-  * No special characters like `/` or `-` are allowed.
-  * It cannot consist of only numbers.
+--------------------------------------------------------------------------------------------------------------------
 
-### Adding a plan : `add-plan`
+## Plan-Related Features
 
-Adds a plan and associates it with involved friends.
+### `add-plan`
 
-Format: `add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
+This command allows you to add a plan to your FriendBook and associate an existing Friend with this plan.
 
-Examples:
+```
+add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
+```
+
+#### Examples of Correct Usage:
 * `add-plan n/Project Meeting d/2023-10-23-10:00 f/Royden`
 
-Arguments:
+#### Successful Output:
+![add-planOutput](images/ug/add-planOutput.png)
 
-- `PLAN_NAME` must be a STRING, `DATE_TIME` must be in the YYYY-MM-DD-HH:MM format
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-- `FRIEND_NAME` is optional. If specified, `FRIEND_NAME` must be the name of an existing friend
+- Missing arguments :
+  `Invalid syntax: Missing arguments...`
 
-Successful Output:
+- Date-Time in wrong format :
+  `Date-Time given is invalid. Date-Time must be in YYYY-MM-DD-HH:MM format`
 
-`New plan added: PLAN_NAME with FRIEND_NAME at DATE_TIME`
+- Date-Time in the past :
+  `Date-Time given is invalid. Ensure that the Date-Time provided is not in the past.`
 
-Unsuccessful Output:
+- Not a valid friend :
+  `The friend does not exist in the FriendBook.`
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+#### Additional Information:
+<div markdown="span" class="alert alert-info">
+DATE_TIME must be in YYYY-MM-DD-HH:MM format
+</div>
 
-- Missing arguments: `Invalid syntax: Missing arguments.
-  add-plan: Adds a plan to the FriendBook.
-  Parameters: n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
-  Example: add-plan n/Project Meeting d/2023-10-20-09:00 f/John Doe`
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+Plans with exactly the same name, date-time and friend as an existing plan is not allowed.
+</div>
 
-- Date-Time in wrong format: `Date-Time given is invalid.
-  Date-Time must be in YYYY-MM-DD-HH:MM format with valid values.`
+<div markdown="span" class="alert alert-danger">
+Plan names are case-sensitive (meeting and Meeting are different plan names)
+</div>
 
-- Date-Time in the past: `Date-Time given is invalid. Ensure that the Date-Time provided is not in the past.`
+<div markdown="span" class="alert alert-danger">
+Plan names can only contain alphanumeric characters and spaces. No special characters like `/` or `-` are allowed. It cannot consist of only numbers.
+</div>
 
-- Not a valid friend: `The friend does not exist in the FriendBook.`
+### `delete-plan`
 
-### Editing a Plan's Information: `edit-plan`
+This command allows you to delete a plan from your FriendBook.
 
-Edits an existing plan’s information in the plans list at the specified index.
+```
+delete-plan INDEX
+```
 
-Format: `edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
+#### Examples of Correct Usage:
+* `delete-plan 4`
 
-Examples:
+#### Successful Output:
+
+![delete-planOutput](images/ug/delete-friendOutput.png)
+
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
+
+- Missing or invalid arguments :
+  `Invalid command...`
+
+- INDEX is greater than the number of friends :
+  `The plan index provided is bigger than your number of plans.`
+
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+delete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
+
+### `edit-plan`
+
+This command allows you to edit a plan's details in your FriendBook.
+
+```
+edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]
+```
+
+#### Examples of Correct Usage:
 * `edit-plan 3 n/Dota 3`
 * `edit-plan 1 d/2025-01-01-10:00`
 
-Arguments:
+#### Successful Output:
+![edit-planOutput](images/ug/edit-planOutput.png)
 
-- `PLAN_NAME` and `FRIEND_NAME` must be a STRING, `DATE_TIME` must be in the YYYY-MM-DD-HH:MM format
-- An `INDEX` must be provided
-- `PLAN_NAME`, `DATE_TIME`, `FRIEND_NAME` are optional but at least 1 must be given
-- If specified, `FRIEND_NAME` must be the name of an existing friend
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-Successful Output:
+- Missing or invalid arguments :
+  `Invalid command...`
 
-`Edited Plan: PLAN_NAME with FRIEND_NAME at DATE_TIME`
+- INDEX is greater than the number of friends :
+  `The plan index provided is bigger than your number of plans.`
 
-Unsuccessful Output:
+- No optional arguments provided :
+  `At least one field to edit must be provided.`
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+- Plan (identified by name, date-time and friend) already exists :
+  `This plan already exists in the FriendBook.`
 
-- Invalid index is given: `The plan index provided is invalid`
+- Not a valid friend :
+  `The friend does not exist in the FriendBook.`
 
-- No optional arguments provided: `At least one field to edit must be provided.`
+#### Additional Information:
+<div markdown="span" class="alert alert-info">
+At least 1 optional field must be provided.
+</div>
 
-- Not a valid friend: `The friend does not exist in the FriendBook.`
+<div markdown="span" class="alert alert-info">
+DATE_TIME must be in YYYY-MM-DD-HH:MM format
+</div>
 
-### Marking a Plan as Completed : `complete-plan`
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+edit-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
 
-Marks the specified plan as completed.
+### `complete-plan`
 
-Format: `complete-plan INDEX`
+This command allows you to mark a plan as completed in your FriendBook.
 
-Examples:
+```
+complete-plan INDEX
+```
+
+#### Examples of Correct Usage:
 * `complete-plan 4`
 
-Arguments:
+#### Successful Output:
+![complete-planOutput](images/ug/complete-planOutput.png)
 
-- `INDEX` must be an INTEGER
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-Successful Output:
+- Missing or invalid arguments :
+  `Invalid command...`
 
-`Completed Plan: PLAN_NAME with FRIEND_NAME at DATE_TIME`
+- INDEX is greater than the number of friends :
+  `The plan index provided is bigger than your number of plans.`
 
-Unsuccessful Output:
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+complete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+### uncomplete-plan
 
-- Missing and invalid index: `Invalid command.
-  complete-plan: Marks the plan as completed identified by the index number used in the displayed plan list.
-  Parameters: INDEX (must be a positive non-zero integer)
-  Example: complete-plan 1`
+This command allows you to unmark a plan's completion status in your FriendBook.
 
-- Index out of bounds: `The plan index provided is invalid`
+```
+uncomplete-plan INDEX
+```
 
-### Marking a Plan as Uncompleted : `uncomplete-plan`
-
-Marks the specified plan as uncompleted.
-
-Format: `uncomplete-plan INDEX`
-
-Examples:
+#### Examples of Correct Usage:
 * `uncomplete-plan 4`
 
-Arguments:
+#### Successful Output:
+![uncomplete-planOutput](images/ug/uncomplete-planOutput.png)
 
-- `INDEX` must be an INTEGER
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-Successful Output:
+- Missing or invalid arguments :
+  `Invalid command...`
 
-`Uncompleted Plan: PLAN_NAME with FRIEND_NAME at DATE_TIME`
+- INDEX is greater than the number of friends :
+  `The plan index provided is bigger than your number of plans.`
 
-Unsuccessful Output:
+#### Disclaimer:
+<div markdown="span" class="alert alert-danger">
+uncomplete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+</div>
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+### `find-plan`
 
-- Missing and invalid index: `Invalid command.
-  uncomplete-plan: Marks the plan as not completed identified by the index number used in the displayed plan list.
-  Parameters: INDEX (must be a positive non-zero integer)
-  Example: uncomplete-plan 1`
+This command allows you to find a plan by name in your FriendBook.
 
-- Index out of bounds: `No plans at given index. Syntax: uncomplete-plan INDEX`
+```
+find-plan FRIEND_NAME
+```
 
-### Deleting a Plan : `delete-plan`
-
-Deletes the specified plan.
-
-Format: `delete-plan INDEX`
-
-Examples:
-* `delete-plan 4`
-
-Arguments:
-
-- `INDEX` must be an INTEGER
-- `INDEX` must be defined within the size of current PlanList
-
-Successful Output:
-
-`Deleted Plan: PLAN_NAME with FRIEND_NAME at DATE_TIME`
-
-Unsuccessful Output:
-
-- Invalid command: `Invalid command.` + help message with list of all commands
-
-- Missing and invalid index: `Invalid command.
-  delete-plan: Deletes the plan identified by the index number used in the displayed plan list.
-  Parameters: INDEX (must be a positive non-zero integer)
-  Example: delete-plan 1`
-
-- Index out of bounds: `The plan index provided is invalid`
-
-### Finding a plan : `find-plan`
-
-Find plans which is associated to a given friend.
-
-Format: `find-plan FRIEND_NAME`
-
-* `FRIEND_NAME` has to be the full name of the Person instance. e.g `find-plan Elijah` will throw an error if no Person has the full name `Elijah`
-
-* The search is case-sensitive. e.g `hans` will not match `Hans`
-
-* Only one full name will be taken in and searched (only one person's plans will be searched)
-
-Examples:
+#### Examples of Correct Usage:
 * `find-plan John` returns all plans associated to `John`
 
-Arguments:
-- `FRIEND_NAME` must be the full name belonging to a Person saved in the FriendBook
+#### Successful Output:
+![find-planOutput](images/ug/find-planOutput.png)
 
-Successful Output:
-`COUNT_OF_PLANS plans listed!`
+#### Unsuccessful Output:
+- Invalid command :
+  `Invalid command...`
 
-Unsuccessful Output:
+- Missing or invalid arguments :
+  `Invalid command...`
 
-- Invalid command: `Invalid command.` + help message with list of all commands
+- Not a valid friend :
+  `The friend does not exist in the FriendBook.`
 
-- Missing arguments: `Invalid syntax: Missing arguments.
-  find-plan: Finds all plans which contains the specified friend.
-  Parameters: FRIEND_NAME
-  Example: find-plan Elijah Chia`
-
-- Not a valid friend: `The friend does not exist in the FriendBook.`
-
-### Listing plans : `list-plan`
-
-Shows a list of all plans in the FriendBook.
-
-Format: `list-plan`
-
-Successful Output:
-`Listed all plans`
-
-Unsuccessful Output:
-
-- Invalid command: `Invalid command.` + help message with list of all commands
-
-### Clearing the Storage : `clear`
-Clears the stored friends and plans on the `friendbook.json` file which is located in the `data` folder in FriendBook's home folder.
-
-### Get the User Guide : `help`
-Provides the FriendBook user guide's link.
-
-### Exit FriendBook : `exit`
-Closes the FriendBook Application.
-
-### Saving the data
-
-FriendBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-FriendBook data are saved automatically as a JSON file `[JAR file location]/data/friendbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, FriendBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+#### Additional Information
+<div markdown="span" class="alert alert-info">
+The search is case-insensitive. (`hans` will match `Hans`).
 </div>
+
+#### Disclaimers
+<div markdown="span" class="alert alert-danger">
+`FRIEND_NAME` must be the full name of a friend in the FriendBook.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+Only one full name should be provided.
+</div>
+
+### `list-plan`
+
+This command allows you to list all your plans in your FriendBook.
+
+```
+list-plan
+```
+
+#### Successful Output:
+![list-planOutput](images/ug/list-planOutput.png)
+
+### `clear`
+This command clears the stored friends and plans on the `friendbook.json` file which is located in the `data` folder in FriendBook's home folder.
+
+### `help`
+This command provides the FriendBook user guide's link.
+
+### `exit`
+This command closes the FriendBook application.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -433,13 +508,13 @@ If your changes to the data file makes its format invalid, FriendBook will disca
 
 Action | Format, Examples
 --------|------------------
-**add-friend** | `add-friend n/NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `add-friend n/John Doe p/98321234 e/johnd@example.com`
-**edit-friend** | `edit-friend INDEX n/NAME p/PHONE e/EMAIL`<br> e.g., `edit-friend 3 n/Jack Ma`
+**add-friend** | `add-friend n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> e.g., `add-friend n/John Doe p/98321234 e/johnd@example.com`
+**edit-friend** | `edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`<br> e.g., `edit-friend 3 n/Jack Ma`
 **delete-friend** | `delete-friend NAME` <br> e.g., `delete-friend John Doe`
 **find-friend** | `find-friend KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-friend Jack`
 **list-friend** | `list-friend`
 **add-plan** | `add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`<br> e.g.,`add-plan n/Project Meeting d/2023-10-23-10:00 f/Royden`
-**edit-plan** | `edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`<br> e.g., `edit-plan 1 d/2025-01-01-10:00`
+**edit-plan** | `edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]`<br> e.g., `edit-plan 1 d/2025-01-01-10:00`
 **complete-plan** | `complete-plan INDEX`<br> e.g., `complete-plan 4`
 **uncomplete-plan** | `uncomplete-plan INDEX`<br> e.g., `uncomplete-plan 4`
 **delete-plan** | `delete-plan INDEX` <br> e.g., `delete-plan 4`

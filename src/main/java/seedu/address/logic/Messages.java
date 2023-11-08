@@ -20,13 +20,15 @@ public class Messages {
             + "Others: clear, help, exit\n";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command. \n%1$s";
     public static final String MESSAGE_MISSING_ARGUMENTS = "Invalid syntax: Missing arguments.\n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The friend index provided is invalid";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The friend index provided is bigger than "
+            + "your number of friends.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d friend(s) listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_UNCLEAR_COMMAND =
                 "Command is unclear. Please specify with \"-friend\" or \"-plan\"!";
-    public static final String MESSAGE_INVALID_PLAN_DISPLAYED_INDEX = "The plan index provided is invalid";
+    public static final String MESSAGE_INVALID_PLAN_DISPLAYED_INDEX = "The plan index provided is bigger than "
+            + "your number of plans.";
     public static final String MESSAGE_PERSON_PRESENT_IN_PLAN = "This person is involved in plans!";
     public static final String MESSAGE_PLANS_LISTED_OVERVIEW = "%1$d plan(s) listed!";
 

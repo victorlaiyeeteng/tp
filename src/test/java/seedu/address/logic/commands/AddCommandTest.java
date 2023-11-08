@@ -146,6 +146,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasOtherPerson(Person person, Person originalPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Person getPersonByName(Name name) {
             throw new AssertionError("This method should not be called.");
         }

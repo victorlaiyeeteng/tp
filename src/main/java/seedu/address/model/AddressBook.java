@@ -77,6 +77,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    /**
+     * Returns true if another person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasOtherPerson(Person person, Person originalPerson) {
+        requireNonNull(person);
+        return persons.otherContains(person, originalPerson);
+    }
+
 
     /**
      * Returns true if a plan with the same identity as {@code plan} exists in the address book.
