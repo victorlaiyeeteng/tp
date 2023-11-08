@@ -43,7 +43,7 @@ Here's a quick summary of what FriendBook can do for you:
 
 ## Installation Guide
 1. Ensure you have Java 11 or above installed in your Computer. Click [here](https://blog.hubspot.com/website/check-java-verison#:~:text=First%2C%20find%20and%20click%20on,get%20your%20current%20version%20details) to learn how to find out what Java version you have!
-2. You might also need to install JavaFX 11. You can find the installation guide [here](https://openjfx.io/openjfx-docs/#install-javafx). 
+2. You might also need to install JavaFX 11. You can find the installation guide [here](https://openjfx.io/openjfx-docs/#install-javafx).
 3. Download the latest `friendbook.jar` from here (link coming soon).
 4. Open up the [terminal](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac) (Mac) or [command prompt](https://support.kaspersky.com/common/windows/14637#block0) (Windows).
 5. Type `cd` followed by the directory path to the folder where you have downloaded FriendBook in and press `Enter`.
@@ -73,7 +73,7 @@ Texts in this box shows a command and it's corresponding syntax
 ```
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
 - Texts in [square brackets] indicate that the argument is optional.
-- `...` indicate that more than 1 parameter of that type can be passed into the command. Otherwise, only 1 is allowed. 
+- `...` indicate that more than 1 parameter of that type can be passed into the command. Otherwise, only 1 is allowed.
 
 ### Prefixes
 Prefixes allow you to specify important values when entering a command.
@@ -311,7 +311,7 @@ DATE_TIME must be in YYYY-MM-DD-HH:MM format.
 </div>
 
 <div markdown="span" class="alert alert-info">
-Only 1 Friend can be associated per Plan. 
+Only 1 Friend can be associated per Plan.
 </div>
 
 #### Disclaimer:

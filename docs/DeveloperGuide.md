@@ -427,7 +427,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2c. Timestamp of the plan added is in the wrong format.
   * 2c1. FriendBook shows an error message, displaying an example of the correct timestamp format. <br> Use case ends.
 
-    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -495,7 +494,7 @@ testers are expected to do more *exploratory* testing.
 ### Editing a plan
 
 1. Editing a plan while all plans are being shown
-    
+
     1. Prerequisites: List all plans and friends using the `list-plan` and `list-friend` commands. There is only 1 Friend, `Elijah Chia`.
    2. Test case: `edit-plan 1 f/Elijah Chia`<br>
       Expected: First plan is edited, with it being associated to Friend `Elijah Chia`.
@@ -509,6 +508,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. Prerequisites: Add some plans and friends using `add-plan` and `add-friend` commands. Then, close the application and remove 
-   the `data` folder in the directory that `friendbook.jar` resides in. 
+   1. Prerequisites: Add some plans and friends using `add-plan` and `add-friend` commands. Then, close the application and remove
+   the `data` folder in the directory that `friendbook.jar` resides in.
    2. Reopen `friendbook.jar`, FriendBook should not have any plans or friends.
