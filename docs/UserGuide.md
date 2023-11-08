@@ -66,8 +66,23 @@ Here's a quick summary of what FriendBook can do for you:
 Texts in this box shows a command and it's corresponding syntax
 ```
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
-- Texts in [square brackets] indicate that the argument is optional
-- `...` indicate that more than 1 argument of that type can be passed into the command
+- Texts in [square brackets] indicate that the argument is optional.
+- `...` indicate that more than 1 parameter of that type can be passed into the command. Otherwise, only 1 is allowed. 
+
+### Prefixes
+Prefixes allow you to specify important values when entering a command.
+
+Here is a table of all available prefixes:
+
+| Prefixes | Description                                                                             |
+|----------|-----------------------------------------------------------------------------------------|
+| `n/`     | Used to indicate the name of a Friend or Plan.                                          |
+| `p/`     | Used to indicate the Phone number of a Friend.                                          |
+| `e/`     | Used to indicate the Email of a Friend.                                                 |
+| `a/`     | Used to indicate the Address of a Friend.                                               |
+| `t/`     | Used to indicate the Tags of a Friend.                                                  |
+| `d/`     | Used to indicate the start or end date of a Plan.                                       |
+| `f/`     | Used to indicate the Friend associated with the Plan.|
 
 --------------------------------------------------------------------------------------------------------------------
 
