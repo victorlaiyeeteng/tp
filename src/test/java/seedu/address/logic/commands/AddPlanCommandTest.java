@@ -20,6 +20,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -169,6 +170,11 @@ public class AddPlanCommandTest {
         }
 
         @Override
+        public boolean hasOtherPerson(Person person, Person originalPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Person getPersonByName(Name name) {
             return ALICE;
         }
@@ -238,6 +244,7 @@ public class AddPlanCommandTest {
      * A Model stub that contains a single plan.
      */
     private class ModelStubWithPlan extends ModelStub {
+        final FilteredList<Plan> filteredPlans = new FilteredList<>(getTypicalAddressBook().getPlanList());
         private final Plan plan;
 
         ModelStubWithPlan(Plan plan) {
@@ -250,12 +257,19 @@ public class AddPlanCommandTest {
             requireNonNull(plan);
             return this.plan.equals(plan);
         }
+
+        @Override
+        public void updateFilteredPlanList(Predicate<Plan> predicate) {
+            requireNonNull(predicate);
+            filteredPlans.setPredicate(predicate);
+        }
     }
 
     /**
      * A Model stub that always accept the plan being added.
      */
     private class ModelStubAcceptingPlanAdded extends ModelStub {
+        final FilteredList<Plan> filteredPlans = new FilteredList<>(getTypicalAddressBook().getPlanList());
         final ArrayList<Plan> plansAdded = new ArrayList<>();
 
         @Override
@@ -268,6 +282,12 @@ public class AddPlanCommandTest {
         public void addPlan(Plan plan) {
             requireNonNull(plan);
             plansAdded.add(plan);
+        }
+
+        @Override
+        public void updateFilteredPlanList(Predicate<Plan> predicate) {
+            requireNonNull(predicate);
+            filteredPlans.setPredicate(predicate);
         }
 
     }

@@ -61,6 +61,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if another person with the same identity as {@code person} exists in the address book.
+     */
+    boolean hasOtherPerson(Person person, Person originalPerson);
+
+    /**
      * Returns true if a plan with the same identity as {@code plan} exists in the address book.
      */
     boolean hasPlan(Plan plan);
