@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **New Feature**: Implemented the Plan, PlanDateTime, PlanName classes.
   * What it does: Supports the implementation of the all plan-related commands.
   * Justification: The plan-related classes is FriendBook's unique selling point, which makes it a viable application for everyone who has things to do.
-  * Highlights: 
+  * Highlights:
     * The `isSamePlan` method supports `edit-plan` and `add-plan` by ensuring that duplicate plans are not entered into FriendBook.
     * The `PlanDateTime` class contains extensive checking to ensure that only valid date-times are entered into FriendBook be the user.
 
