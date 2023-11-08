@@ -20,7 +20,7 @@ Given below are my contributions to the project.
   * What it does: allows the user to mark a plan's completion status as completed in his FriendBook.
   * Justification: This feature is a key functionality of FriendBook which allows a user to be able to mark their plan as completed, so that user can track the completion status of all the plans.
   * Highlights:
-    * Deciding to abstract out the `isCompleted` attribute in a plan proved to be crucial since it played an important role in being able to be updated responsively in the UI.  
+    * Deciding to abstract out the `isCompleted` attribute in a plan proved to be crucial since it played an important role in being able to be updated responsively in the UI.
 
 * **New Feature**: Added the functionality for users to uncomplete a plan.
   * What it does: allows the user to unmark a plan's completion status in his FriendBook.
