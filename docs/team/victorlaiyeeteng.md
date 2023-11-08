@@ -13,26 +13,22 @@ It is written in Java, and has about 17kLoC.
 Given below are my contributions to the project.
 
 * **New Feature**: Added the functionality for users to add plan.
-  * What it does: allows user to add a plan to his FriendBook, and associate the plan to an existing friend. User are allowed to specify the plan's name, 
-  date and friend details of the plan.
+  * What it does: allows user to add a plan to his FriendBook, and associate the plan to an existing friend. 
   * Justification: This feature is a key functionality of FriendBook which requires plans to be added, so that user can view and manipulate with
   the added plan as required.
   * Highlights:
     * Deciding on the most user-friendly way of user's interaction with the CLI to identify the friend that is to be associated with the plan was challenging, 
     eventually deciding on `FRIEND_NAME` as the identifier as it is not only unique to each friend, but also easily retrievable
-    * Required an in-depth analysis of existing `addressbook` object design to implement checking if user's inputted
-    friend exists, finally deciding on adding a search method to `getPersonByName` and check if the friend exists 
+    * Implemented a search method to `getPersonByName` and check if the friend exists
   
 * **New Feature**: Added the functionality for users to find plans by existing friends' names.
   * What it does: allows user to find existing plans that are associated with the given friend. 
-  * Justification: This feature provides a clean and neat way for users to filter through their many plans and view only plans that are of his 
+  * Justification: This feature provides a clean and neat way for users to filter and view their plans that are of his 
   interest (related to queried friend).
   * Highlights: 
-    * Similar to the above point, obtaining (and checking that he exists) the queried friend by the `FRIEND_NAME` using the added function stated above was 
+    * Obtaining the queried friend (if exists) by the `FRIEND_NAME` using the added function stated above was 
     needed to get the filtered list of plans associated with the friend
     * Filtering plans based on `FRIEND_NAME` required implementation of `PlanContainsFriendPredicate` to fulfill the previous highlight
-  * Credits:
-    * Inspiration of `PlanContainsFriendPredicate` was taken from other predicate designs in AB3, on how they obtain the required filtered plans.
 
 * **New Feature**: Added the functionality for users to list all their plans.
   * What it does: allows user to get all their plans without any filters.
@@ -49,9 +45,9 @@ Given below are my contributions to the project.
   * What it does: updates relevant plans which are associated to the edited friends' details
   * Justification: This ensures correctness of FriendBook whereby plans should have its friend details updated accordingly when needed.
   * Highlights:
-    * It was challenging figuring out the bug as I initially thought it was a Ui rendering bug of updated friend's name not reflecting in related plans.
-    * It required an in-depth analysis of existing AB3 `EditCommand` implementation, before realising that it creates a new `Person` object and replaces the old one, 
-    hence a similar replacement had to be done for each associated plan.
+    * Initially thought it was an Ui rendering bug of updated friend's name not reflecting in related plans.
+    * After analysing existing AB3 `EditCommand` implementation and realising that it creates a new `Person` object and replaces the old one, 
+    hence a similar replacement had to be done in each associated plan.
 
 * **Testing**: Added relevant test and helper files to aid testing of above implementations
   * What it does: tests all new functionalities and bug fixes for optimal code coverage
@@ -75,16 +71,14 @@ Given below are my contributions to the project.
     * Update `Command summary` portion to match it with the available commands
   * Developer Guide:
     * Added implementation details of the `list-plan` feature.
-    * Wrote `Product scope`, `User Stories`, 2 `Use Cases`, `Non-Functional Requirements` for the `Appendix: Requirements` section
-    * Wrote `Deleting a person`, `Editing a plan` and `Saving data` sections for the `Appendix: Instructions for manual testing` section
+    * Wrote `Product scope`, `User Stories`, 2 `Use Cases`, `NFR` for the `Requirements` appendix
+    * Wrote `Deleting a person`, `Editing a plan` and `Saving data` sections for the `Instructions for manual testing` appendix
 
 
 * **Review / Mentoring Contributions**:
-  * Shared with teammates how we can use newly implemented `getPersonByName` function and `PlanContainsFriendPredicate` predicate
-  to facilitate our `Plan` commands
+  * Shared with teammates how we can use newly implemented search function and predicate classes to facilitate our `Plan` commands
   * Review bugs flagged out during PE-D and categorised them while removing repeated bugs
 
 
 * **Community**:
   * Suggested to another team in tutorial class on how to use existing predicates to improve their OOP design.
-  * Advised other team outside of class on how ChatGPT's provided regex don't always pass corner cases.
