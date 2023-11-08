@@ -65,11 +65,22 @@ FriendBook is a **desktop app for managing friend contacts and plan details, opt
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+## Friends
+
+#### Constraints:
+* Each friend must have a unique name and email, while a unique phone number is not
+  necessary (e.g. siblings sharing the same home number).
+* Friend's names are case insensitive (e.g. John and john are the same name).
+* Friend's names can only contain alphanumeric characters and spaces. 
+  * No special characters like `/` or `-` are allowed.
+  * It cannot consist of only numbers.
+
+
 ### Adding a person: `add-friend`
 
 Adds a person to the friends list.
 
-Format: `add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
 Examples:
 * `add-friend n/John Doe p/98321234 e/johnd@example.com a/Thomson Avenue`
@@ -77,6 +88,7 @@ Examples:
 
 Arguments:
 - `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` are all required fields.
+- `TAG` is optional and multiple tags can be given.
 
 Successful Output:
 
@@ -84,11 +96,15 @@ Successful Output:
 
 Unsuccessful Output:
 
+- Non-unique person added (by their name or email): `This friend already exists in the FriendBook. Friend's name and email must be unique. 
+Friend's names are case insensitive ('John' and 'john' are the same name).`
+
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Friend already exists: `This friend already exists in the FriendBook.`
+- Empty or invalid name: `Names should only contain alphanumeric characters and spaces, and it should not be blank.
+  It should also not contain only numeric characters.`
 
-- Empty name: `Names should only contain alphanumeric characters and spaces, and it should not be blank.`
+- Friend already exists: `This friend already exists in the FriendBook.`
 
 - Non-numeric phone number: `Phone numbers should only contain numbers, and it should be at least 3 digits long`
 
@@ -98,7 +114,7 @@ Unsuccessful Output:
 
 Edits an existing friend’s information in the friends list at the specified index.
 
-Format: `edit-friend INDEX n/NAME p/PHONE e/EMAIL a/ADDRESS`
+Format: `edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 Examples:
 * `edit-friend 3 n/Jack Ma`
@@ -108,9 +124,9 @@ Arguments:
 
 - `NAME` must be a STRING, `PHONE` must be an INT, and `EMAIL` must be a STRING
 
-- An `INDEX` must be provided
+- An `INDEX` must be provided and be a positive integer 1, 2, 3, ... and within the count of friends.
 
-- `NAME`, `PHONE_NUMBER`, `EMAIL` and `ADDRESS` are optional but at least 1 must be given
+- `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` and `TAG` are optional but at least 1 must be given
 
 Successful Output:
 
@@ -120,11 +136,17 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Invalid index is given: `The friend index provided is invalid`
+- Missing or invalid arguments: `Invalid command.
+  edit-friend: Edits the details of the friend identified by the index number used in the displayed friend list. Existing values will be overwritten by the input values.
+  Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
+  Example: edit-friend 1 p/91234567 e/johndoe@example.com`
+  - FriendBook saves you the headache of counting your number of friends, hence if the index given 
+  is greater than your number of friends, this error will be shown: `The friend index provided is bigger than your number of friends.`
 
 - No optional arguments provided: `At least one field to edit must be provided.`
 
-- Friend already exists: `This friend already exists in the FriendBook.`
+- Friend (identified by name or email) already exists: `This friend already exists in the FriendBook. Friend's name and email must be unique.
+  Friend's names are case insensitive ('John' and 'john' are the same name).`
 
 ### Removing a Friend : `delete-friend`
 
@@ -137,7 +159,8 @@ Examples:
 * `delete-friend 2`
 
 Arguments:
-- `INDEX` must be a positive non-zero integer
+
+- An `INDEX` must be provided and be a positive integer 1, 2, 3, ... and within the count of friends.
 
 Successful Output:
 
@@ -147,12 +170,13 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Empty or non-integer or invalid index: `Invalid command.
+- Missing or invalid arguments: `Invalid command.
   delete-friend: Deletes the friend identified by the index number used in the displayed friend list.
   Parameters: INDEX (must be a positive non-zero integer)
   Example: delete-friend 1`
+    - FriendBook saves you the headache of counting your number of friends, hence if the index given
+      is greater than your number of friends, this error will be shown: `The friend index provided is bigger than your number of friends.`
 
-- Index out of bounds: `The friend index provided is invalid`
 
 ### Finding a friend : `find-friend`
 
@@ -236,7 +260,7 @@ Unsuccessful Output:
 
 Edits an existing plan’s information in the plans list at the specified index.
 
-Format: `edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`
+Format: `edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]`
 
 Examples:
 * `edit-plan 3 n/Dota 3`
@@ -245,7 +269,7 @@ Examples:
 Arguments:
 
 - `PLAN_NAME` and `FRIEND_NAME` must be a STRING, `DATE_TIME` must be in the YYYY-MM-DD-HH:MM format
-- An `INDEX` must be provided
+- An `INDEX` must be provided and be a positive integer 1, 2, 3, ... and within the count of plans.
 - `PLAN_NAME`, `DATE_TIME`, `FRIEND_NAME` are optional but at least 1 must be given
 - If specified, `FRIEND_NAME` must be the name of an existing friend
 
@@ -257,7 +281,12 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Invalid index is given: `The plan index provided is invalid`
+- Missing or invalid arguments: `Invalid command.
+  edit-plan: Edits the details of the plan identified by the index number used in the displayed plan list. Existing values will be overwritten by the input values.
+  Parameters: INDEX (must be a positive integer) [n/NAME] [d/DATE_TIME] [f/FRIEND_NAME]
+  Example: edit-plan 1 d/2023-10-20-09:00 f/John Doe`
+    - FriendBook saves you the headache of counting your number of plans, hence if the index given
+      is greater than your number of plans, this error will be shown: `The plan index provided is bigger than your number of plans.`
 
 - No optional arguments provided: `At least one field to edit must be provided.`
 
@@ -274,7 +303,7 @@ Examples:
 
 Arguments:
 
-- `INDEX` must be an INTEGER
+- An `INDEX` must be provided and be a positive integer 1, 2, 3, ... and within the count of friends.
 
 Successful Output:
 
@@ -284,12 +313,12 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Missing and invalid index: `Invalid command.
+- Missing or invalid arguments: `Invalid command.
   complete-plan: Marks the plan as completed identified by the index number used in the displayed plan list.
   Parameters: INDEX (must be a positive non-zero integer)
   Example: complete-plan 1`
-
-- Index out of bounds: `The plan index provided is invalid`
+    - FriendBook saves you the headache of counting your number of plans, hence if the index given
+      is greater than your number of plans, this error will be shown: `The plan index provided is bigger than your number of plans.`
 
 ### Marking a Plan as Uncompleted : `uncomplete-plan`
 
@@ -302,7 +331,7 @@ Examples:
 
 Arguments:
 
-- `INDEX` must be an INTEGER
+- An `INDEX` must be provided and be a positive integer 1, 2, 3, ... and within the count of friends.
 
 Successful Output:
 
@@ -312,12 +341,12 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Missing and invalid index: `Invalid command.
+- Missing or invalid arguments: `Invalid command.
   uncomplete-plan: Marks the plan as not completed identified by the index number used in the displayed plan list.
   Parameters: INDEX (must be a positive non-zero integer)
   Example: uncomplete-plan 1`
-
-- Index out of bounds: `No plans at given index. Syntax: uncomplete-plan INDEX`
+    - FriendBook saves you the headache of counting your number of plans, hence if the index given
+      is greater than your number of plans, this error will be shown: `The plan index provided is bigger than your number of plans.`
 
 ### Deleting a Plan : `delete-plan`
 
@@ -330,8 +359,7 @@ Examples:
 
 Arguments:
 
-- `INDEX` must be an INTEGER
-- `INDEX` must be defined within the size of current PlanList
+- An `INDEX` must be provided and be a positive integer 1, 2, 3, ... and within the count of friends.
 
 Successful Output:
 
@@ -341,12 +369,12 @@ Unsuccessful Output:
 
 - Invalid command: `Invalid command.` + help message with list of all commands
 
-- Missing and invalid index: `Invalid command.
+- Missing or invalid arguments: `Invalid command.
   delete-plan: Deletes the plan identified by the index number used in the displayed plan list.
   Parameters: INDEX (must be a positive non-zero integer)
   Example: delete-plan 1`
-
-- Index out of bounds: `The plan index provided is invalid`
+    - FriendBook saves you the headache of counting your number of plans, hence if the index given
+      is greater than your number of plans, this error will be shown: `The plan index provided is bigger than your number of plans.`
 
 ### Finding a plan : `find-plan`
 
@@ -433,13 +461,13 @@ If your changes to the data file makes its format invalid, FriendBook will disca
 
 Action | Format, Examples
 --------|------------------
-**add-friend** | `add-friend n/NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `add-friend n/John Doe p/98321234 e/johnd@example.com`
-**edit-friend** | `edit-friend INDEX n/NAME p/PHONE e/EMAIL`<br> e.g., `edit-friend 3 n/Jack Ma`
+**add-friend** | `add-friend n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> e.g., `add-friend n/John Doe p/98321234 e/johnd@example.com`
+**edit-friend** | `edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`<br> e.g., `edit-friend 3 n/Jack Ma`
 **delete-friend** | `delete-friend NAME` <br> e.g., `delete-friend John Doe`
 **find-friend** | `find-friend KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-friend Jack`
 **list-friend** | `list-friend`
 **add-plan** | `add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`<br> e.g.,`add-plan n/Project Meeting d/2023-10-23-10:00 f/Royden`
-**edit-plan** | `edit-plan INDEX n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME`<br> e.g., `edit-plan 1 d/2025-01-01-10:00`
+**edit-plan** | `edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]`<br> e.g., `edit-plan 1 d/2025-01-01-10:00`
 **complete-plan** | `complete-plan INDEX`<br> e.g., `complete-plan 4`
 **uncomplete-plan** | `uncomplete-plan INDEX`<br> e.g., `uncomplete-plan 4`
 **delete-plan** | `delete-plan INDEX` <br> e.g., `delete-plan 4`

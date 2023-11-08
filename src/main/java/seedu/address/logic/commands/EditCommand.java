@@ -50,7 +50,9 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Friend: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This friend already exists in the FriendBook.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This friend already exists in the FriendBook. "
+            + "Friend's name and email must be unique. \n"
+            + "Friend's names are case insensitive ('John' and 'john' are the same name).";;
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -79,7 +81,7 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!personToEdit.equals(editedPerson) && model.hasOtherPerson(editedPerson, personToEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
