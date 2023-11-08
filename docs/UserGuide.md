@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: pagewithnavbar
 title: User Guide
 ---
 

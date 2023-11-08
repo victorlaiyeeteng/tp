@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+    <html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+    {%- include head.html -%}
+
+    <body>
+
+    {%- include header.html -%}
+
+    <main class="page-content" aria-label="Content">
+        <nav class="navbar">
+            <div class="site-nav-top">
+                <div class="fw-bold" style="font-size: 1.25rem; margin-bottom: 2px;">Site Map</div>
+            </div>
+            <div class="nav-component slim-scroll">
+                <div class="">
+                    <ul>
+                        <li>
+                            <a href="#">Go to Top</a>
+                        </li>
+                        <li>
+                            <a href="#quick-start">Quick Start</a>
+                        </li>
+                        <li>
+                            <a href="#features">Features</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="#adding-a-person-add-friend">Add-friend</a>
+                            </li>
+                            <li>
+                                <a href="#editing-a-friends-information-edit-friend">Edit-friend</a>
+                            </li>
+                            <li>
+                                <a href="#removing-a-friend--delete-friend">Delete-friend</a>
+                            </li>
+                            <li>
+                                <a href="#finding-a-friend--find-friend">Find-friend</a>
+                            </li>
+                            <li>
+                                <a href="#listing-friends--list-friend">List-friend</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="#plans">Plans</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="#adding-a-plan--add-plan">Add-plan</a>
+                            </li>
+                            <li>
+                                <a href="#editing-a-plans-information-edit-plan">Edit-plan</a>
+                            </li>
+                            <li>
+                                <a href="#marking-a-plan-as-completed--complete-plan">Complete-plan</a>
+                            </li>
+                            <li>
+                                <a href="#marking-a-plan-as-uncompleted--uncomplete-plan">Uncomplete-plan</a>
+                            </li>
+                            <li>
+                                <a href="#deleting-a-plan--delete-plan">Delete-plan</a>
+                            </li>
+                            <li>
+                                <a href="#finding-a-plan--find-plan">Find-plan</a>
+                            </li>
+                            <li>
+                                <a href="#listing-plans--list-plan">List-plan</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="#clearing-the-storage--clear">Clear</a>
+                        </li>
+                        <li>
+                            <a href="#get-the-user-guide--help">Help</a>
+                        </li>
+                        <li>
+                            <a href="#exit-friendbook--exit">Exit</a>
+                        </li>
+                        <li>
+                            <a href="#faq">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="#known-issues">Known Issues</a>
+                        </li>
+                        <li>
+                            <a href="#command-summary">Command Summary</a>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="wrapper">
+
+            <article class="post">
+
+                <header class="post-header">
+                    <h1 class="post-title">{{ page.title | escape }}</h1>
+                </header>
+
+                <div class="post-content">
+                    {{ content }}
+                </div>
+
+            </article>
+        </div>
+    </main>
+
+    </body>
+
+</html>
