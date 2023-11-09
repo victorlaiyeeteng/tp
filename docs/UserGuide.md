@@ -217,7 +217,7 @@ edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
 - Empty or invalid name :
   `Names should only contain alphanumeric characters and spaces, and it should not be blank...`
 
-- Invalid phone number : 
+- Invalid phone number :
   `Phone numbers should only contain numbers, and it should be at least 3 digits long`
 
 - Invalid email format :
