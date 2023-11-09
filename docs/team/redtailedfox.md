@@ -13,12 +13,12 @@ It is written in Java, and has about 17kLoC.
 Given below are my contributions to the project.
 
 * **New Feature**: Refactored ModelManager to take into account new methods to modify/display/access the newly created Plan List
-  * What it does: The backend Model will now have access to new Plan Methods such as add plan, delete plan and inner helper methods such as 
+  * What it does: The backend Model will now have access to new Plan Methods such as add plan, delete plan and inner helper methods such as
     contains and set plan to handle the new functionalities of FriendBook involving plans.
   * Justification: These methods work in tandem to support key functionality of FriendBook which is to add and manipulate plans.
-    
+
   * Highlights:
-    * Extensive planning required to determine which functions of plans would be required and which inner helper methods would be required to 
+    * Extensive planning required to determine which functions of plans would be required and which inner helper methods would be required to
       allow the other methods to function as required.
 
 * **New Feature**: Refactored AddressBook methods and creating support for Plan classes.

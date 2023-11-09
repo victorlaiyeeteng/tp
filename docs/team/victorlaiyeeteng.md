@@ -17,7 +17,7 @@ Given below are my contributions to the project.
   * Justification: This feature is a key functionality of FriendBook which requires plans to be added, so that user can view and manipulate with
   the added plan as required.
   * Highlights:
-    * Decided on `FRIEND_NAME` as the most user-friendly identifier of the friend that is to be associated with the plan, 
+    * Decided on `FRIEND_NAME` as the most user-friendly identifier of the friend that is to be associated with the plan,
     as it is not only unique to each friend, but also easily retrievable
     * Implemented a search method to `getPersonByName` and check if the friend exists
 

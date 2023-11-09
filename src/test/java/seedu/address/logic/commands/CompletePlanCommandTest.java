@@ -91,13 +91,4 @@ public class CompletePlanCommandTest {
         String expected = CompletePlanCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, completePlanCommand.toString());
     }
-
-    /**
-     * Updates {@code model}'s filtered list to show no plan.
-     */
-    private void showNoPlan(Model model) {
-        model.updateFilteredPlanList(p -> false);
-
-        assertTrue(model.getFilteredPlanList().isEmpty());
-    }
 }

@@ -19,6 +19,8 @@ You can reach us at the email `friendbook@u.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Frontend and Backend Development
 
+<div class="pdfbreak"></div>
+
 ### Jannice Suciptono
 
 <img src="images/jannnice.png" width="200px">
@@ -38,6 +40,8 @@ You can reach us at the email `friendbook@u.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Backend Development + Dev Ops
+
+<div class="pdfbreak"></div>
 
 ### Ho Hong Wei
 

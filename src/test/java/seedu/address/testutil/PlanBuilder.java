@@ -64,14 +64,6 @@ public class PlanBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code isComplete} of the {@code Plan} that we are building.
-     */
-    public PlanBuilder withPlanCompletionStatus(Boolean isComplete) {
-        this.isComplete = isComplete;
-        return this;
-    }
-
     public Plan build() {
         return new Plan(planName, planDateTime, friend, isComplete);
     }

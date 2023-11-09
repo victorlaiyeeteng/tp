@@ -7,6 +7,8 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div class="pdfbreak"></div>
+
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -25,6 +27,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+<div class="pdfbreak"></div>
 
 ### Architecture
 
@@ -62,9 +66,13 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
+<div class="pdfbreak"></div>
+
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div class="pdfbreak"></div>
 
 ### UI component
 
@@ -82,6 +90,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+<div class="pdfbreak"></div>
 
 ### Logic component
 
@@ -113,6 +123,8 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div class="pdfbreak"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -132,6 +144,7 @@ The `Model` component,
 
 </div>
 
+<div class="pdfbreak"></div>
 
 ### Storage component
 
@@ -143,6 +156,8 @@ The `Storage` component,
 * can save both FriendBook data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+<div class="pdfbreak"></div>
 
 ### Common classes
 
@@ -167,6 +182,8 @@ Add-plan is done similarly to the original add command in AddressBook.
 The `add-plan` command is executed by the `Logic`, then parsed by the AddressBookParser. It then creates a `AddPlanCommandParser`. This is then used to parse the command. This results in a `AddPlanCommand` object. The `.execute()` method of the `AddPlanCommand` object is then invoked by `Logic`. Following this, `AddPlanCommand` then communicates with `Model`. It first uses the `Model::getPersonByName` function to check if that friend exists. If the friend exists, a `Plan` object is created, and `Model` helps to add it. Finally, a `CommandResult` is returned.
 
 Note that there are several classes not included in the above diagram, but still used. These include (but are not limited to) the `AddressBook` class which stores `UniquePersonList` and `UniquePlanList`. A `Plan` object also requires `PlanName`, `PlanDateTime` and a `Person` object as the friend associated with the Plan.
+
+<div class="pdfbreak"></div>
 
 ### 2. `find-plan`
 
@@ -220,6 +237,8 @@ The following activity diagram summarizes what happens when a user executes the 
     * Cons: Implementation of finding by First Name is more challenging, and there may be duplicate friends with the same First Name,
   since each Person object's First Name does not have to be unique.
 
+<div class="pdfbreak"></div>
+
 ### 3. `delete-plan`
 
 The `delete-plan` command allows the user to delete a plan. The plans list on the
@@ -250,6 +269,7 @@ Step 5. The Ui will display a success message if the command is successful and t
 The following activity diagram summarizes what happens when a user executes the `delete-plan` command:
 ![DeleteActivityDiagram](diagrams/DeletePlanCommandActivityDiagram.png)
 
+<div class="pdfbreak"></div>
 
 ### 4. `edit-plan`
 
@@ -286,6 +306,8 @@ The following sequence diagram shows how the `edit-plan` command works.
 The following activity diagram summarizes what happens when a user executes the `command-plan` command:
 
 ![EditPlanCommandActivityDiagram](images/EditPlanCommandActivityDiagram.png)
+
+<div class="pdfbreak"></div>
 
 ### 5. `complete-plan`
 
@@ -332,6 +354,8 @@ The following activity diagram summarizes what happens when a user executes the 
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div class="pdfbreak"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -360,6 +384,7 @@ Provides a simple, free and fuss-free way for friends to keep updated informatio
 plans with one another. A Command Line Interface(CLI) and the FriendBook GUI serve as a quick and flexible way
 for users to add and manage plans with their friends.
 
+<div class="pdfbreak"></div>
 
 ### User stories
 
@@ -380,6 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with many plans   | sort my plans by time                        | keep my plans list organised                                           |
 | `*`      | user with many friends | sort friends by name in order                | locate the friend easily                                               |
 
+<div class="pdfbreak"></div>
 
 ### Use cases
 
@@ -427,7 +453,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2c. Timestamp of the plan added is in the wrong format.
   * 2c1. FriendBook shows an error message, displaying an example of the correct timestamp format. <br> Use case ends.
 
-    
+<div class="pdfbreak"></div>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -446,6 +473,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **MVP**: Minimum Viable Product is a product with all essential features to validate a product idea early.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div class="pdfbreak"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -495,7 +524,7 @@ testers are expected to do more *exploratory* testing.
 ### Editing a plan
 
 1. Editing a plan while all plans are being shown
-    
+
     1. Prerequisites: List all plans and friends using the `list-plan` and `list-friend` commands. There is only 1 Friend, `Elijah Chia`.
    2. Test case: `edit-plan 1 f/Elijah Chia`<br>
       Expected: First plan is edited, with it being associated to Friend `Elijah Chia`.
@@ -509,6 +538,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. Prerequisites: Add some plans and friends using `add-plan` and `add-friend` commands. Then, close the application and remove 
-   the `data` folder in the directory that `friendbook.jar` resides in. 
+   1. Prerequisites: Add some plans and friends using `add-plan` and `add-friend` commands. Then, close the application and remove
+   the `data` folder in the directory that `friendbook.jar` resides in.
    2. Reopen `friendbook.jar`, FriendBook should not have any plans or friends.

@@ -64,6 +64,22 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Gets the Person that has the same {@code name} (case-insensitive) from the list.
+     * A Person with the same name must exist in the list, else Exception is thrown.
+     */
+    public Person getPersonByName(String name) {
+        requireNonNull(name);
+        Optional<Person> matchingPerson = internalList.stream()
+                .filter(person -> person.getName().toString().toLowerCase().equals(name))
+                .findFirst();
+        if (matchingPerson.isPresent()) {
+            return matchingPerson.get();
+        } else {
+            throw new PersonNotFoundException();
+        }
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */

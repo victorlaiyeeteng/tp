@@ -180,6 +180,11 @@ public class AddPlanCommandTest {
         }
 
         @Override
+        public Person getPersonByName(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPlan(Plan plan) {
             throw new AssertionError("This method should not be called.");
         }
