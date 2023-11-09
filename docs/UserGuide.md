@@ -323,7 +323,7 @@ add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
 ```
 
 #### Examples of Correct Usage:
-* `add-plan n/Project Meeting d/2023-10-23-10:00 f/Royden`
+* `add-plan n/Meeting d/2024-10-23-10:00 f/John`
 
 #### Successful Output:
 ![add-planOutput](images/ug/add-planOutput.png)
@@ -419,7 +419,7 @@ edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]
 
 #### Examples of Correct Usage:
 * `edit-plan 3 n/Dota 3`
-* `edit-plan 1 d/2025-01-01-10:00`
+* `edit-plan 1 d/2024-10-23-10:00`
 
 #### Successful Output:
 ![edit-planOutput](images/ug/edit-planOutput.png)
