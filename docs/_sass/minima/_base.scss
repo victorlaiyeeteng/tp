@@ -289,14 +289,13 @@ table {
     content: "FriendBook";
     font-size: 32px;
   }
-  hr {
-    page-break-after: always;
-  }
-  h2, h3 {
-    page-break-before: always;
-  }
-  img {
-    page-break-after: always;
-  }
 }
 
+/**
+ * Custom CSS styles for PDF optimisation
+ */
+.pdfbreak {
+    @media print {
+        page-break-after: always;
+    }
+}

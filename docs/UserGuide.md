@@ -3,7 +3,7 @@ layout: pagewithnavbar
 title: User Guide
 ---
 
-FriendBook is a GUI/CLI program made for **SoC Students** to help them keep track and manage their friends and plans.
+FriendBook is a GUI/CLI program made for **SoC Students** to help them track and manage their friends and plans.
 
 Here's a quick summary of what FriendBook can do for you:
 
@@ -11,10 +11,12 @@ Here's a quick summary of what FriendBook can do for you:
 * Reminders on how each command can be used!
 * Add friends into FriendBook and keep track of their information!
 * Add plans into FriendBook and keep track of them!
-* Add useful information like deadlines to each of your plan!
-* Associate a friend with each of your plan!
+* Add useful information like deadlines to each of your plans!
+* Associate a friend with each of your plans!
 
-# Table of Content
+<div class="pdfbreak"></div>
+
+# Table of Contents
 - [Installation Guide](#installation-guide)
 - [Disclaimers](#disclaimers)
 - [Important Information](#important-information)
@@ -36,10 +38,12 @@ Here's a quick summary of what FriendBook can do for you:
   - [clear](#clear)
   - [help](#help)
   - [exit](#exit)
-- [Command Summary](#command-summary)
 - [FAQs](#faq)
+- [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div class="pdfbreak"></div>
 
 ## Installation Guide
 1. Ensure you have Java 11 or above installed in your Computer. Click [here](https://blog.hubspot.com/website/check-java-verison#:~:text=First%2C%20find%20and%20click%20on,get%20your%20current%20version%20details) to learn how to find out what Java version you have!
@@ -53,8 +57,13 @@ Here's a quick summary of what FriendBook can do for you:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div class="pdfbreak"></div>
+
 ## Disclaimers
-1. Due to FriendBook being a beta release, we only support up to 10000 friends and plans.
+
+1. As FriendBook is still in its beta release stage, we only support a limited number of friends and plans. Our application may not work as expected if too many friends and plans (more than 2147483647) are used!
+2. Currently, each plan can only be associated with **exactly one** person. We are working on making this requirement more flexible!
+3. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -69,11 +78,13 @@ Here's a quick summary of what FriendBook can do for you:
 </div>
 
 ```
-Texts in this box shows a command and it's corresponding syntax
+Texts in this box shows a command and its corresponding syntax
 ```
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
 - Texts in [square brackets] indicate that the argument is optional.
 - `...` indicate that more than 1 parameter of that type can be passed into the command. Otherwise, only 1 is allowed.
+
+<div class="pdfbreak"></div>
 
 ### Prefixes
 Prefixes allow you to specify important values when entering a command.
@@ -91,6 +102,8 @@ Here is a table of all available prefixes:
 | `f/`     | Used to indicate the Friend associated with the Plan.|
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div class="pdfbreak"></div>
 
 ## Friend-Related Features
 
@@ -119,11 +132,13 @@ add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
 - Empty or invalid name :
   `Names should only contain alphanumeric characters and spaces, and it should not be blank...`
 
-- Non-numeric phone number :
+- Invalid phone number :
   `Phone numbers should only contain numbers, and it should be at least 3 digits long`
 
 - Invalid email format :
   `Emails should be of the format local-part@domain...`
+
+<div class="pdfbreak"></div>
 
 #### Disclaimer:
 <div markdown="span" class="alert alert-danger">
@@ -131,12 +146,14 @@ Each friend must have a unique name and email.
 </div>
 
 <div markdown="span" class="alert alert-danger">
-Friend's names are case insensitive (John and john are the same name).
+Friend's names are case-insensitive (John and john are the same name).
 </div>
 
 <div markdown="span" class="alert alert-danger">
 Friend's names can only contain alphanumeric characters and spaces. No special characters like `/` or `-` are allowed. It cannot consist of only numbers.
 </div>
+
+<div class="pdfbreak"></div>
 
 ### `delete-friend`
 
@@ -165,12 +182,18 @@ delete-friend INDEX
 
 #### Disclaimer:
 <div markdown="span" class="alert alert-danger">
-delete-friend command must be provided with a positive non-zero index else, an invalid command message will be shown.
+delete-friend command must be provided with a positive non-zero index, else an invalid command message will be shown.
 </div>
 
 <div markdown="span" class="alert alert-danger">
 Friends that are associated with a Plan cannot be deleted.
 </div>
+
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
+</div>
+
+<div class="pdfbreak"></div>
 
 ### `edit-friend`
 
@@ -191,8 +214,14 @@ edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
 - Invalid command :
   `Invalid command...`
 
-- Missing or invalid arguments :
-  `Invalid command...`
+- Empty or invalid name :
+  `Names should only contain alphanumeric characters and spaces, and it should not be blank...`
+
+- Invalid phone number :
+  `Phone numbers should only contain numbers, and it should be at least 3 digits long`
+
+- Invalid email format :
+  `Emails should be of the format local-part@domain...`
 
 - INDEX is greater than the number of friends :
   `The friend index provided is bigger than your number of friends.`
@@ -203,6 +232,8 @@ edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
 - Friend (identified by name or email) already exists :
   `This friend already exists in the FriendBook...`
 
+<div class="pdfbreak"></div>
+
 #### Additional Information:
 <div markdown="span" class="alert alert-info">
 At least 1 optional field must be provided.
@@ -210,8 +241,14 @@ At least 1 optional field must be provided.
 
 #### Disclaimer:
 <div markdown="span" class="alert alert-danger">
-edit-friend command must be provided with a positive non-zero index else, an invalid command message will be shown.
+edit-friend command must be provided with a positive non-zero index, else an invalid command message will be shown.
 </div>
+
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
+</div>
+
+<div class="pdfbreak"></div>
 
 ### `find-friend`
 
@@ -248,6 +285,8 @@ The order of the keywords does not matter. (`Hans Bo` will match `Bo Hans`).
 Friends matching at least one keyword will be returned.
 </div>
 
+<div class="pdfbreak"></div>
+
 #### Disclaimer:
 <div markdown="span" class="alert alert-danger">
 This search is done by name.
@@ -256,6 +295,8 @@ This search is done by name.
 <div markdown="span" class="alert alert-danger">
 Only full words will be matched (`Han` will not match `Hans`).
 </div>
+
+<div class="pdfbreak"></div>
 
 ### `list-friend`
 
@@ -270,8 +311,9 @@ list-friend
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Plan-Related Features
+<div class="pdfbreak"></div>
 
+## Plan-Related Features
 ### `add-plan`
 
 This command allows you to add a plan to your FriendBook and associate an existing Friend with this plan.
@@ -293,7 +335,7 @@ add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
 - Missing arguments :
   `Invalid syntax: Missing arguments...`
 
-- Date-Time in wrong format :
+- Date-Time in wrong format or date does not exist:
   `Date-Time given is invalid. Date-Time must be in YYYY-MM-DD-HH:MM format`
 
 - Date-Time in the past :
@@ -304,6 +346,8 @@ add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
 
 - Empty or invalid name for Friend :
   `Names should only contain alphanumeric characters and spaces, and it should not be blank...`
+
+<div class="pdfbreak"></div>
 
 #### Additional Information:
 <div markdown="span" class="alert alert-info">
@@ -326,6 +370,8 @@ Plan names are case-sensitive (meeting and Meeting are different plan names).
 <div markdown="span" class="alert alert-danger">
 Plan names can only contain alphanumeric characters and spaces. No special characters like `/` or `-` are allowed. It cannot consist of only numbers.
 </div>
+
+<div class="pdfbreak"></div>
 
 ### `delete-plan`
 
@@ -354,8 +400,14 @@ delete-plan INDEX
 
 #### Disclaimer:
 <div markdown="span" class="alert alert-danger">
-delete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
+delete-plan command must be provided with a positive non-zero index, else an invalid command message will be shown.
 </div>
+
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
+</div>
+
+<div class="pdfbreak"></div>
 
 ### `edit-plan`
 
@@ -376,8 +428,11 @@ edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]
 - Invalid command :
   `Invalid command...`
 
-- Missing or invalid arguments :
-  `Invalid command...`
+- Date-Time in wrong format or date does not exist :
+  `Date-Time given is invalid. Date-Time must be in YYYY-MM-DD-HH:MM format`
+
+- Date-Time in the past :
+  `Date-Time given is invalid. Ensure that the Date-Time provided is not in the past.`
 
 - INDEX is greater than the number of friends :
   `The plan index provided is bigger than your number of plans.`
@@ -390,6 +445,8 @@ edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]
 
 - Not a valid friend :
   `The friend does not exist in the FriendBook.`
+
+<div class="pdfbreak"></div>
 
 #### Additional Information:
 <div markdown="span" class="alert alert-info">
@@ -404,6 +461,12 @@ DATE_TIME must be in YYYY-MM-DD-HH:MM format
 <div markdown="span" class="alert alert-danger">
 edit-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
 </div>
+
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
+</div>
+
+<div class="pdfbreak"></div>
 
 ### `complete-plan`
 
@@ -434,6 +497,12 @@ complete-plan INDEX
 complete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
 </div>
 
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
+</div>
+
+<div class="pdfbreak"></div>
+
 ### `uncomplete-plan`
 
 This command allows you to unmark a plan's completion status in your FriendBook.
@@ -462,6 +531,12 @@ uncomplete-plan INDEX
 <div markdown="span" class="alert alert-danger">
 uncomplete-plan command must be provided with a positive non-zero index else, an invalid command message will be shown.
 </div>
+
+<div markdown="span" class="alert alert-danger">
+Using an index greater than 2147483647 will lead to an `Invalid command...` error being raised instead.
+</div>
+
+<div class="pdfbreak"></div>
 
 ### `find-plan`
 
@@ -501,6 +576,8 @@ The search is case-insensitive (`hans` will match `Hans`).
 Only one full name should be provided.
 </div>
 
+<div class="pdfbreak"></div>
+
 ### `list-plan`
 
 This command allows you to list all your plans in your FriendBook.
@@ -511,6 +588,8 @@ list-plan
 
 #### Successful Output:
 ![list-planOutput](images/ug/list-planOutput.png)
+
+<div class="pdfbreak"></div>
 
 ## General Commands
 
@@ -530,13 +609,15 @@ This command closes the FriendBook application.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FriendBook home folder.
 
+**Q**: How do I suggest feedback for FriendBook?<br>
+**A**: You may email us at `friendbook@u.nus.edu.sg`.
+
+**Q**: What features can we look forward to in the future?<br>
+**A**: We are currently looking into the following features: Allowing Plans to have multiple Friends, cloud storage of Plan and Friend data, and allowing users to create their own FriendBook themes and plugins.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
---------------------------------------------------------------------------------------------------------------------
+<div class="pdfbreak"></div>
 
 ## Command Summary
 
@@ -554,3 +635,6 @@ Action | Format, Examples
 **delete-plan** | `delete-plan INDEX` <br> e.g., `delete-plan 4`
 **find-plan** | `find-plan FRIEND_NAME` <br> e.g., `find-plan John`
 **list-plan** | `list-plan`
+**clear** | `clear`
+**help** | `help`
+**exit** | `exit`
