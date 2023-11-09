@@ -105,7 +105,9 @@ public class Plan {
         }
 
         Plan otherPlan = (Plan) other;
-        return planName.equals(otherPlan.planName)
+        String thisPlanName = planName.toString().toLowerCase();
+        String otherPlanName = otherPlan.planName.toString().toLowerCase();
+        return thisPlanName.equals(otherPlanName)
                 && dateTime.equals(otherPlan.dateTime)
                 && friend.equals(otherPlan.friend);
     }
