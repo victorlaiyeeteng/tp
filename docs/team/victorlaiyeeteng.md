@@ -64,9 +64,8 @@ Given below are my contributions to the project.
     * Update `Command summary` portion to match it with the available commands
   * Developer Guide:
     * Added implementation details of the `list-plan` feature.
-    * Wrote Appendix Sections: `Product scope`, `User Stories`, 2 `Use Cases`, `NFR`, 
+    * Wrote Appendix Sections: `Product scope`, `User Stories`, 2 `Use Cases`, `NFR`,
     `Deleting a person`, `Editing a plan` and `Saving data`
 
 * **Review / Mentoring Contributions**:
   * Review bugs flagged out during PE-D and categorised them while removing repeated bugs
-  * 
