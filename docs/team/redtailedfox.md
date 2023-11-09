@@ -59,7 +59,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for `delete-plan' and 'list-plan' commands
+    * Added documentation for `delete-plan` and `list-plan` commands
     * Refactor the details to the exact implementation of the commands for issues like unexpected output error messages
   * Developer Guide:
     * Added implementation details of the `delete-plan` feature including activity and sequence diagrams.
@@ -73,4 +73,4 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Advised a team outside of class how to abstract their fields for better object-oriented design.
-  * Avised a team outside of class how to reduce arrowhead code design in their methods.
+  * Advised a team outside of class how to reduce arrowhead code design in their methods.
