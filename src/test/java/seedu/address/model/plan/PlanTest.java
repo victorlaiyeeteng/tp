@@ -65,7 +65,7 @@ class PlanTest {
 
         // name differs in case, all other attributes same -> returns false
         editedBali = new PlanBuilder(BALI).withPlanName("Bali Trip".toLowerCase()).build();
-        assertFalse(BALI.isSamePlan(editedBali));
+        assertTrue(BALI.isSamePlan(editedBali));
 
         // name has trailing spaces, all other attributes same -> returns false
         String planNameWithTrailingSpaces = "Bali Trip" + " ";
