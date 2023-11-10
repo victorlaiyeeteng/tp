@@ -37,11 +37,13 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
+    * Added sidebar navigation for User Guide.
+    * Added page breaks to print PDF version of User Guide.
+  * Developer Guide:
     * Added template documentation for `add-plan`, `edit-plan` and `delete-plan`.
     * Completed documentation for `add-plan`.
     * Added sequence diagrams for `AddPlanCommand`, `EditPlanCommand` and `DeletePlanCommand`, and activity diagram for `AddPlanCommand`.
-    * Added Plans constraints
-    * Added page breaks to print PDF version of User Guide
+    * Added page breaks to print PDF version of Developer Guide.
 
 * **Community**:
   * Suggested possible alternative to answers during tutorial sessions.
