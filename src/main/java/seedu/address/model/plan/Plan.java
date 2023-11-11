@@ -73,10 +73,8 @@ public class Plan {
             return true;
         }
 
-        String thisPlanName = planName.toString().toLowerCase();
-
         return otherPlan != null
-                && thisPlanName.equals(otherPlan.planName.toString().toLowerCase())
+                && otherPlan.getPlanName().equals(getPlanName())
                 && otherPlan.getPlanFriend().equals(getPlanFriend())
                 && otherPlan.getPlanDateTime().equals(getPlanDateTime());
     }
@@ -107,9 +105,7 @@ public class Plan {
         }
 
         Plan otherPlan = (Plan) other;
-        String thisPlanName = planName.toString().toLowerCase();
-        String otherPlanName = otherPlan.planName.toString().toLowerCase();
-        return thisPlanName.equals(otherPlanName)
+        return planName.equals(otherPlan.planName)
                 && dateTime.equals(otherPlan.dateTime)
                 && friend.equals(otherPlan.friend);
     }

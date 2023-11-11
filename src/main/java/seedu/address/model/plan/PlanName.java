@@ -56,7 +56,7 @@ public class PlanName {
         }
 
         seedu.address.model.plan.PlanName otherName = (seedu.address.model.plan.PlanName) other;
-        return planName.equals(otherName.planName);
+        return planName.equalsIgnoreCase(otherName.planName);
     }
 
     @Override

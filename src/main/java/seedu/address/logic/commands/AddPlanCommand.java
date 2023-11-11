@@ -87,9 +87,7 @@ public class AddPlanCommand extends Command {
         }
 
         AddPlanCommand otherAddPlanCommand = (AddPlanCommand) other;
-        String thisPlan = planName.toString().toLowerCase();
-        String otherPlan = otherAddPlanCommand.planName.toString().toLowerCase();
-        return thisPlan.equals(otherPlan)
+        return planName.equals(otherAddPlanCommand.planName)
                 && planDateTime.equals(otherAddPlanCommand.planDateTime)
                 && friendName.equals(otherAddPlanCommand.friendName);
     }
