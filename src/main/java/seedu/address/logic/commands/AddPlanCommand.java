@@ -85,6 +85,7 @@ public class AddPlanCommand extends Command {
         if (!(other instanceof AddPlanCommand)) {
             return false;
         }
+
         AddPlanCommand otherAddPlanCommand = (AddPlanCommand) other;
         return planName.equals(otherAddPlanCommand.planName)
                 && planDateTime.equals(otherAddPlanCommand.planDateTime)
