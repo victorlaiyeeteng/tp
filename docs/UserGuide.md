@@ -138,6 +138,9 @@ add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
 - Invalid email format :
   `Emails should be of the format local-part@domain...`
 
+- Invalid tag format : 
+  `Tag names should be alphanumeric and not contain any spaces.`
+
 <div class="pdfbreak"></div>
 
 #### Disclaimer:
@@ -222,6 +225,9 @@ edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
 
 - Invalid email format :
   `Emails should be of the format local-part@domain...`
+
+- Invalid tag format : 
+  `Tag names should be alphanumeric and not contain any spaces.`
 
 - INDEX is greater than the number of friends :
   `The friend index provided is bigger than your number of friends.`
@@ -346,6 +352,9 @@ add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
 
 - Empty or invalid name for Friend :
   `Names should only contain alphanumeric characters and spaces, and it should not be blank...`
+
+- Plan (identified by name, date-time and friend) already exists :
+  `This plan already exists in the FriendBook`
 
 <div class="pdfbreak"></div>
 
@@ -556,8 +565,8 @@ find-plan FRIEND_NAME
 - Invalid command :
   `Invalid command...`
 
-- Missing or invalid arguments :
-  `Invalid command...`
+- Missing FRIEND_NAME argument :
+  `Invalid syntax: Missing arguments...`
 
 - Not a valid friend :
   `The friend does not exist in the FriendBook.`
