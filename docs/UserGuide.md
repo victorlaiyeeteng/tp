@@ -353,6 +353,9 @@ add-plan n/PLAN_NAME d/DATE_TIME f/FRIEND_NAME
 - Empty or invalid name for Friend :
   `Names should only contain alphanumeric characters and spaces, and it should not be blank...`
 
+- Plan (identified by name, date-time and friend) already exists :
+  `This plan already exists in the FriendBook`
+
 <div class="pdfbreak"></div>
 
 #### Additional Information:
@@ -562,8 +565,8 @@ find-plan FRIEND_NAME
 - Invalid command :
   `Invalid command...`
 
-- Missing or invalid arguments :
-  `Invalid command...`
+- Missing FRIEND_NAME argument :
+  `Invalid syntax: Missing arguments...`
 
 - Not a valid friend :
   `The friend does not exist in the FriendBook.`
