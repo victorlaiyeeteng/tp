@@ -138,6 +138,9 @@ add-friend n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
 - Invalid email format :
   `Emails should be of the format local-part@domain...`
 
+- Invalid tag format : 
+  `Tag names should be alphanumeric and not contain any spaces.`
+
 <div class="pdfbreak"></div>
 
 #### Disclaimer:
@@ -222,6 +225,9 @@ edit-friend INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
 
 - Invalid email format :
   `Emails should be of the format local-part@domain...`
+
+- Invalid tag format : 
+  `Tag names should be alphanumeric and not contain any spaces.`
 
 - INDEX is greater than the number of friends :
   `The friend index provided is bigger than your number of friends.`
