@@ -5,6 +5,8 @@ title: User Guide
 
 FriendBook is a GUI/CLI program made for **SoC Students** to help them track and manage their friends and plans.
 
+This User Guide is written to help new users understand how to use FriendBook. It contains information on how to install and launch FriendBook, and how to use commands in the application.
+
 Here's a quick summary of what FriendBook can do for you:
 
 * All features are easily achieved using simple, typed commands!
