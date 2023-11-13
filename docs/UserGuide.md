@@ -659,7 +659,7 @@ Action | Format, Examples
 
 Term | Description
 --------|------------------
-**Case-insensitive** | Treating or interpreting upper- and lowercase letters as being the same.
+**Case-insensitive** | Treating or interpreting upper- and lower-case letters as being the same.
 **CLI** | Stands for Command Line Interface. It is a text-based interface where users can input commands that interact with a computer's operating system.
 **Command** | A sequence of words that represents an action that FriendBook can understand and execute.
 **Directory Path** | A type of "road map" to a specific file or directory.
