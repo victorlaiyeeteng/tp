@@ -649,3 +649,21 @@ Action | Format, Examples
 **clear** | `clear`
 **help** | `help`
 **exit** | `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div class="pdfbreak"></div>
+
+## Glossary
+
+Term | Description
+--------|------------------
+**Case Insensitive** | Treating or interpreting upper- and lowercase letters as being the same.
+**CLI** | Stands for Command Line Interface. It is a text-based interface where users can input commands that interact with a computer's operating system.
+**Command** | A sequence of words that represents an action that FriendBook can understand and execute.
+**Directory Path** | A type of "road map" to a specific file or directory.
+**GUI** | Stands for Graphical User Interface. It is a digital interface in which a user interacts with graphical components such as icons, buttons, and menus.
+**JAR** | A file that contains all the resources needed for FriendBook to run.
+**Java** | A general-purpose programming language on which FriendBook is built.
+**Syntax** | The set of rules that define what the various combinations of words and symbols mean.
+
