@@ -67,6 +67,7 @@ Here's a quick summary of what FriendBook can do for you:
 1. As FriendBook is still in its beta release stage, we only support a limited number of friends and plans. Our application may not work as expected if too many friends and plans (more than 2147483647) are used!
 2. Currently, each plan can only be associated with **exactly one** person. We are working on making this requirement more flexible!
 3. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+4. Regarding Friend names, addresses and plan names, do not enter white spaces of more than 1 space if a white space is required.
 
 --------------------------------------------------------------------------------------------------------------------
 
