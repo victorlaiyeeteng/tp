@@ -38,6 +38,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for `complete-plan` and `uncomplete-plan` commands.
+    * Added the Glossary section.
     
   * Developer Guide:
     * Added implementation details of the `complete-plan` feature.
