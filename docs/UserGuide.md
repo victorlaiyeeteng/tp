@@ -375,7 +375,7 @@ Plans with exactly the same name, date-time and friend as an existing plan is no
 </div>
 
 <div markdown="span" class="alert alert-danger">
-Plan names are case-sensitive (meeting and Meeting are different plan names).
+Plan names are case-insensitive (meeting and Meeting are the same plan names).
 </div>
 
 <div markdown="span" class="alert alert-danger">
@@ -406,7 +406,7 @@ delete-plan INDEX
 - Missing or invalid arguments :
   `Invalid command...`
 
-- INDEX is greater than the number of friends :
+- INDEX is greater than the number of plans :
   `The plan index provided is bigger than your number of plans.`
 
 #### Disclaimer:
@@ -445,7 +445,7 @@ edit-plan INDEX [n/PLAN_NAME] [d/DATE_TIME] [f/FRIEND_NAME]
 - Date-Time in the past :
   `Date-Time given is invalid. Ensure that the Date-Time provided is not in the past.`
 
-- INDEX is greater than the number of friends :
+- INDEX is greater than the number of plans :
   `The plan index provided is bigger than your number of plans.`
 
 - No optional arguments provided :
@@ -500,7 +500,7 @@ complete-plan INDEX
 - Missing or invalid arguments :
   `Invalid command...`
 
-- INDEX is greater than the number of friends :
+- INDEX is greater than the number of plans :
   `The plan index provided is bigger than your number of plans.`
 
 #### Disclaimer:
@@ -535,7 +535,7 @@ uncomplete-plan INDEX
 - Missing or invalid arguments :
   `Invalid command...`
 
-- INDEX is greater than the number of friends :
+- INDEX is greater than the number of plans :
   `The plan index provided is bigger than your number of plans.`
 
 #### Disclaimer:
